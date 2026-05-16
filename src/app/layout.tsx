@@ -20,6 +20,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Nandanam Arts Foundation",
   description: "Experience the divine geometry of Indian classical dance.",
+  verification: {
+    google: "CHqMeqOFjlJ-gITvguA1OQ42tgpx2U9j7D8xTQqacgE",
+  },
 };
 
 export default function RootLayout({
