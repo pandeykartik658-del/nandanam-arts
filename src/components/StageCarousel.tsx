@@ -222,10 +222,28 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                           exit={{ opacity: 0 }}
                           transition={{ duration: 1.5 }}
                         >
+                          {itemImages[photoIdx] && (
+                            <Image 
+                              src={itemImages[photoIdx]} 
+                              alt={item.title || "Performance"}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                              className="object-cover opacity-80"
+                            />
+                          )}
                           <div className="absolute inset-0 bg-primary/5" />
                         </motion.div>
                       ) : (
                         <div className="absolute inset-0">
+                          {itemImages[0] && (
+                            <Image 
+                              src={itemImages[0]} 
+                              alt={item.title || "Performance"}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                              className="object-cover opacity-50"
+                            />
+                          )}
                           <div className="absolute inset-0 bg-primary/5" />
                         </div>
                       )}
@@ -259,7 +277,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                     <span className="font-display text-xs tracking-[5px] text-primary/85 uppercase">Collage: {item.title}</span>
                   </div>
                   <div className={`flex-grow grid gap-2 pb-2 px-1 ${itemImages.length > 2 ? 'grid-cols-2 grid-rows-2' : 'grid-cols-1 grid-rows-2'} overflow-hidden`}>
-                    {itemImages.slice(0, 4).map((img, i) => (
+                    {itemImages.filter(Boolean).slice(0, 4).map((img, i) => (
                       <div key={i} className="relative w-full h-full">
                         <Image 
                           src={img} 
