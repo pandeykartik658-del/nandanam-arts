@@ -25,7 +25,7 @@ export async function getEditions() {
     title,
     year,
     text,
-    "images": images[].secure_url
+    "images": images[].asset->url
   }`;
   return client.fetch(query);
 }
@@ -37,7 +37,7 @@ export async function getEvents() {
     date,
     location,
     description,
-    "image": image.secure_url,
+    "image": image.asset->url,
     link,
     category
   }`;

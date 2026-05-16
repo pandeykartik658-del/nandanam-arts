@@ -33,8 +33,8 @@ export const event = defineType({
     defineField({
       name: "image",
       title: "Poster / Image",
-      type: "cloudinary.asset",
-      description: "Upload and select from Cloudinary",
+      type: "image",
+      options: { hotspot: true },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
