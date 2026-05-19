@@ -249,7 +249,8 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
       <section id="philosophy" className="max-w-[1100px] mx-auto px-6 py-20">
         <motion.h2
           aria-hidden="true"
-          className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] text-white/85 mb-10"
+          className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] mb-10"
+          style={{ color: 'rgba(255, 255, 255, 0.85)' }}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
