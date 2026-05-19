@@ -67,8 +67,8 @@ const CHANNELS: Channel[] = [
   },
   {
     name: "Gmail",
-    handle: "namaste@nandanam.in",
-    href: "mailto:namaste@nandanam.in",
+    handle: "shashank.k.nair@gmail.com",
+    href: "mailto:shashank.k.nair@gmail.com",
     tint: "hsl(0, 65%, 60%)",
     tooltip: "For formal inquiries",
     hoverAnim: { y: [0, -4, 0, -2, 0], transition: { duration: 0.5 } },
