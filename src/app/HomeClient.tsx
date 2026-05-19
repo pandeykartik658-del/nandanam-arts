@@ -266,7 +266,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         <div
           className="max-w-[800px] mb-14"
         >
-          <p className="font-body text-lg md:text-xl leading-[1.8] text-white/90 mb-4">
+          <p className="font-body text-lg md:text-xl leading-[1.8] text-white/85 mb-4">
             {expanded ? philosophyFull : truncated}
           </p>
           <motion.button
@@ -316,7 +316,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         </motion.h3>
 
         <p
-          className="font-body text-lg md:text-xl leading-[1.8] text-white/90 mb-16"
+          className="font-body text-lg md:text-xl leading-[1.8] text-white/85 mb-16"
         >
           "Every mudra is a prayer. Every adavu is a meditation. We do not merely dance — we channel the divine through disciplined movement, transforming the human body into a vessel of ancient stories and timeless devotion."
         </p>
