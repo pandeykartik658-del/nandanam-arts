@@ -254,7 +254,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
       <section id="philosophy" className="max-w-[1100px] mx-auto px-6 py-20">
         <motion.h2
           aria-hidden="true"
-          className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] text-muted-foreground/70 mb-10"
+          className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] text-white/85 mb-10"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -270,7 +270,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="max-w-[800px] mb-14"
         >
-          <p className="font-body text-lg md:text-xl leading-[1.8] text-white/95 mb-4">
+          <p className="font-body text-lg md:text-xl leading-[1.8] text-white/85 mb-4">
             {expanded ? philosophyFull : truncated}
           </p>
           <motion.button
@@ -320,7 +320,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         </motion.h3>
 
         <motion.p
-          className="font-body text-lg md:text-xl leading-[1.8] text-white/95 mb-16"
+          className="font-body text-lg md:text-xl leading-[1.8] text-white/85 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
