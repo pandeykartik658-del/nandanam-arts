@@ -225,7 +225,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="max-w-[800px] mb-14"
         >
-          <p className="font-luxury text-xl md:text-2xl leading-[1.9] text-white/95 tracking-wide mb-6 drop-shadow-sm">
+          <p className="font-body text-lg md:text-xl leading-[1.8] text-white/95 mb-4">
             {expanded ? philosophyFull : truncated}
           </p>
           <motion.button
@@ -275,7 +275,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         </motion.h3>
 
         <motion.p
-          className="font-luxury text-2xl md:text-3xl leading-[1.8] text-white/95 italic tracking-wide mb-16 drop-shadow-md"
+          className="font-body text-lg md:text-xl leading-[1.8] text-white/95 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
