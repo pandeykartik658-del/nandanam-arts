@@ -242,7 +242,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         <motion.h2
           aria-hidden="true"
           className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] mb-10"
-          style={{ color: 'rgba(255, 255, 255, 0.92)', textShadow: '0 0 20px rgba(255,255,255,0.08)' }}
+          style={{ color: '#ffffff', textShadow: '0 0 30px rgba(255, 255, 255, 0.35), 0 0 10px rgba(255, 255, 255, 0.2)' }}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -294,7 +294,8 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         />
 
         <motion.h3
-          className="font-display text-lg md:text-xl tracking-[4px] md:tracking-[5px] uppercase text-primary mb-8"
+          className="font-display text-lg md:text-xl tracking-[4px] md:tracking-[5px] uppercase mb-8"
+          style={{ color: 'rgba(255, 220, 235, 0.98)', textShadow: '0 0 25px rgba(255, 100, 180, 0.45), 0 0 8px rgba(255, 255, 255, 0.3)' }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
