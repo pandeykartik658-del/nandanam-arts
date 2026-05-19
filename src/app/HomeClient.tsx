@@ -187,39 +187,28 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
           />
         ))}
 
-        {/* Logo */}
+        {/* Logo + Badge */}
         <motion.div
-          className="flex flex-col items-center gap-6 mb-12 relative z-10"
+          className="flex items-center gap-4 mb-10 relative z-10"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <div className="relative flex items-center justify-center">
-            <motion.div
-              className="absolute bg-primary/30 rounded-full blur-2xl"
-              style={{ width: "180%", height: "180%" }}
-              animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <Image
-              src={logo}
-              alt="Nandanam Logo"
-              width={72}
-              height={72}
-              className="w-16 h-16 md:w-[72px] md:h-[72px] object-contain bg-gradient-wine-shift relative z-10"
-              style={{
-                WebkitMaskImage: `url(${logo})`,
-                WebkitMaskSize: "contain",
-                WebkitMaskRepeat: "no-repeat",
-                WebkitMaskPosition: "center",
-                maskImage: `url(${logo})`,
-                maskSize: "contain",
-                maskRepeat: "no-repeat",
-                maskPosition: "center",
-              }}
-            />
-          </div>
-          <span className="inline-block px-6 py-2.5 rounded-full font-display text-[10px] tracking-[6px] uppercase text-primary glass-surface glow-wine">
+          <Image src={logo} alt="" width={1} height={1} priority className="hidden" aria-hidden="true" />
+          <div
+            className="w-10 h-10 bg-gradient-wine-shift shrink-0"
+            style={{
+              WebkitMaskImage: `url(${logo})`,
+              WebkitMaskSize: "contain",
+              WebkitMaskRepeat: "no-repeat",
+              WebkitMaskPosition: "center",
+              maskImage: `url(${logo})`,
+              maskSize: "contain",
+              maskRepeat: "no-repeat",
+              maskPosition: "center",
+            }}
+          />
+          <span className="inline-block px-5 py-2 rounded-full font-display text-[10px] tracking-[6px] uppercase text-primary glass-surface glow-wine">
             Nandanam Arts Foundation
           </span>
         </motion.div>
