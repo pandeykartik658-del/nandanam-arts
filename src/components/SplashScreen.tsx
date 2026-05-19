@@ -10,16 +10,18 @@ const SplashScreen = () => {
   }, []);
 
   const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   const scale = useTransform(scrollY, [0, 400], [1, 1.6]);
   const letterSpacing = useTransform(scrollY, [0, 400], [6, 25]);
 
   return (
     <motion.div
       style={{
+        opacity,
         scale,
         letterSpacing: useTransform(letterSpacing, (v) => `${v}px`),
       }}
-      className="relative min-h-[100vh] w-full z-50 flex items-center justify-center pointer-events-none overflow-hidden"
+      className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
     >
       {/* Subtle radial background */}
       <div

@@ -135,6 +135,9 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
       </div>
       <FloatingElements />
       <ScrollProgress />
+      
+      {/* Spacer for splash screen — scroll past this to reveal the hero */}
+      <div className="min-h-screen" />
 
       <motion.section
         ref={heroRef}
