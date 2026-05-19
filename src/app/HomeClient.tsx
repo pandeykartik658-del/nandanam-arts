@@ -225,12 +225,12 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="max-w-[800px] mb-14"
         >
-          <p className="font-body text-lg md:text-xl leading-[1.8] text-white/65 mb-4">
+          <p className="font-luxury text-xl md:text-2xl leading-[1.9] text-white/95 tracking-wide mb-6 drop-shadow-sm">
             {expanded ? philosophyFull : truncated}
           </p>
           <motion.button
             onClick={() => setExpanded(!expanded)}
-            className="font-display text-xs tracking-[3px] uppercase text-primary hover:text-primary/80 transition-colors"
+            className="font-display text-xs tracking-[3px] uppercase text-primary hover:text-primary-foreground transition-colors"
             whileHover={{ x: 4 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -275,7 +275,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         </motion.h3>
 
         <motion.p
-          className="font-body text-lg md:text-xl leading-[1.8] text-white/65 mb-16"
+          className="font-luxury text-2xl md:text-3xl leading-[1.8] text-white/95 italic tracking-wide mb-16 drop-shadow-md"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
