@@ -70,8 +70,9 @@ export default async function HomePage() {
       <div
         id="ssr-splash"
         style={{
-          position: 'fixed',
-          inset: 0,
+          position: 'relative',
+          minHeight: '100vh',
+          width: '100%',
           zIndex: 50,
           display: 'flex',
           alignItems: 'center',
