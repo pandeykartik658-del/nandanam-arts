@@ -99,14 +99,6 @@ interface HomeClientProps {
 
 export default function HomeClient({ upcomingEvents }: HomeClientProps) {
   const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: heroProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  
-  // Simple, elegant fade and slight upward movement
-  const heroY = useTransform(heroProgress, [0, 1], [0, 100]);
-  const heroOpacity = useTransform(heroProgress, [0, 0.8], [1, 0]);
 
   const [expanded, setExpanded] = useState(false);
   const router = useRouter();
@@ -139,9 +131,8 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
       {/* Spacer for splash screen — scroll past this to reveal the hero */}
       <div className="min-h-screen" />
 
-      <motion.section
+      <section
         ref={heroRef}
-        style={{ y: heroY, opacity: heroOpacity }}
         className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative"
       >
         {/* Pulsing rings behind hero content */}
@@ -238,7 +229,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         >
           A legacy of rhythm, expression, and absolute devotion to the ancient art of Bharatanatyam.
         </motion.p>
-      </motion.section>
+      </section>
 
       {isDeferred && (
         <>
