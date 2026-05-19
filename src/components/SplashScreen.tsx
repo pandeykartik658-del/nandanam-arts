@@ -1,25 +1,38 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const SplashScreen = () => {
+  const [isGone, setIsGone] = useState(false);
+
   useEffect(() => {
     const el = document.getElementById("ssr-splash");
     if (el) el.style.display = "none";
   }, []);
 
   const { scrollY } = useScroll();
+  // Only two GPU-friendly transforms: opacity and scale (no letterSpacing)
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const scale = useTransform(scrollY, [0, 400], [1, 1.6]);
-  const letterSpacing = useTransform(scrollY, [0, 400], [6, 25]);
+  const scale = useTransform(scrollY, [0, 400], [1, 1.4]);
+
+  // Once scrolled past threshold, unmount heavy content entirely
+  useEffect(() => {
+    const unsubscribe = scrollY.on("change", (v) => {
+      if (v > 400 && !isGone) setIsGone(true);
+      if (v <= 50 && isGone) setIsGone(false);
+    });
+    return unsubscribe;
+  }, [scrollY, isGone]);
+
+  if (isGone) return null;
 
   return (
     <motion.div
       style={{
         opacity,
         scale,
-        letterSpacing: useTransform(letterSpacing, (v) => `${v}px`),
+        willChange: "transform, opacity",
       }}
       className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
     >
@@ -31,21 +44,15 @@ const SplashScreen = () => {
         }}
       />
 
-      {/* Pulse rings */}
+      {/* Pulse rings — static on mobile, animated on desktop */}
       {[...Array(3)].map((_, i) => (
-        <motion.div
+        <div
           key={`ring-${i}`}
-          className="absolute rounded-full border border-primary/10"
-          style={{ width: 200 + i * 160, height: 200 + i * 160 }}
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.05, 0.2, 0.05],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            delay: i * 0.9,
-            ease: "easeInOut",
+          className="absolute rounded-full border border-primary/10 splash-ring"
+          style={{
+            width: 200 + i * 160,
+            height: 200 + i * 160,
+            animationDelay: `${i * 0.9}s`,
           }}
         />
       ))}
@@ -72,26 +79,16 @@ const SplashScreen = () => {
           Scroll to discover ↓
         </motion.p>
 
-        {/* Floating wine particles */}
+        {/* Floating wine particles — CSS only, no JS animation per frame */}
         {[...Array(5)].map((_, i) => (
-          <motion.div
+          <div
             key={i}
-            className="absolute w-[2px] h-[2px] rounded-full bg-primary/50"
+            className="absolute w-[2px] h-[2px] rounded-full bg-primary/50 splash-particle"
             style={{
               left: `${10 + i * 9}%`,
               top: `${20 + (i % 5) * 14}%`,
-            }}
-            animate={{
-              y: [0, -50, 0],
-              x: [0, (i % 2 === 0 ? 20 : -20), 0],
-              opacity: [0.05, 0.6, 0.05],
-              scale: [1, 2, 1],
-            }}
-            transition={{
-              duration: 4 + i * 0.5,
-              repeat: Infinity,
-              delay: i * 0.3,
-              ease: "easeInOut",
+              animationDelay: `${i * 0.3}s`,
+              animationDuration: `${4 + i * 0.5}s`,
             }}
           />
         ))}
