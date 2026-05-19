@@ -139,7 +139,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
       <motion.section
         ref={heroRef}
         style={{ y: heroY, opacity: heroOpacity }}
-        className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative"
+        className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative z-[60]"
       >
         <motion.div
           className="flex items-center gap-4 mb-10"

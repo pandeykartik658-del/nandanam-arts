@@ -10,9 +10,9 @@ const SplashScreen = () => {
   }, []);
 
   const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 500], [1, 0]);
-  const scale = useTransform(scrollY, [0, 500], [1, 1.8]);
-  const letterSpacing = useTransform(scrollY, [0, 500], [6, 30]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 400], [1, 1.6]);
+  const letterSpacing = useTransform(scrollY, [0, 400], [6, 25]);
 
   return (
     <motion.div
