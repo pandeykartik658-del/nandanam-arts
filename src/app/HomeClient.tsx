@@ -136,10 +136,13 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
       <FloatingElements />
       <ScrollProgress />
       
+      {/* Spacer for splash screen — scroll past this to reveal the hero */}
+      <div className="min-h-screen" />
+
       <motion.section
         ref={heroRef}
         style={{ y: heroY, opacity: heroOpacity }}
-        className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative z-[60]"
+        className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative"
       >
         <motion.div
           className="flex items-center gap-4 mb-10"
