@@ -111,13 +111,6 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
   const [expanded, setExpanded] = useState(false);
   const router = useRouter();
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isDeferred, setIsDeferred] = useState(false);
-
-  useEffect(() => {
-    // Delay rendering of heavy below-fold sections by 100ms to free up initial thread
-    const timer = setTimeout(() => setIsDeferred(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleTransition = (link: string) => {
     setIsTransitioning(true);
@@ -214,21 +207,17 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         </motion.div>
 
         {/* Title */}
-        <div className="overflow-hidden mb-6 relative z-10 w-full px-4">
-          <h1 className="font-display flex flex-wrap justify-center gap-x-4 sm:gap-x-6 text-[11vw] sm:text-5xl md:text-7xl lg:text-[5.5rem] tracking-[4px] sm:tracking-[6px] leading-[1.1]">
-            {"DIVINE TRADITIONS".split(" ").map((word, wIdx) => (
-              <span key={wIdx} className="whitespace-nowrap">
-                {word.split("").map((letter, i) => (
-                  <span
-                    key={i}
-                    className="inline-block text-gradient-wine"
-                    style={{
-                      animation: `heroLetterReveal 0.8s ${0.6 + (wIdx * 6 + i) * 0.04}s both cubic-bezier(0.22, 1, 0.36, 1)`,
-                    }}
-                  >
-                    {letter}
-                  </span>
-                ))}
+        <div className="overflow-hidden mb-6 relative z-10 w-full px-2 flex justify-center">
+          <h1 className="font-display whitespace-nowrap text-[5.5vw] sm:text-5xl md:text-7xl lg:text-[5.5rem] tracking-[2px] sm:tracking-[6px] leading-[1.1]">
+            {titleLetters.map((letter, i) => (
+              <span
+                key={i}
+                className="inline-block text-gradient-wine"
+                style={{
+                  animation: `heroLetterReveal 0.8s ${0.6 + i * 0.04}s both cubic-bezier(0.22, 1, 0.36, 1)`,
+                }}
+              >
+                {letter === " " ? "\u00A0" : letter}
               </span>
             ))}
           </h1>
@@ -244,10 +233,8 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         </motion.p>
       </motion.section>
 
-      {isDeferred && (
-        <>
-          <motion.div
-            className="w-[1px] h-[100px] mx-auto"
+      <motion.div
+        className="w-[1px] h-[100px] mx-auto"
             style={{ background: "linear-gradient(180deg, transparent, hsl(320 55% 55%), transparent)" }}
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
@@ -351,8 +338,6 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
 
       <SocialSidebar />
       <Footer />
-        </>
-      )}
     </div>
   );
 }

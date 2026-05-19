@@ -260,9 +260,9 @@ export default function ContactPage() {
           {/* Back link */}
           <div className="fixed top-8 left-6 md:left-12 z-50">
             <MagneticButton className="glass-surface rounded-full px-5 py-2">
-              <a href="/#heritage" className="font-display text-[10px] tracking-[4px] uppercase text-white/70 hover:text-primary transition-colors">
+              <Link href="/#heritage" className="font-display text-[10px] tracking-[4px] uppercase text-white/70 hover:text-primary transition-colors">
                 &larr; Return to Sanctum
-              </a>
+              </Link>
             </MagneticButton>
           </div>
 

@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { Sparkles, Activity, Users, BookOpen, ChevronDown, Music, Mic, GraduationCap } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 
 import PageVeilTransition from "@/components/PageVeilTransition";
@@ -394,9 +395,9 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
             <h2 className="font-luxury text-3xl md:text-4xl text-white/80 leading-relaxed mb-12 italic">
               "When the dancer vanishes and only the dance remains, we enter the realm of Leela."
             </h2>
-            <a href="/#heritage" className="inline-block px-8 py-3 border border-primary/30 rounded-full font-display uppercase tracking-[3px] text-sm text-primary hover:bg-primary/10 transition-colors">
+            <Link href="/#heritage" className="inline-block px-8 py-3 border border-primary/30 rounded-full font-display uppercase tracking-[3px] text-sm text-primary hover:bg-primary/10 transition-colors">
               Return to Sanctum
-            </a>
+            </Link>
           </div>
         </section>
 

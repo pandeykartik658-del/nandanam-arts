@@ -179,13 +179,13 @@ export default function TeachingWingPage() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 2.2 }}
         >
-          <a href="/#heritage" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-surface border border-primary/20 text-white hover:text-primary transition-all duration-300 group shadow-md backdrop-blur-md relative">
+          <Link href="/#heritage" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-surface border border-primary/20 text-white hover:text-primary transition-all duration-300 group shadow-md backdrop-blur-md relative">
             <motion.div 
               className="absolute inset-[-5px] bg-primary/0 group-hover:bg-primary/20 rounded-full blur-[10px] pointer-events-none transition-colors duration-500"
             />
             <span className="relative z-10 group-hover:-translate-x-1 transition-transform duration-300">←</span>
             <span className="font-display text-[9px] md:text-[10px] uppercase tracking-[4px]">RETURN TO SANCTUM</span>
-          </a>
+          </Link>
         </motion.div>
 
         <motion.div
@@ -401,9 +401,9 @@ export default function TeachingWingPage() {
             <motion.div 
               className="absolute inset-[0px] bg-primary/0 group-hover:bg-primary/25 rounded-full blur-[20px] pointer-events-none transition-colors duration-500"
             />
-            <a href="/#heritage" className="relative z-10 text-white group-hover:text-primary transition-colors duration-300 uppercase tracking-[4px] text-[10px] md:text-xs font-display flex items-center justify-center py-2 px-6">
+            <Link href="/#heritage" className="relative z-10 text-white group-hover:text-primary transition-colors duration-300 uppercase tracking-[4px] text-[10px] md:text-xs font-display flex items-center justify-center py-2 px-6">
               Return to Sanctum
-            </a>
+            </Link>
           </motion.div>
         </div>
         
