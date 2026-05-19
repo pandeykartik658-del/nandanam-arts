@@ -104,8 +104,8 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
     offset: ["start start", "end start"],
   });
   
-  // Simple, elegant fade and slight upward movement
-  const heroY = useTransform(heroProgress, [0, 1], [0, 100]);
+  // Elegant subtle upward parallax that moves away from rising content on scroll
+  const heroY = useTransform(heroProgress, [0, 1], [0, -30]);
   const heroOpacity = useTransform(heroProgress, [0, 0.8], [1, 0]);
 
   const [expanded, setExpanded] = useState(false);
@@ -230,7 +230,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
       </motion.section>
 
       <motion.div
-        className="w-[1px] h-[40px] sm:h-[80px] mx-auto"
+        className="w-[1px] h-[55px] sm:h-[80px] mx-auto"
             style={{ background: "linear-gradient(180deg, transparent, hsl(320 55% 55%), transparent)" }}
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
@@ -238,7 +238,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
             transition={{ duration: 1.2 }}
           />
 
-      <section id="philosophy" className="max-w-[1100px] mx-auto px-6 pt-8 sm:pt-12 pb-20">
+      <section id="philosophy" className="max-w-[1100px] mx-auto px-6 pt-10 sm:pt-12 pb-20">
         <motion.h2
           aria-hidden="true"
           className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] mb-10"
