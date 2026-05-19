@@ -214,17 +214,21 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         </motion.div>
 
         {/* Title */}
-        <div className="overflow-hidden mb-6 relative z-10">
-          <h1 className="font-display whitespace-nowrap text-[8vw] sm:text-5xl md:text-7xl lg:text-[5.5rem] tracking-[6px] leading-[1.1]">
-            {titleLetters.map((letter, i) => (
-              <span
-                key={i}
-                className="inline-block text-gradient-wine"
-                style={{
-                  animation: `heroLetterReveal 0.8s ${0.6 + i * 0.04}s both cubic-bezier(0.22, 1, 0.36, 1)`,
-                }}
-              >
-                {letter === " " ? "\u00A0" : letter}
+        <div className="overflow-hidden mb-6 relative z-10 w-full px-4">
+          <h1 className="font-display flex flex-wrap justify-center gap-x-4 sm:gap-x-6 text-[11vw] sm:text-5xl md:text-7xl lg:text-[5.5rem] tracking-[4px] sm:tracking-[6px] leading-[1.1]">
+            {"DIVINE TRADITIONS".split(" ").map((word, wIdx) => (
+              <span key={wIdx} className="whitespace-nowrap">
+                {word.split("").map((letter, i) => (
+                  <span
+                    key={i}
+                    className="inline-block text-gradient-wine"
+                    style={{
+                      animation: `heroLetterReveal 0.8s ${0.6 + (wIdx * 6 + i) * 0.04}s both cubic-bezier(0.22, 1, 0.36, 1)`,
+                    }}
+                  >
+                    {letter}
+                  </span>
+                ))}
               </span>
             ))}
           </h1>

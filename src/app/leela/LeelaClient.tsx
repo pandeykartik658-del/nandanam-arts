@@ -89,6 +89,8 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
   useEffect(() => {
     // Delay non-critical hydration to free up initial thread
     const timer = setTimeout(() => setIsDeferred(true), 150);
+    // Ensure we start at the top of the page when navigating here
+    window.scrollTo(0, 0);
     return () => clearTimeout(timer);
   }, []);
 
