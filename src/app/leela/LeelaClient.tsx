@@ -93,9 +93,8 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
   }, []);
 
   const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(heroProgress, [0, 1], [0, 200]);
-  const heroScale = useTransform(heroProgress, [0, 1], [1, 0.9]);
-  const heroOpacity = useTransform(heroProgress, [0, 1], [1, 0]);
+  const heroY = useTransform(heroProgress, [0, 1], [0, 100]);
+  const heroOpacity = useTransform(heroProgress, [0, 0.8], [1, 0]);
 
   // Cursor Light
   const cursorX = useMotionValue(0);
@@ -205,7 +204,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
         />
 
         {/* Hero Section */}
-        <motion.section id="hero" ref={heroRef} style={{ y: heroY, scale: heroScale, opacity: heroOpacity }} className="min-h-[90vh] overflow-hidden flex flex-col items-center justify-center text-center relative z-10 px-4 pt-20">
+        <motion.section id="hero" ref={heroRef} style={{ y: heroY, opacity: heroOpacity }} className="min-h-[90vh] overflow-hidden flex flex-col items-center justify-center text-center relative z-10 px-4 pt-20">
           <div className="relative mb-12 flex items-center justify-center gap-6 md:gap-10">
             {/* Left Glyph */}
             <div className="relative flex items-center justify-center">

@@ -104,13 +104,9 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
     offset: ["start start", "end start"],
   });
   
-  // Cinematic pull-back effect
-  const heroY = useTransform(heroProgress, [0, 1], [0, 200]);
-  const heroScale = useTransform(heroProgress, [0, 1], [1, 0.85]);
-  // Keeps opacity full for the first part of the scroll, then softly fades
-  const heroOpacity = useTransform(heroProgress, [0, 0.4, 1], [1, 1, 0]);
-  // Simulates a camera lens going out of focus
-  const heroFilter = useTransform(heroProgress, [0, 0.3, 1], ["blur(0px)", "blur(0px)", "blur(24px)"]);
+  // Simple, elegant fade and slight upward movement
+  const heroY = useTransform(heroProgress, [0, 1], [0, 100]);
+  const heroOpacity = useTransform(heroProgress, [0, 0.8], [1, 0]);
 
   const [expanded, setExpanded] = useState(false);
   const router = useRouter();
@@ -142,7 +138,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
       
       <motion.section
         ref={heroRef}
-        style={{ y: heroY, scale: heroScale, opacity: heroOpacity, filter: heroFilter }}
+        style={{ y: heroY, opacity: heroOpacity }}
         className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative"
       >
         <motion.div
