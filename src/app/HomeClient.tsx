@@ -208,23 +208,15 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
 
         {/* Title */}
         <div className="overflow-hidden mb-6 relative z-10 w-full px-4">
-          <h1 className="font-display flex flex-wrap justify-center gap-x-4 sm:gap-x-6 text-[11vw] sm:text-5xl md:text-7xl lg:text-[5.5rem] tracking-[4px] sm:tracking-[6px] leading-[1.1]">
-            {"DIVINE TRADITIONS".split(" ").map((word, wIdx) => (
-              <span key={wIdx} className="whitespace-nowrap">
-                {word.split("").map((letter, i) => (
-                  <span
-                    key={i}
-                    className="inline-block text-gradient-wine"
-                    style={{
-                      animation: `heroLetterReveal 0.8s ${0.6 + (wIdx * 6 + i) * 0.04}s both cubic-bezier(0.22, 1, 0.36, 1)`,
-                    }}
-                  >
-                    {letter}
-                  </span>
-                ))}
-              </span>
-            ))}
-          </h1>
+          <motion.h1
+            className="font-display flex flex-wrap justify-center gap-x-4 sm:gap-x-6 text-[11vw] sm:text-5xl md:text-7xl lg:text-[5.5rem] tracking-[4px] sm:tracking-[6px] leading-[1.1] text-gradient-wine"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
+            DIVINE TRADITIONS
+          </motion.h1>
         </div>
 
         <motion.p
@@ -250,7 +242,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         <motion.h2
           aria-hidden="true"
           className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] mb-10"
-          style={{ color: 'rgba(255, 255, 255, 0.85)' }}
+          style={{ color: 'rgba(255, 255, 255, 0.92)', textShadow: '0 0 20px rgba(255,255,255,0.08)' }}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -262,7 +254,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         <div
           className="max-w-[800px] mb-14"
         >
-          <p className="font-body text-lg md:text-xl leading-[1.8] mb-4" style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
+          <p className="font-body text-lg md:text-xl leading-[1.8] mb-4" style={{ color: 'rgba(255, 255, 255, 0.92)', textShadow: '0 0 20px rgba(255,255,255,0.06)' }}>
             {expanded ? philosophyFull : truncated}
           </p>
           <motion.button
@@ -313,7 +305,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
 
         <p
           className="font-body text-lg md:text-xl leading-[1.8] mb-16"
-          style={{ color: 'rgba(255, 255, 255, 0.85)' }}
+          style={{ color: 'rgba(255, 255, 255, 0.92)', textShadow: '0 0 20px rgba(255,255,255,0.06)' }}
         >
           "Every mudra is a prayer. Every adavu is a meditation. We do not merely dance — we channel the divine through disciplined movement, transforming the human body into a vessel of ancient stories and timeless devotion."
         </p>
