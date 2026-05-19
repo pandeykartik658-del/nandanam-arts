@@ -10,37 +10,98 @@ const SplashScreen = () => {
     if (el) el.style.display = "none";
   }, []);
   const { scrollY } = useScroll();
-  
-  // Simple, clear fade out on scroll
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const y = useTransform(scrollY, [0, 400], [0, -100]);
+  const opacity = useTransform(scrollY, [0, 600], [1, 0]);
+  const blur = useTransform(scrollY, [0, 600], [0, 20]);
+  const letterSpacing = useTransform(scrollY, [0, 600], [6, 40]);
 
   return (
     <motion.div
-      style={{ opacity, y }}
-      className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none bg-background"
+      style={{
+        opacity,
+        filter: useTransform(blur, (v) => `blur(${v}px)`),
+        letterSpacing: useTransform(letterSpacing, (v) => `${v}px`),
+      }}
+      className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/50" />
+      {/* Deep wine radial bg */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(ellipse 50% 40% at 50% 45%, hsl(320 40% 20% / 0.3), transparent 60%),
+            radial-gradient(ellipse 80% 60% at 50% 50%, hsl(300 25% 8%), hsl(300 20% 5%))
+          `,
+        }}
+      />
 
-      <div className="text-center relative z-10 px-4">
-        <h1 className="font-display text-4xl md:text-7xl tracking-[8px] uppercase text-gradient-ivory drop-shadow-md">
-          Nandanam Centre of Arts
-        </h1>
+      {/* Pulse rings */}
+      {[...Array(3)].map((_, i) => (
+        <motion.div
+          key={`ring-${i}`}
+          className="absolute rounded-full border border-primary/10"
+          style={{ width: 200 + i * 160, height: 200 + i * 160 }}
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.05, 0.2, 0.05],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            delay: i * 0.9,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+
+      <div className="text-center relative z-10">
+        <div>
+          <motion.h1
+            className="font-display text-4xl md:text-7xl tracking-[6px] uppercase glow-text text-gradient-ivory"
+            animate={{ opacity: [0.7, 1, 0.7] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            Nandanam Centre of Arts
+          </motion.h1>
+        </div>
 
         <motion.div
-          className="w-24 h-[1px] mx-auto mt-10"
-          style={{ background: "linear-gradient(90deg, transparent, hsl(320 55% 55%), transparent)" }}
-          animate={{ scaleX: [0.5, 1, 0.5], opacity: [0.3, 0.8, 0.3] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="w-32 h-[1px] mx-auto mt-10"
+          style={{ background: "linear-gradient(90deg, transparent, hsl(320 55% 55%), hsl(280 40% 45%), transparent)" }}
+          animate={{ scaleX: [0, 1, 0], opacity: [0, 1, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         />
 
         <motion.p
-          className="font-display text-[10px] md:text-xs tracking-[6px] text-primary/80 uppercase mt-10"
-          animate={{ y: [0, -4, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="font-display text-xs tracking-[5px] text-muted-foreground uppercase mt-10"
+          animate={{ opacity: [0.2, 0.8, 0.2], y: [0, -6, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity }}
         >
           Scroll to discover ↓
         </motion.p>
+
+        {/* Floating wine particles */}
+        {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-[2px] h-[2px] rounded-full bg-primary/50"
+            style={{
+              left: `${10 + i * 9}%`,
+              top: `${20 + (i % 5) * 14}%`,
+            }}
+            animate={{
+              y: [0, -50, 0],
+              x: [0, (i % 2 === 0 ? 20 : -20), 0],
+              opacity: [0.05, 0.6, 0.05],
+              scale: [1, 2, 1],
+            }}
+            transition={{
+              duration: 4 + i * 0.5,
+              repeat: Infinity,
+              delay: i * 0.3,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
       </div>
     </motion.div>
   );
