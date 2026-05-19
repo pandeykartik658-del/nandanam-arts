@@ -77,9 +77,11 @@ const computeAutoEditions = (now: Date): EditionData[] => {
 
 interface LeelaClientProps {
   sanityEditions: any[];
+  sanityChambers?: any[];
+  sanityWorkshops?: any[];
 }
 
-export default function LeelaClient({ sanityEditions }: LeelaClientProps) {
+export default function LeelaClient({ sanityEditions, sanityChambers, sanityWorkshops }: LeelaClientProps) {
   const heroRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState("hero");
   const [isDeferred, setIsDeferred] = useState(false);
@@ -156,15 +158,33 @@ export default function LeelaClient({ sanityEditions }: LeelaClientProps) {
     }));
   }
 
-  const chambers: StageItem[] = [
-    { title: "The Poetry of Jayadeva", description: "Experience the Ashtapadis of the Gita Govinda in an unplugged, candle-lit setting. Without the physical distance of a proscenium stage, the audience becomes intimately involved in the profound emotional exchange between the artists.", image: dancer1 },
-    { title: "Padams of Kshetrayya", description: "A masterful exploration of slow, languorous, and deeply evocative Telugu Padams. This chamber concert relies entirely on the seated Abhinaya tradition, relying solely on subtle facial expressions to convey layers of meaning.", image: dancer4 },
-  ];
+  let chambers: StageItem[] = [];
+  if (sanityChambers && sanityChambers.length > 0) {
+    chambers = sanityChambers.map((e: any) => ({
+      title: e.title,
+      description: e.text,
+      image: e.images || [],
+    }));
+  } else {
+    chambers = [
+      { title: "The Poetry of Jayadeva", description: "Experience the Ashtapadis of the Gita Govinda in an unplugged, candle-lit setting. Without the physical distance of a proscenium stage, the audience becomes intimately involved in the profound emotional exchange between the artists.", image: dancer1 },
+      { title: "Padams of Kshetrayya", description: "A masterful exploration of slow, languorous, and deeply evocative Telugu Padams. This chamber concert relies entirely on the seated Abhinaya tradition, relying solely on subtle facial expressions to convey layers of meaning.", image: dancer4 },
+    ];
+  }
 
-  const workshops: StageItem[] = [
-    { title: "Karanas: The Lost Movement", description: "A rigorous, intensive deep dive into the 108 Karanas as detailed in the ancient Natya Shastra. This workshop requires immense physical discipline to reconstruct dynamic movement units from foundational sculptural evidence.", image: dancer4 },
-    { title: "Tala & Nattuvangam", description: "Understanding the complex mathematics and vocalized rhythmic syllables (Jathis) that form the structural backbone of Bharatanatyam. Participants will learn how to construct their own rhythmic sequences and wield the cymbals with absolute precision.", image: dancer5 },
-  ];
+  let workshops: StageItem[] = [];
+  if (sanityWorkshops && sanityWorkshops.length > 0) {
+    workshops = sanityWorkshops.map((e: any) => ({
+      title: e.title,
+      description: e.text,
+      image: e.images || [],
+    }));
+  } else {
+    workshops = [
+      { title: "Karanas: The Lost Movement", description: "A rigorous, intensive deep dive into the 108 Karanas as detailed in the ancient Natya Shastra. This workshop requires immense physical discipline to reconstruct dynamic movement units from foundational sculptural evidence.", image: dancer4 },
+      { title: "Tala & Nattuvangam", description: "Understanding the complex mathematics and vocalized rhythmic syllables (Jathis) that form the structural backbone of Bharatanatyam. Participants will learn how to construct their own rhythmic sequences and wield the cymbals with absolute precision.", image: dancer5 },
+    ];
+  }
 
   return (
     <PageVeilTransition pageKey="leela">

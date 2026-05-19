@@ -43,3 +43,23 @@ export async function getEvents() {
   }`;
   return client.fetch(query);
 }
+
+export async function getChambers() {
+  const query = `*[_type == "chamber"] | order(_createdAt asc) {
+    _id,
+    title,
+    text,
+    "images": images[].asset->url
+  }`;
+  return client.fetch(query);
+}
+
+export async function getWorkshops() {
+  const query = `*[_type == "workshop"] | order(_createdAt asc) {
+    _id,
+    title,
+    text,
+    "images": images[].asset->url
+  }`;
+  return client.fetch(query);
+}

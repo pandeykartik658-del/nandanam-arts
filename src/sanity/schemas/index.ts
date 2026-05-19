@@ -1,7 +1,9 @@
 import { type SchemaTypeDefinition } from "sanity";
 import { edition } from "./edition";
 import { event } from "./event";
+import { chamber } from "./chamber";
+import { workshop } from "./workshop";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [edition, event],
+  types: [edition, event, chamber, workshop],
 };
