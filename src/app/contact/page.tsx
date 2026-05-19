@@ -52,8 +52,8 @@ const CHANNELS: Channel[] = [
   },
   {
     name: "Instagram",
-    handle: "@nandanam.arts",
-    href: "https://instagram.com/nandanam.arts",
+    handle: "@shashanknairdance",
+    href: "https://instagram.com/shashanknairdance",
     tint: "hsl(330, 70%, 65%)",
     tooltip: "Follow our daily devotion",
     hoverAnim: { rotate: [0, 360], transition: { duration: 0.8, ease: "backOut" } },

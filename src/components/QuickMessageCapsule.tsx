@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { ArrowRight } from "lucide-react";
 
-export const WHATSAPP_NUMBER = "910000000000";
+export const WHATSAPP_NUMBER = "918762174113";
 
 const QuickMessageCapsule = () => {
   const [message, setMessage] = useState("");
