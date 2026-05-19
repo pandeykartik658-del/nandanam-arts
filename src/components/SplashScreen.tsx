@@ -20,7 +20,7 @@ const SplashScreen = () => {
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (v) => {
       if (v > 400 && !isGone) setIsGone(true);
-      if (v <= 50 && isGone) setIsGone(false);
+      if (v <= 400 && isGone) setIsGone(false);
     });
     return unsubscribe;
   }, [scrollY, isGone]);
