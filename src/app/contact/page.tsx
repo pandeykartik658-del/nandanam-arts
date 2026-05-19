@@ -121,18 +121,31 @@ const ChannelCard = ({ channel, i }: { channel: Channel; i: number }) => {
     });
   };
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('button')) {
+      return;
+    }
+    launchRipple(e);
+    if (channel.href.startsWith("mailto:")) {
+      window.location.href = channel.href;
+    } else {
+      window.open(channel.href, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => { x.set(0); y.set(0); }}
+      onClick={handleCardClick}
       style={{ rotateX, rotateY, transformPerspective: 700 }}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.2 + i * 0.15 }}
       whileHover={{ scale: 1.04 }}
-      className="relative glass-surface rounded-2xl p-8 overflow-hidden group flex flex-col items-center text-center"
+      className="relative glass-surface rounded-2xl p-8 overflow-hidden group flex flex-col items-center text-center cursor-pointer"
     >
       {/* Ripple container */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
