@@ -11,8 +11,9 @@ import dynamic from "next/dynamic";
 
 const SplashScreen = dynamic(() => import("@/components/SplashScreen"), {
   loading: () => (
-    <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 50%, hsl(300 25% 8%), hsl(300 20% 5%))' }}>
-      <h1 className="font-display text-4xl md:text-7xl tracking-[6px] uppercase text-gradient-ivory" style={{ opacity: 0.85 }}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none bg-background">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/50" />
+      <h1 className="font-display text-4xl md:text-7xl tracking-[8px] uppercase text-gradient-ivory drop-shadow-md z-10 px-4 text-center">
         Nandanam Centre of Arts
       </h1>
     </div>
