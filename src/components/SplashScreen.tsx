@@ -31,6 +31,25 @@ const SplashScreen = () => {
         }}
       />
 
+      {/* Pulse rings */}
+      {[...Array(3)].map((_, i) => (
+        <motion.div
+          key={`ring-${i}`}
+          className="absolute rounded-full border border-primary/10"
+          style={{ width: 200 + i * 160, height: 200 + i * 160 }}
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.05, 0.2, 0.05],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            delay: i * 0.9,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+
       <div className="text-center relative z-10">
         <motion.h1
           className="font-display text-4xl md:text-7xl tracking-[6px] uppercase glow-text text-gradient-ivory"
@@ -52,6 +71,30 @@ const SplashScreen = () => {
         >
           Scroll to discover ↓
         </motion.p>
+
+        {/* Floating wine particles */}
+        {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-[2px] h-[2px] rounded-full bg-primary/50"
+            style={{
+              left: `${10 + i * 9}%`,
+              top: `${20 + (i % 5) * 14}%`,
+            }}
+            animate={{
+              y: [0, -50, 0],
+              x: [0, (i % 2 === 0 ? 20 : -20), 0],
+              opacity: [0.05, 0.6, 0.05],
+              scale: [1, 2, 1],
+            }}
+            transition={{
+              duration: 4 + i * 0.5,
+              repeat: Infinity,
+              delay: i * 0.3,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
       </div>
     </motion.div>
   );
