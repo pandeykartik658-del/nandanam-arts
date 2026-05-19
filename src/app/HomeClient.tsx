@@ -144,35 +144,88 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         style={{ y: heroY, opacity: heroOpacity }}
         className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative"
       >
-        <motion.div
-          className="flex items-center gap-4 mb-10"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <Image
-            src={logo}
-            alt="Nandanam Logo"
-            width={40}
-            height={40}
-            className="w-10 h-10 object-contain bg-gradient-wine-shift"
-            style={{
-              WebkitMaskImage: `url(${logo})`,
-              WebkitMaskSize: "contain",
-              WebkitMaskRepeat: "no-repeat",
-              WebkitMaskPosition: "center",
-              maskImage: `url(${logo})`,
-              maskSize: "contain",
-              maskRepeat: "no-repeat",
-              maskPosition: "center",
+        {/* Pulsing rings behind hero content */}
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={`hero-ring-${i}`}
+            className="absolute rounded-full border border-primary/10 pointer-events-none"
+            style={{ width: 250 + i * 180, height: 250 + i * 180 }}
+            animate={{
+              scale: [1, 1.25, 1],
+              opacity: [0.05, 0.15, 0.05],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              delay: i * 1,
+              ease: "easeInOut",
             }}
           />
-          <span className="inline-block px-5 py-2 rounded-full font-display text-[10px] tracking-[6px] uppercase text-primary glass-surface glow-wine">
+        ))}
+
+        {/* Floating particles */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={`hero-particle-${i}`}
+            className="absolute w-[2px] h-[2px] rounded-full bg-primary/40 pointer-events-none"
+            style={{
+              left: `${15 + i * 12}%`,
+              top: `${25 + (i % 3) * 20}%`,
+            }}
+            animate={{
+              y: [0, -40, 0],
+              x: [0, (i % 2 === 0 ? 15 : -15), 0],
+              opacity: [0.05, 0.5, 0.05],
+              scale: [1, 1.8, 1],
+            }}
+            transition={{
+              duration: 5 + i * 0.6,
+              repeat: Infinity,
+              delay: i * 0.4,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+
+        {/* Logo */}
+        <motion.div
+          className="flex flex-col items-center gap-6 mb-12 relative z-10"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <div className="relative flex items-center justify-center">
+            <motion.div
+              className="absolute bg-primary/30 rounded-full blur-2xl"
+              style={{ width: "180%", height: "180%" }}
+              animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <Image
+              src={logo}
+              alt="Nandanam Logo"
+              width={72}
+              height={72}
+              className="w-16 h-16 md:w-[72px] md:h-[72px] object-contain bg-gradient-wine-shift relative z-10"
+              style={{
+                WebkitMaskImage: `url(${logo})`,
+                WebkitMaskSize: "contain",
+                WebkitMaskRepeat: "no-repeat",
+                WebkitMaskPosition: "center",
+                maskImage: `url(${logo})`,
+                maskSize: "contain",
+                maskRepeat: "no-repeat",
+                maskPosition: "center",
+              }}
+            />
+          </div>
+          <span className="inline-block px-6 py-2.5 rounded-full font-display text-[10px] tracking-[6px] uppercase text-primary glass-surface glow-wine">
             Nandanam Arts Foundation
           </span>
         </motion.div>
 
-        <div className="overflow-hidden mb-6">
+        {/* Title */}
+        <div className="overflow-hidden mb-6 relative z-10">
           <h1 className="font-display whitespace-nowrap text-[8vw] sm:text-5xl md:text-7xl lg:text-[5.5rem] tracking-[6px] leading-[1.1]">
             {titleLetters.map((letter, i) => (
               <span
@@ -189,7 +242,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         </div>
 
         <motion.p
-          className="font-body text-lg md:text-xl text-muted-foreground max-w-[600px] leading-[1.8]"
+          className="font-body text-lg md:text-xl text-muted-foreground max-w-[600px] leading-[1.8] relative z-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
