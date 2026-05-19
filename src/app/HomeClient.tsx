@@ -263,14 +263,10 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
           About Us
         </motion.h2>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+        <div
           className="max-w-[800px] mb-14"
         >
-          <p className="font-body text-lg md:text-xl leading-[1.8] text-white/85 mb-4">
+          <p className="font-body text-lg md:text-xl leading-[1.8] text-white/90 mb-4">
             {expanded ? philosophyFull : truncated}
           </p>
           <motion.button
@@ -281,7 +277,7 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
           >
             {expanded ? "Show Less" : "Read More →"}
           </motion.button>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden mb-16">
           {/* Frame 1 - Empty */}
@@ -319,15 +315,11 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
           Our Philosophy
         </motion.h3>
 
-        <motion.p
-          className="font-body text-lg md:text-xl leading-[1.8] text-white/85 mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+        <p
+          className="font-body text-lg md:text-xl leading-[1.8] text-white/90 mb-16"
         >
           "Every mudra is a prayer. Every adavu is a meditation. We do not merely dance — we channel the divine through disciplined movement, transforming the human body into a vessel of ancient stories and timeless devotion."
-        </motion.p>
+        </p>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
