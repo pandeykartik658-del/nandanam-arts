@@ -290,9 +290,13 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                   <div className="w-full text-center py-4 mb-2 border-b border-white/10 shrink-0">
                     <span className="font-display text-xs tracking-[5px] text-primary/85 uppercase">Collage: {item.title}</span>
                   </div>
-                  <div className={`flex-grow grid gap-2 pb-2 px-1 ${itemImages.length > 2 ? 'grid-cols-2 grid-rows-2' : 'grid-cols-1 grid-rows-2'} overflow-hidden`}>
-                    {itemImages.filter(Boolean).slice(0, 4).map((img, i) => (
-                      <div key={i} className="relative w-full h-full">
+                  <div className={`flex-grow grid gap-2 pb-2 px-1 overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 ${
+                    itemImages.length <= 1 ? 'grid-cols-1' :
+                    itemImages.length <= 4 ? 'grid-cols-2' :
+                    'grid-cols-3'
+                  }`}>
+                    {itemImages.filter(Boolean).map((img, i) => (
+                      <div key={i} className="relative w-full aspect-[4/3]">
                         <Image 
                           src={img} 
                           fill

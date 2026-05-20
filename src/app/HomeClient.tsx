@@ -363,7 +363,10 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
         <motion.h2
           aria-hidden="true"
           className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] mb-10"
-          style={{ color: '#FDF2E3', textShadow: '0 0 30px rgba(255, 215, 0, 0.25), 0 0 10px rgba(255, 215, 0, 0.15)' }}
+          style={{
+            color: '#FDF2E3',
+            animation: 'aboutUsGlow 3s ease-in-out infinite',
+          }}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
