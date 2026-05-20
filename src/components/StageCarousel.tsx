@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import Image from "next/image";
+import { optimizeCloudinary } from "@/utils/image";
 
 export interface StageItem {
   title: string;
@@ -221,7 +222,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                         >
                           {itemImages[photoIdx] && (
                             <Image 
-                              src={itemImages[photoIdx]} 
+                              src={optimizeCloudinary(itemImages[photoIdx])} 
                               alt={item.title || "Performance"}
                               fill
                               unoptimized
@@ -235,7 +236,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                         <div className="absolute inset-0">
                           {itemImages[0] && (
                             <Image 
-                              src={itemImages[0]} 
+                              src={optimizeCloudinary(itemImages[0])} 
                               alt={item.title || "Performance"}
                               fill
                               unoptimized
@@ -283,7 +284,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                     {itemImages.filter(Boolean).map((img, i) => (
                       <div key={i} className="relative w-full aspect-[4/3]">
                         <Image 
-                          src={img} 
+                          src={optimizeCloudinary(img, 400)} 
                           fill
                           unoptimized
                           sizes="(max-width: 768px) 50vw, 25vw"

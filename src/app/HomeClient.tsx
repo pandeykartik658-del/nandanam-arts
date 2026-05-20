@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import { optimizeCloudinary } from "@/utils/image";
 
 
 const MovingBackground = dynamic(() => import("@/components/MovingBackground"), { ssr: false });
@@ -85,14 +86,7 @@ const NavTiltCard = ({ item, i, onNavigate }: { item: typeof navCards[0]; i: num
   );
 };
 
-const optimizeCloudinary = (url: string, width = 800) => {
-  if (url && url.includes("res.cloudinary.com") && url.includes("/upload/")) {
-    if (!url.includes("w_")) {
-      return url.replace("/upload/", `/upload/w_${width},`);
-    }
-  }
-  return url;
-};
+
 
 const PageTransitionVeil = ({ visible }: { visible: boolean }) => {
   return (
