@@ -32,24 +32,22 @@ const dancer5 = "/assets/dancer5.jpg";
 const logo = "/assets/logo.png";
 
 const CLOUDINARY_FRAME1 = [
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267836/WhatsApp_Image_2026-05-20_at_11.20.09_AM_ohp4q6.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267835/WhatsApp_Image_2026-05-20_at_11.20.13_AM_nmnml2.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267835/WhatsApp_Image_2026-05-20_at_11.20.09_AM_1_go1l5s.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267835/WhatsApp_Image_2026-05-20_at_11.20.11_AM_mzxjov.jpg"
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283368/12_rkgzlm.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283368/5_oposod.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283367/10_npqrhn.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283365/7_j4haxo.jpg"
 ];
 
 const CLOUDINARY_FRAME2 = [
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267835/WhatsApp_Image_2026-05-20_at_11.20.12_AM_1_qf0duj.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267817/WhatsApp_Image_2026-05-20_at_11.20.10_AM_1_lllemh.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267815/WhatsApp_Image_2026-05-20_at_11.20.13_AM_banivp.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267815/WhatsApp_Image_2026-05-20_at_11.20.11_AM_2_gujsvk.jpg"
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283364/6_vkwdec.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283364/4_wxcxlo.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283363/3_ntdjzu.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283363/2_zfqwnl.jpg"
 ];
 
 const CLOUDINARY_FRAME3 = [
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267835/WhatsApp_Image_2026-05-20_at_11.20.12_AM_o60hvv.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267815/WhatsApp_Image_2026-05-20_at_11.20.12_AM_1_dwek71.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267815/WhatsApp_Image_2026-05-20_at_11.20.11_AM_1_cbvajt.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267815/WhatsApp_Image_2026-05-20_at_11.20.10_AM_2_fr4tta.jpg"
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283367/11_atsd6p.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283366/8_m4ecfp.jpg"
 ];
 
 const titleLetters = "DIVINE TRADITIONS".split("");
@@ -146,7 +144,10 @@ const MiniFrameSlider = ({ images, fallbackImages }: { images?: string[]; fallba
   return (
     <div 
       className="overflow-hidden rounded-2xl border border-primary/30 relative w-full aspect-[16/9] bg-black/60 backdrop-blur-md group cursor-pointer isolate transform-gpu"
-      style={{ transform: "translateZ(0)" }}
+      style={{ 
+        transform: "translateZ(0)",
+        WebkitMaskImage: "-webkit-radial-gradient(white, black)"
+      }}
       onClick={() => {
         setDirection(1);
         setCurrent((c) => (c + 1) % slideList.length);
