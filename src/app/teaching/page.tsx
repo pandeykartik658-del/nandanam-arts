@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence, useInView, useScroll } from "framer-motion";
+import { motion, AnimatePresence, useInView, useScroll, useMotionValue, useSpring } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -115,7 +115,25 @@ const GradientDivider = () => (
 );
 
 export default function TeachingWingPage() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const cursorX = useMotionValue(-500);
+  const cursorY = useMotionValue(-500);
+  const springX = useSpring(cursorX, { stiffness: 50, damping: 20 });
+  const springY = useSpring(cursorY, { stiffness: 50, damping: 20 });
+
+  useEffect(() => {
+    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!isFinePointer || isReducedMotion) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      cursorX.set(e.clientX - 500);
+      cursorY.set(e.clientY - 500);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [cursorX, cursorY]);
+
   const danceRef = useRef<HTMLDivElement>(null);
   const musicRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
@@ -126,7 +144,7 @@ export default function TeachingWingPage() {
   const activeSection = danceInView ? "dance" : musicInView ? "music" : null;
 
   return (
-    <div className="relative noise-overlay min-h-screen" onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}>
+    <div className="relative noise-overlay min-h-screen">
       {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-[1px] md:h-[2px] bg-primary z-[1000] origin-left"
@@ -141,10 +159,13 @@ export default function TeachingWingPage() {
       <CurtainVeil />
 
       {/* Hero Ambient Light */}
-      <div 
-        className="fixed inset-0 pointer-events-none opacity-20 z-0 transition-opacity duration-1000"
+      <motion.div 
+        className="fixed top-0 left-0 w-[1000px] h-[1000px] rounded-full pointer-events-none opacity-20 z-0 transition-opacity duration-1000"
         style={{
-          background: `radial-gradient(1000px circle at ${mousePos.x}px ${mousePos.y}px, hsl(var(--primary)/0.15), transparent 40%)`
+          x: springX,
+          y: springY,
+          background: "radial-gradient(circle, hsl(var(--primary)/0.15), transparent 40%)",
+          willChange: "transform"
         }}
       />
 

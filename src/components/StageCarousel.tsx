@@ -143,7 +143,6 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
             const xOffset = normalizedDist * 60; // Spread slightly more to accommodate side buttons
             const scale = isCenter ? 1 : 0.72;
             const opacity = isCenter ? 1 : 0.35;
-            const blur = isCenter ? "0px" : Math.abs(normalizedDist) === 1 ? "2px" : "4px";
             const zIndex = 10 - Math.abs(normalizedDist);
             const delay = isCenter ? 0 : Math.min(Math.abs(normalizedDist), 2) * 0.06;
             const isFlipped = flippedIndex === index;
@@ -159,7 +158,6 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                   x: `${xOffset}%`,
                   scale,
                   opacity,
-                  filter: `blur(${blur})`,
                 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay }}
                 onClick={() => {

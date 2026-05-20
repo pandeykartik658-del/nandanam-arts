@@ -15,7 +15,7 @@ const Petals = ({ count = 6, slow = false }: PetalsProps) => {
     const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (isReducedMotion) return;
 
-    const activeCount = Math.max(count, 30);
+    const activeCount = Math.min(count, 30);
     const newPetals = Array.from({ length: activeCount }).map((_, i) => ({
       id: i,
       left: Math.random() * 100,
