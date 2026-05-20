@@ -135,7 +135,7 @@ const MiniFrameSlider = ({ images, fallbackImages }: { images?: string[]; fallba
 
   return (
     <div 
-      className="overflow-hidden rounded-2xl border border-primary/30 relative w-full aspect-[16/9] bg-black/60 backdrop-blur-md group cursor-pointer isolate"
+      className="overflow-hidden rounded-2xl border border-primary/30 relative w-full aspect-[3/4] bg-black/60 backdrop-blur-md group cursor-pointer isolate"
       style={{ 
         transform: "translateZ(0)",
         WebkitMaskImage: "-webkit-radial-gradient(white, black)"
