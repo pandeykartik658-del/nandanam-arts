@@ -63,6 +63,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
               alt={event.title} 
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
+              loading="lazy"
               className="object-cover object-top contrast-110"
             />
           </div>

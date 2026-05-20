@@ -221,7 +221,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
             </div>
 
             {/* Masked Logo */}
-            <Image src={logo} alt="" width={1} height={1} priority className="hidden" aria-hidden="true" />
+            <Image src={logo} alt="" width={128} height={128} priority className="hidden" aria-hidden="true" />
             <div
               className="w-28 h-28 md:w-32 md:h-32 bg-gradient-wine-shift"
               style={{

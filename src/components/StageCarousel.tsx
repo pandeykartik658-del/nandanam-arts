@@ -224,6 +224,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                               alt={item.title || "Performance"}
                               fill
                               unoptimized
+                              loading="lazy"
                               sizes="(max-width: 768px) 100vw, 50vw"
                               className="object-cover opacity-95"
                             />
@@ -238,6 +239,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                               alt={item.title || "Performance"}
                               fill
                               unoptimized
+                              loading="lazy"
                               sizes="(max-width: 768px) 100vw, 50vw"
                               className="object-cover opacity-70"
                             />
@@ -285,6 +287,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                           src={optimizeCloudinary(img, 400)} 
                           fill
                           unoptimized
+                          loading="lazy"
                           sizes="(max-width: 768px) 50vw, 25vw"
                           className="object-cover bg-black/40 rounded-lg opacity-90 hover:opacity-100 transition-opacity" 
                           alt={`Collage image ${i+1}`} 

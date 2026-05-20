@@ -219,7 +219,7 @@ export default function TeachingWingPage() {
             {/* Logo and Glyphs Row */}
             <div className="relative flex items-center gap-5">
               <span className="relative z-10 text-xl text-primary/60 font-display drop-shadow-[0_0_8px_hsl(var(--primary))]">◈</span>
-              <Image src={logo} alt="" width={1} height={1} priority className="hidden" aria-hidden="true" />
+              <Image src={logo} alt="" width={128} height={128} priority className="hidden" aria-hidden="true" />
               <div className="relative">
                 <div
                   className="w-[84px] h-[84px] bg-gradient-wine-shift relative z-10"

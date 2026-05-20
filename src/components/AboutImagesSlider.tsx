@@ -139,7 +139,7 @@ export default function AboutImagesSlider() {
               alt={SLIDE_IMAGES[activeIndex].title}
               fill
               sizes="(max-width: 768px) 100vw, 800px"
-              priority
+              loading="lazy"
               className="object-cover object-center contrast-105 saturate-95"
             />
             {/* Dark Vignette Overlay for rich contrast */}
