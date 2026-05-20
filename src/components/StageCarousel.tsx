@@ -100,18 +100,18 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
   const renderDescription = (text: string) => {
     const words = text.split(/\s+/);
     const isLong = words.length > WORD_LIMIT;
-    if (!isLong) return <p className="font-luxury text-[15px] md:text-base text-white/80 leading-[1.85] italic">{text}</p>;
+    if (!isLong) return <p className="font-luxury text-[13px] md:text-sm text-white/80 leading-[1.6] italic">{text}</p>;
 
     return (
       <div aria-expanded={expanded}>
-        <motion.div animate={{ height: expanded ? "auto" : "5rem" }} className="overflow-hidden">
-          <p className="font-luxury text-[15px] md:text-base text-white/80 leading-[1.85] italic">
+        <motion.div animate={{ height: expanded ? "auto" : "3rem" }} className="overflow-hidden">
+          <p className="font-luxury text-[13px] md:text-sm text-white/80 leading-[1.6] italic">
             {expanded ? text : words.slice(0, WORD_LIMIT).join(" ") + "…"}
           </p>
         </motion.div>
         <button
           onClick={() => setExpanded(!expanded)}
-          className="mt-2 text-xs uppercase tracking-widest text-primary hover:text-white transition-colors"
+          className="mt-1 text-[10px] uppercase tracking-widest text-primary hover:text-white transition-colors"
         >
           {expanded ? "Show less ▴" : "Read more ▾"}
         </button>
@@ -135,7 +135,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
         {hasMultipleImages && ` Photo ${photoIdx + 1} of ${images.length}.`}
       </div>
 
-      <div className="relative min-h-[500px] flex items-center justify-center max-w-6xl mx-auto px-4 md:px-12" ref={containerRef}>
+      <div className="relative min-h-[520px] md:min-h-[580px] flex items-center justify-center max-w-6xl mx-auto px-4 md:px-12" ref={containerRef}>
         
         {/* Left Navigation Button */}
         <button
@@ -199,15 +199,15 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                   >
                     {/* Edition Header Strip */}
                     {item.eyebrow && (
-                      <div className="flex justify-between items-center px-6 py-3 border-b border-white/10 bg-black/40">
-                        <span className="font-display text-xs tracking-[5px] text-primary/85 uppercase">{item.eyebrow}</span>
-                        <span className="font-luxury italic text-xs text-white/55">{item.meta}</span>
+                      <div className="h-[8%] flex-shrink-0 flex justify-between items-center px-6 border-b border-white/10 bg-black/40">
+                        <span className="font-display text-[10px] md:text-xs tracking-[5px] text-primary/85 uppercase">{item.eyebrow}</span>
+                        <span className="font-luxury italic text-[10px] md:text-xs text-white/55">{item.meta}</span>
                       </div>
                     )}
 
                   {/* Image Container */}
                   <div
-                    className="relative w-full h-48 md:h-64 overflow-hidden bg-black cursor-pointer"
+                    className="relative w-full h-[68%] md:h-[73%] overflow-hidden bg-black/60 cursor-pointer"
                     onClick={(e) => {
                       if (isCenter && hasMultipleImages) {
                         e.stopPropagation();
@@ -240,7 +240,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                               alt={item.title || "Performance"}
                               fill
                               sizes="(max-width: 768px) 100vw, 50vw"
-                              className="object-cover opacity-80"
+                              className="object-contain opacity-95 p-2"
                             />
                           )}
                           <div className="absolute inset-0 bg-primary/5" />
@@ -253,7 +253,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                               alt={item.title || "Performance"}
                               fill
                               sizes="(max-width: 768px) 100vw, 50vw"
-                              className="object-cover opacity-50"
+                              className="object-contain opacity-70 p-2"
                             />
                           )}
                           <div className="absolute inset-0 bg-primary/5" />
@@ -264,15 +264,15 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
 
                   {/* Content Area */}
                   <div 
-                    className="p-6 md:p-8 flex flex-col flex-grow select-none"
+                    className="h-[24%] md:h-[19%] flex-grow px-5 py-3 md:py-4 flex flex-col select-none border-t border-white/5 bg-black/20"
                     onDoubleClick={() => {
                       if (isCenter) setFlippedIndex(isFlipped ? null : index);
                     }}
                   >
-                    <h3 className="font-display text-3xl md:text-4xl tracking-[3px] font-medium text-gradient-rose-wine mb-4">
+                    <h3 className="font-display text-xl md:text-2xl tracking-[2px] font-medium text-gradient-rose-wine mb-1 shrink-0">
                       {item.title}
                     </h3>
-                    <div className="flex-grow">
+                    <div className="flex-grow overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-primary/20">
                       {renderDescription(item.description)}
                     </div>
                   </div>
@@ -295,7 +295,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                           src={img} 
                           fill
                           sizes="(max-width: 768px) 50vw, 25vw"
-                          className="object-cover rounded-lg opacity-80 hover:opacity-100 transition-opacity" 
+                          className="object-contain bg-black/40 rounded-lg opacity-90 hover:opacity-100 transition-opacity p-1" 
                           alt={`Collage image ${i+1}`} 
                         />
                       </div>

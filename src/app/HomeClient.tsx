@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
@@ -30,6 +30,27 @@ const dancer1 = "/assets/dancer1.jpg";
 const dancer4 = "/assets/dancer4.jpg";
 const dancer5 = "/assets/dancer5.jpg";
 const logo = "/assets/logo.png";
+
+const CLOUDINARY_FRAME1 = [
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267836/WhatsApp_Image_2026-05-20_at_11.20.09_AM_ohp4q6.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267835/WhatsApp_Image_2026-05-20_at_11.20.13_AM_nmnml2.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267835/WhatsApp_Image_2026-05-20_at_11.20.09_AM_1_go1l5s.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267835/WhatsApp_Image_2026-05-20_at_11.20.11_AM_mzxjov.jpg"
+];
+
+const CLOUDINARY_FRAME2 = [
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267835/WhatsApp_Image_2026-05-20_at_11.20.12_AM_1_qf0duj.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267817/WhatsApp_Image_2026-05-20_at_11.20.10_AM_1_lllemh.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267815/WhatsApp_Image_2026-05-20_at_11.20.13_AM_banivp.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267815/WhatsApp_Image_2026-05-20_at_11.20.11_AM_2_gujsvk.jpg"
+];
+
+const CLOUDINARY_FRAME3 = [
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267835/WhatsApp_Image_2026-05-20_at_11.20.12_AM_o60hvv.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267815/WhatsApp_Image_2026-05-20_at_11.20.12_AM_1_dwek71.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267815/WhatsApp_Image_2026-05-20_at_11.20.11_AM_1_cbvajt.jpg",
+  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779267815/WhatsApp_Image_2026-05-20_at_11.20.10_AM_2_fr4tta.jpg"
+];
 
 const titleLetters = "DIVINE TRADITIONS".split("");
 
@@ -94,12 +115,75 @@ const PageTransitionVeil = ({ visible }: { visible: boolean }) => {
   );
 };
 
+const MiniFrameSlider = ({ images, fallbackImages }: { images?: string[]; fallbackImages: string[] }) => {
+  const slideList = images && images.length > 0 ? images : fallbackImages;
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setDirection(1);
+      setCurrent((c) => (c + 1) % slideList.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [slideList.length]);
+
+  const slideVariants = {
+    enter: (dir: number) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 1 }),
+    center: { x: 0, opacity: 1 },
+    exit: (dir: number) => ({ x: dir > 0 ? "-100%" : "100%", opacity: 1 }),
+  };
+
+  return (
+    <div 
+      className="overflow-hidden rounded-2xl border border-primary/30 relative w-full aspect-[16/9] bg-black/60 backdrop-blur-md group cursor-pointer"
+      onClick={() => {
+        setDirection(1);
+        setCurrent((c) => (c + 1) % slideList.length);
+      }}
+    >
+      <AnimatePresence initial={false} custom={direction} mode="popLayout">
+        <motion.div
+          key={current}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          className="absolute inset-0 w-full h-full"
+        >
+          <Image
+            src={slideList[current]}
+            alt="Showcase performance"
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-contain p-2 transition-transform duration-700 group-hover:scale-105 opacity-95 group-hover:opacity-100"
+          />
+        </motion.div>
+      </AnimatePresence>
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-transparent to-transparent h-12 opacity-80 pointer-events-none" />
+      {/* Dynamic Slide indicators inside each frame */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 pointer-events-none">
+        {slideList.map((_, i) => (
+          <div
+            key={i}
+            className={`h-1.5 rounded-full transition-all duration-300 ${i === current ? "bg-primary w-4" : "bg-white/30 w-1.5"}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 interface HomeClientProps {
   upcomingEvents: CarouselEvent[];
   aboutData?: {
     title?: string;
     text?: string;
-    images?: string[];
+    frame1Images?: string[];
+    frame2Images?: string[];
+    frame3Images?: string[];
   } | null;
 }
 
@@ -117,6 +201,36 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
   const [expanded, setExpanded] = useState(false);
   const router = useRouter();
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Dynamic image state from dashboard config
+  const [dynFrame1, setDynFrame1] = useState<string[]>([]);
+  const [dynFrame2, setDynFrame2] = useState<string[]>([]);
+  const [dynFrame3, setDynFrame3] = useState<string[]>([]);
+
+  // Load dynamic images from localStorage (instant) then JSON config (background sync)
+  useEffect(() => {
+    // 1. Try localStorage first for instant display
+    try {
+      const cached = localStorage.getItem("custom_nca_images");
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (parsed.frame1?.length) setDynFrame1(parsed.frame1);
+        if (parsed.frame2?.length) setDynFrame2(parsed.frame2);
+        if (parsed.frame3?.length) setDynFrame3(parsed.frame3);
+      }
+    } catch (e) { /* ignore parse errors */ }
+
+    // 2. Background fetch from JSON config for latest data
+    fetch("/data/custom-images.json")
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (!data) return;
+        if (data.frame1?.length) setDynFrame1(data.frame1);
+        if (data.frame2?.length) setDynFrame2(data.frame2);
+        if (data.frame3?.length) setDynFrame3(data.frame3);
+      })
+      .catch(() => { /* silent fail */ });
+  }, []);
 
   const handleTransition = (link: string) => {
     setIsTransitioning(true);
@@ -277,25 +391,24 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden mb-16">
-          {[0, 1, 2].map((idx) => {
-            const hasImage = aboutData?.images && aboutData.images[idx];
-            const fallbackImages = [dancer1, dancer4, dancer5];
-            const imageSrc = hasImage ? aboutData.images[idx] : fallbackImages[idx];
-            return (
-              <div key={idx} className="flex-1 min-w-0">
-                <div className="overflow-hidden rounded-2xl border border-primary/30 relative h-[200px] bg-black/20 group">
-                  <Image
-                    src={imageSrc}
-                    alt={`Showcase ${idx + 1}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-115 opacity-80 group-hover:opacity-100"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </div>
-            );
-          })}
+          <div className="flex-1 min-w-0">
+            <MiniFrameSlider 
+              images={dynFrame1.length > 0 ? dynFrame1 : (aboutData?.frame1Images && aboutData.frame1Images.length > 0 ? aboutData.frame1Images : CLOUDINARY_FRAME1)} 
+              fallbackImages={CLOUDINARY_FRAME1} 
+            />
+          </div>
+          <div className="flex-1 min-w-0">
+            <MiniFrameSlider 
+              images={dynFrame2.length > 0 ? dynFrame2 : (aboutData?.frame2Images && aboutData.frame2Images.length > 0 ? aboutData.frame2Images : CLOUDINARY_FRAME2)} 
+              fallbackImages={CLOUDINARY_FRAME2} 
+            />
+          </div>
+          <div className="flex-1 min-w-0">
+            <MiniFrameSlider 
+              images={dynFrame3.length > 0 ? dynFrame3 : (aboutData?.frame3Images && aboutData.frame3Images.length > 0 ? aboutData.frame3Images : CLOUDINARY_FRAME3)} 
+              fallbackImages={CLOUDINARY_FRAME3} 
+            />
+          </div>
         </div>
       </section>
 

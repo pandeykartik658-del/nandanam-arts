@@ -20,11 +20,25 @@ export const about = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "images",
-      title: "Showcase Images (Exactly 3 recommended)",
+      name: "frame1Images",
+      title: "Frame 1 Images (Exactly 4 recommended)",
       type: "array",
       of: [{ type: "image", options: { hotspot: true } }],
-      validation: (Rule) => Rule.max(3),
+      validation: (Rule) => Rule.max(4),
+    }),
+    defineField({
+      name: "frame2Images",
+      title: "Frame 2 Images (Exactly 4 recommended)",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
+      validation: (Rule) => Rule.max(4),
+    }),
+    defineField({
+      name: "frame3Images",
+      title: "Frame 3 Images (Exactly 4 recommended)",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
+      validation: (Rule) => Rule.max(4),
     }),
   ],
 });

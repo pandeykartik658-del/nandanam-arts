@@ -68,7 +68,9 @@ export async function getAboutContent() {
   const query = `*[_type == "about"][0] {
     title,
     text,
-    "images": images[].asset->url
+    "frame1Images": frame1Images[].asset->url,
+    "frame2Images": frame2Images[].asset->url,
+    "frame3Images": frame3Images[].asset->url
   }`;
   return client.fetch(query);
 }
