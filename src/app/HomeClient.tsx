@@ -24,7 +24,6 @@ const ScrollProgress = dynamic(() => import("@/components/ScrollProgress"), { ss
 const SocialSidebar = dynamic(() => import("@/components/SocialSidebar"), { ssr: false });
 const EventsCarousel = dynamic(() => import("@/components/EventsCarousel"), { ssr: false });
 import { CarouselEvent } from "@/components/EventsCarousel";
-const AboutImagesSlider = dynamic(() => import("@/components/AboutImagesSlider"), { ssr: false });
 const Footer = dynamic(() => import("@/components/Footer"), { ssr: false });
 
 const dancer1 = "/assets/dancer1.jpg";
@@ -280,22 +279,18 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden mb-16">
           {[0, 1, 2].map((idx) => {
             const hasImage = aboutData?.images && aboutData.images[idx];
+            const fallbackImages = [dancer1, dancer4, dancer5];
+            const imageSrc = hasImage ? aboutData.images[idx] : fallbackImages[idx];
             return (
               <div key={idx} className="flex-1 min-w-0">
                 <div className="overflow-hidden rounded-2xl border border-primary/30 relative h-[200px] bg-black/20 group">
-                  {hasImage ? (
-                    <Image
-                      src={aboutData.images[idx]}
-                      alt={`Showcase ${idx + 1}`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-115 opacity-80 group-hover:opacity-100"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/5 via-transparent to-primary/5">
-                      <span className="font-display text-[9px] tracking-[4px] uppercase text-white/25">Nandanam Arts</span>
-                    </div>
-                  )}
+                  <Image
+                    src={imageSrc}
+                    alt={`Showcase ${idx + 1}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-115 opacity-80 group-hover:opacity-100"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </div>
@@ -304,8 +299,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
         </div>
       </section>
 
-      {/* Showcase Sliding Frame - 4 Images Slider below About Us */}
-      <AboutImagesSlider />
+
 
       <section id="heritage" className="max-w-[800px] mx-auto px-6 py-16 text-center">
         <motion.div
