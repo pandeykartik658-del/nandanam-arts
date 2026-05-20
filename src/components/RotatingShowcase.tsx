@@ -9,7 +9,6 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
   const len = images.length;
-  const AUTOPLAY_MS = 4500;
   const prefersReducedMotion = useReducedMotion();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,11 +26,12 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
   const handleLeave = () => { mx.set(0); my.set(0); };
 
   const next = useCallback(() => { setDirection(1); setCurrent((p) => (p + 1) % len); }, [len]);
-  const prev = () => { setDirection(-1); setCurrent((p) => (p - 1 + len) % len); };
+  const prev = useCallback(() => { setDirection(-1); setCurrent((p) => (p - 1 + len) % len); }, [len]);
 
+  // Autoplay — also advances on click/drag/keyboard
   useEffect(() => {
     if (prefersReducedMotion) return;
-    const id = setInterval(next, AUTOPLAY_MS);
+    const id = setInterval(next, 4500);
     return () => clearInterval(id);
   }, [next, prefersReducedMotion]);
 
@@ -41,13 +41,12 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
   };
 
   const variants = {
-    enter: (dir: number) => ({ x: dir > 0 ? 280 : -280, opacity: 0, scale: 0.92 }),
-    center: { x: 0, opacity: 1, scale: 1 },
-    exit: (dir: number) => ({ x: dir > 0 ? -280 : 280, opacity: 0, scale: 0.92 }),
+    enter: (dir: number) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 1 }),
+    center: { x: 0, opacity: 1 },
+    exit: (dir: number) => ({ x: dir > 0 ? "-100%" : "100%", opacity: 1 }),
   };
 
-  const radius = 8;
-  const circumference = 2 * Math.PI * radius;
+
 
   return (
     <motion.div
@@ -59,8 +58,11 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
       style={{ rotateX: prefersReducedMotion ? 0 : rotateX, rotateY: prefersReducedMotion ? 0 : rotateY, transformPerspective: 800 }}
       className="relative w-full max-w-[640px] mx-auto focus:outline-none"
     >
-      <div className="relative h-[340px] md:h-[420px] overflow-hidden rounded-2xl border border-primary/15 glow-wine bg-background/50 backdrop-blur-sm shadow-2xl">
-        <AnimatePresence initial={false} custom={direction} mode="wait">
+      <div
+        className="relative h-[340px] md:h-[420px] overflow-hidden rounded-2xl border border-primary/15 glow-wine bg-background/50 backdrop-blur-sm shadow-2xl cursor-pointer"
+        onClick={next}
+      >
+        <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div
             key={current}
             custom={direction}
@@ -68,7 +70,7 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ type: "spring", stiffness: 180, damping: 22 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="absolute inset-0"
             drag={prefersReducedMotion ? false : "x"}
             dragConstraints={{ left: 0, right: 0 }}
@@ -79,8 +81,8 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
             }}
           >
             <motion.div 
-              className="w-full h-full absolute inset-0 cursor-grab active:cursor-grabbing"
-              animate={{ scale: prefersReducedMotion ? 1 : [1, 1.1] }}
+              className="w-full h-full absolute inset-0"
+              animate={{ scale: 1 }}
               transition={{ duration: 10, ease: "linear" }}
             >
               {type === "dance" ? (
@@ -120,10 +122,10 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
           </motion.div>
         </AnimatePresence>
 
-        <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full glass-surface flex items-center justify-center text-foreground/50 hover:text-primary transition-all duration-300 hover:scale-110 shadow-lg z-10">
+        <button onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full glass-surface flex items-center justify-center text-foreground/50 hover:text-primary transition-all duration-300 hover:scale-110 shadow-lg z-10">
           <ChevronLeft className="w-5 h-5" />
         </button>
-        <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full glass-surface flex items-center justify-center text-foreground/50 hover:text-primary transition-all duration-300 hover:scale-110 shadow-lg z-10">
+        <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full glass-surface flex items-center justify-center text-foreground/50 hover:text-primary transition-all duration-300 hover:scale-110 shadow-lg z-10">
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>
@@ -131,20 +133,6 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
       <div className="flex justify-center gap-4 mt-6 items-center">
         {images.map((_, i) => (
           <button key={i} onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }} className="relative h-4 w-4 flex items-center justify-center outline-none group p-2">
-            {i === current && !prefersReducedMotion && (
-              <motion.svg className="absolute inset-x-0 inset-y-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 20 20">
-                <motion.circle
-                  cx="10" cy="10" r={radius}
-                  fill="transparent"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth="1.5"
-                  strokeDasharray={circumference}
-                  initial={{ strokeDashoffset: circumference }}
-                  animate={{ strokeDashoffset: 0 }}
-                  transition={{ duration: AUTOPLAY_MS / 1000, ease: "linear" }}
-                />
-              </motion.svg>
-            )}
             <div className={`rounded-full transition-all duration-400 ${i === current ? "w-2.5 h-2.5 bg-primary shadow-[0_0_10px_hsl(var(--primary))]" : "w-1.5 h-1.5 bg-muted-foreground/30 group-hover:bg-primary/50 group-hover:scale-125"}`} />
           </button>
         ))}

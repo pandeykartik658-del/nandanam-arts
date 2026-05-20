@@ -7,15 +7,15 @@ import { useState } from "react";
 // Reusable social blocks injected identically into both variants
 const SocialLinks = () => (
   <>
-    <a href="#" className="opacity-40 hover:opacity-100 transition-all duration-300 hover:scale-[1.3] group">
+    <a href="https://instagram.com/shashanknairdance" target="_blank" rel="noopener noreferrer" className="opacity-40 hover:opacity-100 transition-all duration-300 hover:scale-[1.3] group">
       <Instagram className="w-5 h-5 stroke-[url(#divine-grad)] group-hover:stroke-[#E1306C] drop-shadow-[0_0_8px_hsl(var(--primary)/0.2)] group-hover:drop-shadow-[0_0_12px_rgba(225,48,108,0.8)] transition-all duration-300" />
     </a>
     
-    <a href="#" className="opacity-40 hover:opacity-100 transition-all duration-300 hover:scale-[1.3] group">
+    <a href="mailto:shashank.k.nair@gmail.com" className="opacity-40 hover:opacity-100 transition-all duration-300 hover:scale-[1.3] group">
       <Mail className="w-5 h-5 stroke-[url(#divine-grad)] group-hover:stroke-[#D44638] drop-shadow-[0_0_8px_hsl(var(--primary)/0.2)] group-hover:drop-shadow-[0_0_12px_rgba(212,70,56,0.8)] transition-all duration-300" />
     </a>
     
-    <a href="#" className="opacity-40 hover:opacity-100 transition-all duration-300 hover:scale-[1.3] group">
+    <a href="https://wa.me/918762174113" target="_blank" rel="noopener noreferrer" className="opacity-40 hover:opacity-100 transition-all duration-300 hover:scale-[1.3] group">
       <MessageCircle className="w-5 h-5 stroke-[url(#divine-grad)] group-hover:stroke-[#25D366] drop-shadow-[0_0_8px_hsl(var(--primary)/0.2)] group-hover:drop-shadow-[0_0_12px_rgba(37,211,102,0.8)] transition-all duration-300" />
     </a>
   </>

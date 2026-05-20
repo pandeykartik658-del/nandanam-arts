@@ -328,7 +328,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
           <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-primary/30" />
         </div>
 
-        {/* Chamber Series */}
+        {/* Chamber Concert */}
         <section id="chamber" className="py-16 md:py-24 relative z-10 bg-black/10">
           <div className="max-w-7xl mx-auto px-6 mb-10 md:mb-16 text-center flex flex-col items-center relative z-10">
             <div className="relative inline-block mb-4 w-full">
@@ -342,11 +342,13 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
                   <Mic className="w-3 h-3 text-primary/70" />
                 </div>
 
-                <h2 className="font-display text-4xl md:text-5xl tracking-[4px] text-gradient-wine">The Chamber Series</h2>
+                <h2 className="font-display text-4xl md:text-5xl tracking-[4px] text-gradient-wine">The Chamber Concert</h2>
               </div>
             </div>
             <p className="font-luxury text-lg text-white/60 italic max-w-2xl mx-auto">
-              Intimate gatherings designed to bring the audience closer to the nuances of Abhinaya.<br className="hidden md:block" /> Stripping away the distance of a proscenium stage to reveal the soul.
+              NAF hosts the LEELA Chamber Concert series.
+              <br />
+              This effort is aimed at creating a space for upcoming artists and rasikas to engage in a much more intimate setting, creating a space for active dialogue and artistic discussion, thus bringing the art closer to the audience.
             </p>
           </div>
           <DynamicStageCarousel items={chambers} intervalMs={7000} />
@@ -377,7 +379,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
               </div>
             </div>
             <p className="font-luxury text-lg text-white/60 italic max-w-2xl mx-auto">
-              Passing down the rigorous discipline of ancient treatises to the next generation.<br className="hidden md:block" /> Bridging the gap between scholarly research and active performance.
+              The Youth edition of the Leela stages prominent youngsters from the performing arts arena.
             </p>
           </div>
           <DynamicStageCarousel items={workshops} intervalMs={7000} />

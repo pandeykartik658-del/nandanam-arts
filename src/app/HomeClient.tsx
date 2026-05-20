@@ -24,6 +24,7 @@ const ScrollProgress = dynamic(() => import("@/components/ScrollProgress"), { ss
 const SocialSidebar = dynamic(() => import("@/components/SocialSidebar"), { ssr: false });
 const EventsCarousel = dynamic(() => import("@/components/EventsCarousel"), { ssr: false });
 import { CarouselEvent } from "@/components/EventsCarousel";
+const AboutImagesSlider = dynamic(() => import("@/components/AboutImagesSlider"), { ssr: false });
 const Footer = dynamic(() => import("@/components/Footer"), { ssr: false });
 
 const dancer1 = "/assets/dancer1.jpg";
@@ -34,15 +35,15 @@ const logo = "/assets/logo.png";
 const titleLetters = "DIVINE TRADITIONS".split("");
 
 const philosophyFull =
-  "Rooted in the ancient soils of South India, Nandanam is dedicated to promoting the pure, unadulterated art of Bharatanatyam. We believe that classical dance is not merely a performing art, but a spiritual discipline calling upon ancient geometry. Through rigorous practice and unwavering dedication, the artist becomes a vessel for storytelling that transcends generations.";
+  "NAF is a non profit organisation founded with an aim of promoting and propagating Indian culture and arts. As an organisation in its formative stage NAF has undertaken several initiatives to further our cause. NAF actively conducts other artistic and cultural events, on the community level, providing a platform for the students of NCA and other ameture artists.";
 
-const WORD_LIMIT = 80;
+const WORD_LIMIT = 30;
 const words = philosophyFull.split(" ");
 const truncated = words.slice(0, WORD_LIMIT).join(" ") + "…";
 
 const navCards = [
   { label: "Nandanam Center of Arts", link: "/teaching" },
-  { label: "Leela: The Divine Festival", link: "/leela" },
+  { label: "Leela: A Festival of Arts", link: "/leela" },
   { label: "Other Events", link: "/events" },
   { label: "Contact Us", link: "/contact" },
 ];
@@ -96,9 +97,14 @@ const PageTransitionVeil = ({ visible }: { visible: boolean }) => {
 
 interface HomeClientProps {
   upcomingEvents: CarouselEvent[];
+  aboutData?: {
+    title?: string;
+    text?: string;
+    images?: string[];
+  } | null;
 }
 
-export default function HomeClient({ upcomingEvents }: HomeClientProps) {
+export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProps) {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: heroProgress } = useScroll({
     target: heroRef,
@@ -256,7 +262,10 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
           className="max-w-[800px] mb-14"
         >
           <p className="font-body text-lg md:text-xl leading-[1.8] mb-4" style={{ color: 'rgba(255, 255, 255, 0.92)', textShadow: '0 0 20px rgba(255,255,255,0.06)' }}>
-            {expanded ? philosophyFull : truncated}
+            {expanded 
+              ? (aboutData?.text || philosophyFull) 
+              : ((aboutData?.text || philosophyFull).split(/\s+/).slice(0, 30).join(" ") + ((aboutData?.text || philosophyFull).split(/\s+/).length > 30 ? "…" : ""))
+            }
           </p>
           <motion.button
             onClick={() => setExpanded(!expanded)}
@@ -269,20 +278,34 @@ export default function HomeClient({ upcomingEvents }: HomeClientProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden mb-16">
-          {/* Frame 1 - Empty */}
-          <div className="flex-1 min-w-0">
-            <div className="overflow-hidden rounded-2xl border border-primary/30 relative h-[200px] bg-black/20" />
-          </div>
-          {/* Frame 2 - Empty */}
-          <div className="flex-1 min-w-0">
-            <div className="overflow-hidden rounded-2xl border border-primary/30 relative h-[200px] bg-black/20" />
-          </div>
-          {/* Frame 3 - Empty */}
-          <div className="flex-1 min-w-0">
-            <div className="overflow-hidden rounded-2xl border border-primary/30 relative h-[200px] bg-black/20" />
-          </div>
+          {[0, 1, 2].map((idx) => {
+            const hasImage = aboutData?.images && aboutData.images[idx];
+            return (
+              <div key={idx} className="flex-1 min-w-0">
+                <div className="overflow-hidden rounded-2xl border border-primary/30 relative h-[200px] bg-black/20 group">
+                  {hasImage ? (
+                    <Image
+                      src={aboutData.images[idx]}
+                      alt={`Showcase ${idx + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-115 opacity-80 group-hover:opacity-100"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/5 via-transparent to-primary/5">
+                      <span className="font-display text-[9px] tracking-[4px] uppercase text-white/25">Nandanam Arts</span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
+
+      {/* Showcase Sliding Frame - 4 Images Slider below About Us */}
+      <AboutImagesSlider />
 
       <section id="heritage" className="max-w-[800px] mx-auto px-6 py-16 text-center">
         <motion.div

@@ -29,6 +29,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
   const [paused, setPaused] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
+  const [photoDirection, setPhotoDirection] = useState(1);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const isReducedMotion = useReducedMotion();
@@ -58,12 +59,13 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
     return () => clearInterval(timer);
   }, [nextSlide, intervalMs, paused, isReducedMotion, expanded]);
 
-  // Auto-advance inner photos
+  // Auto-advance inner photos — also advances on click
   useEffect(() => {
     if (paused || isReducedMotion || !hasMultipleImages) return;
     const photoTimer = setInterval(() => {
+      setPhotoDirection(1);
       setPhotoIdx((prev) => (prev + 1) % images.length);
-    }, 2000);
+    }, 3000);
     return () => clearInterval(photoTimer);
   }, [images.length, paused, isReducedMotion, hasMultipleImages]);
 
@@ -203,24 +205,34 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                       </div>
                     )}
 
-                    {/* Image Container */}
-                  <div className="relative w-full h-48 md:h-64 overflow-hidden bg-black">
+                  {/* Image Container */}
+                  <div
+                    className="relative w-full h-48 md:h-64 overflow-hidden bg-black cursor-pointer"
+                    onClick={(e) => {
+                      if (isCenter && hasMultipleImages) {
+                        e.stopPropagation();
+                        setPhotoDirection(1);
+                        setPhotoIdx((prev) => (prev + 1) % itemImages.length);
+                      }
+                    }}
+                  >
                     {itemImages.length > 1 && (
                       <div className="absolute top-4 right-4 z-20 glass-surface px-3 py-1 rounded-full">
                         <span className="font-mono text-xs text-white/80 tracking-widest">
-                          0{photoIdx + 1} / 0{itemImages.length}
+                          0{(isCenter ? photoIdx : 0) + 1} / 0{itemImages.length}
                         </span>
                       </div>
                     )}
-                    <AnimatePresence mode="sync">
+                    <AnimatePresence initial={false} mode="popLayout" custom={photoDirection}>
                       {isCenter ? (
                         <motion.div
                           key={`photo-${photoIdx}`}
                           className="absolute inset-0"
-                          initial={{ opacity: 0, scale: 1.05 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 1.5 }}
+                          custom={photoDirection}
+                          initial={(dir: number) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 1 })}
+                          animate={{ x: 0, opacity: 1 }}
+                          exit={(dir: number) => ({ x: dir > 0 ? "-100%" : "100%", opacity: 1 })}
+                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         >
                           {itemImages[photoIdx] && (
                             <Image 

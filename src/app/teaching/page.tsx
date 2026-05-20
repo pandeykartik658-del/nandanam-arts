@@ -252,12 +252,12 @@ export default function TeachingWingPage() {
         >
           <KineticSubtitle />
           <motion.p 
-            className="font-body mt-6 max-w-[500px] text-sm md:text-base leading-[2] tracking-wide text-muted-foreground/70"
+            className="font-body mt-6 max-w-[600px] text-sm md:text-base leading-[2] tracking-wide text-muted-foreground/70"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 3.2, duration: 0.8 }}
           >
-            Two ancient disciplines, one sanctified gurukul — where the body learns to speak and the voice learns to pray.
+            The teaching wing of the foundation Nandanam Centre for Arts conducts classes for Carnatic Vocal and Bharathanatya, training several aspiring students from all age groups.
           </motion.p>
         </motion.div>
 

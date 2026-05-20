@@ -63,3 +63,12 @@ export async function getWorkshops() {
   }`;
   return client.fetch(query);
 }
+
+export async function getAboutContent() {
+  const query = `*[_type == "about"][0] {
+    title,
+    text,
+    "images": images[].asset->url
+  }`;
+  return client.fetch(query);
+}

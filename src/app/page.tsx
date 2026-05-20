@@ -1,5 +1,5 @@
 import HomeClient from "./HomeClient";
-import { getEvents } from "@/sanity/client";
+import { getEvents, getAboutContent } from "@/sanity/client";
 import { CarouselEvent } from "@/components/EventsCarousel";
 
 // Server Component — fetches events from Sanity at request time
@@ -31,7 +31,10 @@ const fallbackEvents: CarouselEvent[] = [
 ];
 
 export default async function HomePage() {
-  const sanityEvents = await getEvents();
+  const [sanityEvents, aboutData] = await Promise.all([
+    getEvents(),
+    getAboutContent().catch(() => null),
+  ]);
 
   let formattedEvents: CarouselEvent[] = [];
 
@@ -96,7 +99,7 @@ export default async function HomePage() {
           </h1>
         </div>
       </div>
-      <HomeClient upcomingEvents={eventsToShow} />
+      <HomeClient upcomingEvents={eventsToShow} aboutData={aboutData} />
     </>
   );
 }
