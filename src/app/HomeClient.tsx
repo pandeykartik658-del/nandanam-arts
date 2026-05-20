@@ -128,14 +128,14 @@ const MiniFrameSlider = ({ images, fallbackImages }: { images?: string[]; fallba
   }, [slideList.length]);
 
   const slideVariants = {
-    enter: (dir: number) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 1 }),
-    center: { x: 0, opacity: 1 },
-    exit: (dir: number) => ({ x: dir > 0 ? "-100%" : "100%", opacity: 1 }),
+    enter: { opacity: 0, scale: 1.04 },
+    center: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.96 },
   };
 
   return (
     <div 
-      className="overflow-hidden rounded-2xl border border-primary/30 relative w-full aspect-[16/9] bg-black/60 backdrop-blur-md group cursor-pointer isolate transform-gpu"
+      className="overflow-hidden rounded-2xl border border-primary/30 relative w-full aspect-[16/9] bg-black/60 backdrop-blur-md group cursor-pointer isolate"
       style={{ 
         transform: "translateZ(0)",
         WebkitMaskImage: "-webkit-radial-gradient(white, black)"
@@ -145,16 +145,15 @@ const MiniFrameSlider = ({ images, fallbackImages }: { images?: string[]; fallba
         setCurrent((c) => (c + 1) % slideList.length);
       }}
     >
-      <AnimatePresence initial={false} custom={direction}>
+      <AnimatePresence initial={false}>
         <motion.div
           key={current}
-          custom={direction}
           variants={slideVariants}
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="absolute inset-0 w-full h-full"
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="absolute inset-0 w-full h-full overflow-hidden rounded-2xl"
           style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
         >
           <Image
@@ -163,7 +162,7 @@ const MiniFrameSlider = ({ images, fallbackImages }: { images?: string[]; fallba
             fill
             unoptimized
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-95 group-hover:opacity-100"
+            className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-95 group-hover:opacity-100 rounded-2xl"
           />
         </motion.div>
       </AnimatePresence>
