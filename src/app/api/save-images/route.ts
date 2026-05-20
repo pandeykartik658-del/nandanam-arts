@@ -11,24 +11,40 @@ export async function POST(request: Request) {
     // 1. Process optional local file upload
     let fileUrl = "";
     if (uploadFile && uploadFileName) {
-      // Create public/uploads directory if not exists
-      const uploadsDir = path.join(process.cwd(), "public", "uploads");
-      if (!fs.existsSync(uploadsDir)) {
-        fs.mkdirSync(uploadsDir, { recursive: true });
+      try {
+        // Create public/uploads directory if not exists
+        const uploadsDir = path.join(process.cwd(), "public", "uploads");
+        if (!fs.existsSync(uploadsDir)) {
+          fs.mkdirSync(uploadsDir, { recursive: true });
+        }
+
+        // Convert base64 data to buffer
+        const base64Data = uploadFile.replace(/^data:image\/\w+;base64,/, "");
+        const buffer = Buffer.from(base64Data, "base64");
+
+        // Save file with a timestamp to prevent overwriting
+        const ext = path.extname(uploadFileName) || ".jpg";
+        const baseName = path.basename(uploadFileName, ext).replace(/[^a-zA-Z0-9]/g, "_");
+        const savedFileName = `${baseName}_${Date.now()}${ext}`;
+        const filePath = path.join(uploadsDir, savedFileName);
+
+        fs.writeFileSync(filePath, buffer);
+        fileUrl = `/uploads/${savedFileName}`;
+      } catch (err: any) {
+        console.error("Failed to write uploaded file to filesystem:", err);
+        const isReadOnly = err.code === "EROFS" || err.message?.includes("read-only") || err.message?.includes("permission");
+        if (isReadOnly) {
+          return NextResponse.json({ 
+            success: false, 
+            error: "Local file uploads are not supported in production on Vercel (read-only filesystem). Please upload your image to Cloudinary (or another host) and paste the URL instead." 
+          }, { status: 400 });
+        } else {
+          return NextResponse.json({ 
+            success: false, 
+            error: `Failed to save file: ${err.message}` 
+          }, { status: 500 });
+        }
       }
-
-      // Convert base64 data to buffer
-      const base64Data = uploadFile.replace(/^data:image\/\w+;base64,/, "");
-      const buffer = Buffer.from(base64Data, "base64");
-
-      // Save file with a timestamp to prevent overwriting
-      const ext = path.extname(uploadFileName) || ".jpg";
-      const baseName = path.basename(uploadFileName, ext).replace(/[^a-zA-Z0-9]/g, "_");
-      const savedFileName = `${baseName}_${Date.now()}${ext}`;
-      const filePath = path.join(uploadsDir, savedFileName);
-
-      fs.writeFileSync(filePath, buffer);
-      fileUrl = `/uploads/${savedFileName}`;
     }
 
     // 2. Load current config
@@ -51,16 +67,23 @@ export async function POST(request: Request) {
     if (leela) currentConfig.leela = leela;
 
     // Write updated config back to JSON
-    const dataDir = path.join(process.cwd(), "public", "data");
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
+    let isReadOnlyFilesystem = false;
+    try {
+      const dataDir = path.join(process.cwd(), "public", "data");
+      if (!fs.existsSync(dataDir)) {
+        fs.mkdirSync(dataDir, { recursive: true });
+      }
+      fs.writeFileSync(configPath, JSON.stringify(currentConfig, null, 2), "utf8");
+    } catch (err: any) {
+      console.warn("Dashboard API: Server filesystem is read-only (Vercel). Config will be persisted client-side only:", err.message);
+      isReadOnlyFilesystem = true;
     }
-    fs.writeFileSync(configPath, JSON.stringify(currentConfig, null, 2), "utf8");
 
     return NextResponse.json({ 
       success: true, 
       config: currentConfig,
-      uploadedUrl: fileUrl 
+      uploadedUrl: fileUrl,
+      isReadOnlyFilesystem
     });
   } catch (error: any) {
     console.error("Dashboard API Error:", error);

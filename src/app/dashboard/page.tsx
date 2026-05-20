@@ -19,7 +19,7 @@ export default function DashboardPage() {
   });
   
   const [activeTab, setActiveTab] = useState<keyof ImageConfig>("frame1");
-  const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error" | "saved_local">("idle");
   const [uploadStatus, setUploadStatus] = useState<{ [key: number]: "idle" | "uploading" | "done" }>({});
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -127,15 +127,21 @@ export default function DashboardPage() {
       if (response.ok) {
         const data = await response.json();
         if (data.success) {
-          setStatus("saved");
           // Persist in localStorage for instant front-end client updates
           localStorage.setItem("custom_nca_images", JSON.stringify(config));
-          setTimeout(() => setStatus("idle"), 3000);
+          
+          if (data.isReadOnlyFilesystem) {
+            setStatus("saved_local");
+          } else {
+            setStatus("saved");
+          }
+          setTimeout(() => setStatus("idle"), 5000);
         } else {
           throw new Error(data.error);
         }
       } else {
-        throw new Error("HTTP connection error");
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.error || "HTTP connection error");
       }
     } catch (err: any) {
       console.error("Save config failed:", err);
@@ -143,6 +149,17 @@ export default function DashboardPage() {
       setStatus("error");
       setTimeout(() => setStatus("idle"), 5000);
     }
+  };
+
+  // Browser download of custom-images.json config
+  const downloadConfig = () => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(config, null, 2));
+    const downloadAnchor = document.createElement("a");
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", "custom-images.json");
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
   };
 
   return (
@@ -172,31 +189,84 @@ export default function DashboardPage() {
             </p>
           </div>
 
-          <button
-            onClick={saveConfiguration}
-            disabled={status === "saving"}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-wine hover:glow-wine text-white font-display text-xs uppercase tracking-[2px] px-8 py-3.5 rounded-full transition-all duration-300 disabled:opacity-50"
-          >
-            {status === "saving" ? (
-              <span className="animate-pulse">Saving changes...</span>
-            ) : status === "saved" ? (
-              <>
-                <Check className="w-4 h-4 text-emerald-400" />
-                <span>Saved successfully!</span>
-              </>
-            ) : status === "error" ? (
-              <>
-                <AlertCircle className="w-4 h-4 text-rose-400" />
-                <span>Error saving</span>
-              </>
-            ) : (
-              <>
-                <Save className="w-4 h-4" />
-                <span>Publish updates</span>
-              </>
-            )}
-          </button>
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <button
+              onClick={downloadConfig}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 font-display text-xs uppercase tracking-[2px] px-6 py-3.5 rounded-full transition-all duration-300"
+              title="Download configuration JSON for Git backup"
+            >
+              <Upload className="w-4 h-4 rotate-180" />
+              <span>Backup JSON</span>
+            </button>
+
+            <button
+              onClick={saveConfiguration}
+              disabled={status === "saving"}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-wine hover:glow-wine text-white font-display text-xs uppercase tracking-[2px] px-8 py-3.5 rounded-full transition-all duration-300 disabled:opacity-50"
+            >
+              {status === "saving" ? (
+                <span className="animate-pulse">Saving changes...</span>
+              ) : status === "saved" ? (
+                <>
+                  <Check className="w-4 h-4 text-emerald-400" />
+                  <span>Saved successfully!</span>
+                </>
+              ) : status === "saved_local" ? (
+                <>
+                  <Check className="w-4 h-4 text-amber-400" />
+                  <span>Saved to Browser!</span>
+                </>
+              ) : status === "error" ? (
+                <>
+                  <AlertCircle className="w-4 h-4 text-rose-400" />
+                  <span>Error saving</span>
+                </>
+              ) : (
+                <>
+                  <Save className="w-4 h-4" />
+                  <span>Publish updates</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
+
+        {/* Status / Warning Messages Banners */}
+        {status === "saved_local" && (
+          <div className="glass-surface border border-amber-500/30 bg-amber-500/5 rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 animate-fade-in">
+            <div className="flex gap-3">
+              <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+              <div className="flex flex-col gap-1">
+                <span className="font-display text-xs text-amber-300 uppercase tracking-wider font-semibold">
+                  Saved to browser (Vercel Mode)
+                </span>
+                <p className="font-body text-xs text-white/70 leading-relaxed">
+                  Your changes are active in your browser. Since this website is hosted on Vercel's read-only filesystem, you must download the configuration and commit/push it to GitHub to make it permanent for everyone.
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={downloadConfig}
+              className="shrink-0 font-display text-[10px] tracking-widest uppercase bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-500/40 px-4 py-2 rounded-full transition-colors"
+            >
+              Download custom-images.json
+            </button>
+          </div>
+        )}
+
+        {status === "error" && (
+          <div className="glass-surface border border-rose-500/30 bg-rose-500/5 rounded-xl p-4 flex gap-3 animate-fade-in">
+            <AlertCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+            <div className="flex flex-col gap-1">
+              <span className="font-display text-xs text-rose-300 uppercase tracking-wider font-semibold">
+                Error Publishing Updates
+              </span>
+              <p className="font-body text-xs text-white/70 leading-relaxed font-mono">
+                {errorMessage}
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* Tab Controls */}
         <div className="flex flex-wrap gap-2 border-b border-white/5 pb-2">

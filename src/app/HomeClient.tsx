@@ -95,6 +95,15 @@ const NavTiltCard = ({ item, i, onNavigate }: { item: typeof navCards[0]; i: num
   );
 };
 
+const optimizeCloudinary = (url: string, width = 800) => {
+  if (url && url.includes("res.cloudinary.com") && url.includes("/upload/")) {
+    if (!url.includes("w_")) {
+      return url.replace("/upload/", `/upload/w_${width},`);
+    }
+  }
+  return url;
+};
+
 const PageTransitionVeil = ({ visible }: { visible: boolean }) => {
   return (
     <AnimatePresence>
@@ -156,7 +165,7 @@ const MiniFrameSlider = ({ images, fallbackImages }: { images?: string[]; fallba
           style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
         >
           <Image
-            src={slideList[current]}
+            src={optimizeCloudinary(slideList[current])}
             alt="Showcase performance"
             fill
             unoptimized
@@ -310,7 +319,8 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Image src={logo} alt="" width={1} height={1} priority className="hidden" aria-hidden="true" />
+          {/* Remove the tiny width=1 logo that causes re-renders, use unoptimized and real size to ensure the mask gets the same preloaded raw file */}
+          <Image src={logo} alt="" width={128} height={128} unoptimized priority className="hidden" aria-hidden="true" />
           <div
             className="w-10 h-10 bg-gradient-wine-shift shrink-0"
             style={{
