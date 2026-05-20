@@ -136,13 +136,14 @@ const MiniFrameSlider = ({ images, fallbackImages }: { images?: string[]; fallba
 
   return (
     <div 
-      className="overflow-hidden rounded-2xl border border-primary/30 relative w-full aspect-[16/9] bg-black/60 backdrop-blur-md group cursor-pointer"
+      className="overflow-hidden rounded-2xl border border-primary/30 relative w-full aspect-[16/9] bg-black/60 backdrop-blur-md group cursor-pointer isolate transform-gpu"
+      style={{ transform: "translateZ(0)" }}
       onClick={() => {
         setDirection(1);
         setCurrent((c) => (c + 1) % slideList.length);
       }}
     >
-      <AnimatePresence initial={false} custom={direction} mode="popLayout">
+      <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={current}
           custom={direction}
@@ -152,6 +153,7 @@ const MiniFrameSlider = ({ images, fallbackImages }: { images?: string[]; fallba
           exit="exit"
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className="absolute inset-0 w-full h-full"
+          style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
         >
           <Image
             src={slideList[current]}
@@ -163,9 +165,9 @@ const MiniFrameSlider = ({ images, fallbackImages }: { images?: string[]; fallba
           />
         </motion.div>
       </AnimatePresence>
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-transparent to-transparent h-12 opacity-80 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-transparent to-transparent h-12 opacity-80 pointer-events-none z-10" />
       {/* Dynamic Slide indicators inside each frame */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 pointer-events-none">
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 pointer-events-none">
         {slideList.map((_, i) => (
           <div
             key={i}
@@ -395,19 +397,19 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden mb-16">
-          <div className="flex-1 min-w-0">
+          <div className="w-full min-w-0">
             <MiniFrameSlider 
               images={dynFrame1.length > 0 ? dynFrame1 : (aboutData?.frame1Images && aboutData.frame1Images.length > 0 ? aboutData.frame1Images : CLOUDINARY_FRAME1)} 
               fallbackImages={CLOUDINARY_FRAME1} 
             />
           </div>
-          <div className="flex-1 min-w-0">
+          <div className="w-full min-w-0">
             <MiniFrameSlider 
               images={dynFrame2.length > 0 ? dynFrame2 : (aboutData?.frame2Images && aboutData.frame2Images.length > 0 ? aboutData.frame2Images : CLOUDINARY_FRAME2)} 
               fallbackImages={CLOUDINARY_FRAME2} 
             />
           </div>
-          <div className="flex-1 min-w-0">
+          <div className="w-full min-w-0">
             <MiniFrameSlider 
               images={dynFrame3.length > 0 ? dynFrame3 : (aboutData?.frame3Images && aboutData.frame3Images.length > 0 ? aboutData.frame3Images : CLOUDINARY_FRAME3)} 
               fallbackImages={CLOUDINARY_FRAME3} 
