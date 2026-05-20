@@ -68,38 +68,6 @@ export default async function HomePage() {
   const eventsToShow = upcomingEvents.length > 0 ? upcomingEvents : fallbackEvents;
 
   return (
-    <>
-      {/* Server-rendered LCP element — paints immediately with inlined styles, no external CSS needed */}
-      <div
-        id="ssr-splash"
-        style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 50,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          pointerEvents: 'none' as const,
-          background: 'radial-gradient(ellipse 80% 60% at 50% 50%, hsl(300 25% 8%), hsl(300 20% 5%))',
-        }}
-      >
-        <div style={{ textAlign: 'center' }}>
-          <h1
-            style={{
-              fontFamily: 'var(--font-cinzel), "Times New Roman", serif',
-              fontSize: 'clamp(2.25rem, 5vw, 4.5rem)',
-              letterSpacing: '6px',
-              textTransform: 'uppercase' as const,
-              opacity: 0.85,
-              color: '#f5f0eb',
-              margin: 0,
-            }}
-          >
-            Nandanam Centre of Arts
-          </h1>
-        </div>
-      </div>
-      <HomeClient upcomingEvents={eventsToShow} aboutData={aboutData} />
-    </>
+    <HomeClient upcomingEvents={eventsToShow} aboutData={aboutData} />
   );
 }

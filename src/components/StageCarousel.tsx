@@ -52,22 +52,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
     setExpanded(false);
   }, [items.length]);
 
-  // Auto-advance main slide
-  useEffect(() => {
-    if (paused || isReducedMotion || expanded) return;
-    const timer = setInterval(nextSlide, intervalMs);
-    return () => clearInterval(timer);
-  }, [nextSlide, intervalMs, paused, isReducedMotion, expanded]);
-
-  // Auto-advance inner photos — also advances on click
-  useEffect(() => {
-    if (paused || isReducedMotion || !hasMultipleImages) return;
-    const photoTimer = setInterval(() => {
-      setPhotoDirection(1);
-      setPhotoIdx((prev) => (prev + 1) % images.length);
-    }, 3000);
-    return () => clearInterval(photoTimer);
-  }, [images.length, paused, isReducedMotion, hasMultipleImages]);
+  // Auto-advance removed as per user request
 
   // Keyboard navigation
   useEffect(() => {

@@ -9,15 +9,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
-const SplashScreen = dynamic(() => import("@/components/SplashScreen"), {
-  loading: () => (
-    <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 50%, hsl(300 25% 8%), hsl(300 20% 5%))' }}>
-      <h1 className="font-display text-4xl md:text-7xl tracking-[6px] uppercase text-gradient-ivory" style={{ opacity: 0.85 }}>
-        Nandanam Centre of Arts
-      </h1>
-    </div>
-  ),
-});
+
 const MovingBackground = dynamic(() => import("@/components/MovingBackground"), { ssr: false });
 const FloatingElements = dynamic(() => import("@/components/FloatingElements"), { ssr: false });
 const ScrollProgress = dynamic(() => import("@/components/ScrollProgress"), { ssr: false });
@@ -254,16 +246,12 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
 
   return (
     <div className="noise-overlay min-h-screen relative overflow-hidden">
-      <SplashScreen />
       <PageTransitionVeil visible={isTransitioning} />
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
         <MovingBackground speed={3} />
       </div>
       <FloatingElements />
       <ScrollProgress />
-      
-      {/* Spacer for splash screen — scroll past this to reveal the hero */}
-      <div className="min-h-screen" />
 
       <motion.section
         ref={heroRef}
