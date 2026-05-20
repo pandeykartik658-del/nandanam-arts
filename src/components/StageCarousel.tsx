@@ -239,8 +239,9 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                               src={itemImages[photoIdx]} 
                               alt={item.title || "Performance"}
                               fill
+                              unoptimized
                               sizes="(max-width: 768px) 100vw, 50vw"
-                              className="object-contain opacity-95 p-2"
+                              className="object-cover opacity-95"
                             />
                           )}
                           <div className="absolute inset-0 bg-primary/5" />
@@ -252,8 +253,9 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                               src={itemImages[0]} 
                               alt={item.title || "Performance"}
                               fill
+                              unoptimized
                               sizes="(max-width: 768px) 100vw, 50vw"
-                              className="object-contain opacity-70 p-2"
+                              className="object-cover opacity-70"
                             />
                           )}
                           <div className="absolute inset-0 bg-primary/5" />
@@ -294,8 +296,9 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                         <Image 
                           src={img} 
                           fill
+                          unoptimized
                           sizes="(max-width: 768px) 50vw, 25vw"
-                          className="object-contain bg-black/40 rounded-lg opacity-90 hover:opacity-100 transition-opacity p-1" 
+                          className="object-cover bg-black/40 rounded-lg opacity-90 hover:opacity-100 transition-opacity" 
                           alt={`Collage image ${i+1}`} 
                         />
                       </div>

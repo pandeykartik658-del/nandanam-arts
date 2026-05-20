@@ -157,8 +157,9 @@ const MiniFrameSlider = ({ images, fallbackImages }: { images?: string[]; fallba
             src={slideList[current]}
             alt="Showcase performance"
             fill
+            unoptimized
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-contain p-2 transition-transform duration-700 group-hover:scale-105 opacity-95 group-hover:opacity-100"
+            className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-95 group-hover:opacity-100"
           />
         </motion.div>
       </AnimatePresence>
