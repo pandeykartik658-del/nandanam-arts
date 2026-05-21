@@ -67,10 +67,7 @@ export async function getWorkshops() {
 export async function getAboutContent() {
   const query = `*[_type == "about"][0] {
     title,
-    text,
-    "frame1Images": frame1Images[].asset->url,
-    "frame2Images": frame2Images[].asset->url,
-    "frame3Images": frame3Images[].asset->url
+    text
   }`;
   return client.fetch(query);
 }

@@ -408,7 +408,7 @@ export default function TeachingWingPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <MagneticButton className="px-10 py-5 rounded-full border border-primary/30 bg-primary/5 backdrop-blur-md shadow-[0_0_30px_hsl(var(--primary)/0.15)] flex flex-col items-center z-10">
-              <Link href="/contact" className="font-display text-sm tracking-[4px] uppercase text-primary font-semibold">Begin Your Journey</Link>
+              <Link href="/leela" className="font-display text-sm tracking-[4px] uppercase text-primary font-semibold">Begin Your Journey</Link>
             </MagneticButton>
           </motion.div>
 

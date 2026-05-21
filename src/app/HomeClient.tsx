@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { optimizeCloudinary } from "@/utils/image";
+
 
 
 const MovingBackground = dynamic(() => import("@/components/MovingBackground"), { ssr: false });
@@ -24,24 +24,7 @@ const dancer4 = "/assets/dancer4.jpg";
 const dancer5 = "/assets/dancer5.jpg";
 const logo = "/assets/logo.png";
 
-const CLOUDINARY_FRAME1 = [
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283368/12_rkgzlm.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283368/5_oposod.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283367/10_npqrhn.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283365/7_j4haxo.jpg"
-];
 
-const CLOUDINARY_FRAME2 = [
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283364/6_vkwdec.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283364/4_wxcxlo.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283363/3_ntdjzu.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283363/2_zfqwnl.jpg"
-];
-
-const CLOUDINARY_FRAME3 = [
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283367/11_atsd6p.jpg",
-  "https://res.cloudinary.com/dndsxfdaj/image/upload/q_auto/f_auto/v1779283366/8_m4ecfp.jpg"
-];
 
 const titleLetters = "DIVINE TRADITIONS".split("");
 
@@ -56,7 +39,6 @@ const navCards = [
   { label: "Nandanam Center of Arts", link: "/teaching" },
   { label: "Leela: A Festival of Arts", link: "/leela" },
   { label: "Other Events", link: "/events" },
-  { label: "Contact Us", link: "/contact" },
 ];
 
 const NavTiltCard = ({ item, i, onNavigate }: { item: typeof navCards[0]; i: number; onNavigate: (link: string) => void }) => {
@@ -108,80 +90,13 @@ const PageTransitionVeil = ({ visible }: { visible: boolean }) => {
   );
 };
 
-const MiniFrameSlider = ({ images, fallbackImages }: { images?: string[]; fallbackImages: string[] }) => {
-  const slideList = images && images.length > 0 ? images : fallbackImages;
-  const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(1);
 
-  useEffect(() => {
-    const id = setInterval(() => {
-      setDirection(1);
-      setCurrent((c) => (c + 1) % slideList.length);
-    }, 4000);
-    return () => clearInterval(id);
-  }, [slideList.length]);
-
-  const slideVariants = {
-    enter: { opacity: 0, scale: 1.04 },
-    center: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.96 },
-  };
-
-  return (
-    <div 
-      className="overflow-hidden rounded-2xl border border-primary/30 relative w-full aspect-[3/4] bg-black/60 backdrop-blur-md group cursor-pointer isolate"
-      style={{ 
-        transform: "translateZ(0)",
-        WebkitMaskImage: "-webkit-radial-gradient(white, black)"
-      }}
-      onClick={() => {
-        setDirection(1);
-        setCurrent((c) => (c + 1) % slideList.length);
-      }}
-    >
-      <AnimatePresence initial={false}>
-        <motion.div
-          key={current}
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="absolute inset-0 w-full h-full overflow-hidden rounded-2xl"
-          style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
-        >
-          <Image
-            src={optimizeCloudinary(slideList[current])}
-            alt="Showcase performance"
-            fill
-            unoptimized
-            sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-95 group-hover:opacity-100 rounded-2xl"
-          />
-        </motion.div>
-      </AnimatePresence>
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-transparent to-transparent h-12 opacity-80 pointer-events-none z-10" />
-      {/* Dynamic Slide indicators inside each frame */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 pointer-events-none">
-        {slideList.map((_, i) => (
-          <div
-            key={i}
-            className={`h-1.5 rounded-full transition-all duration-300 ${i === current ? "bg-primary w-4" : "bg-white/30 w-1.5"}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
 
 interface HomeClientProps {
   upcomingEvents: CarouselEvent[];
   aboutData?: {
     title?: string;
     text?: string;
-    frame1Images?: string[];
-    frame2Images?: string[];
-    frame3Images?: string[];
   } | null;
 }
 
@@ -200,35 +115,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
   const router = useRouter();
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Dynamic image state from dashboard config
-  const [dynFrame1, setDynFrame1] = useState<string[]>([]);
-  const [dynFrame2, setDynFrame2] = useState<string[]>([]);
-  const [dynFrame3, setDynFrame3] = useState<string[]>([]);
 
-  // Load dynamic images from localStorage (instant) then JSON config (background sync)
-  useEffect(() => {
-    // 1. Try localStorage first for instant display
-    try {
-      const cached = localStorage.getItem("custom_nca_images");
-      if (cached) {
-        const parsed = JSON.parse(cached);
-        if (parsed.frame1?.length) setDynFrame1(parsed.frame1);
-        if (parsed.frame2?.length) setDynFrame2(parsed.frame2);
-        if (parsed.frame3?.length) setDynFrame3(parsed.frame3);
-      }
-    } catch (e) { /* ignore parse errors */ }
-
-    // 2. Background fetch from JSON config for latest data
-    fetch("/data/custom-images.json")
-      .then(res => res.ok ? res.json() : null)
-      .then(data => {
-        if (!data) return;
-        if (data.frame1?.length) setDynFrame1(data.frame1);
-        if (data.frame2?.length) setDynFrame2(data.frame2);
-        if (data.frame3?.length) setDynFrame3(data.frame3);
-      })
-      .catch(() => { /* silent fail */ });
-  }, []);
 
   const handleTransition = (link: string) => {
     setIsTransitioning(true);
@@ -388,26 +275,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
           </motion.button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden mb-16">
-          <div className="w-full min-w-0">
-            <MiniFrameSlider 
-              images={dynFrame1.length > 0 ? dynFrame1 : (aboutData?.frame1Images && aboutData.frame1Images.length > 0 ? aboutData.frame1Images : CLOUDINARY_FRAME1)} 
-              fallbackImages={CLOUDINARY_FRAME1} 
-            />
-          </div>
-          <div className="w-full min-w-0">
-            <MiniFrameSlider 
-              images={dynFrame2.length > 0 ? dynFrame2 : (aboutData?.frame2Images && aboutData.frame2Images.length > 0 ? aboutData.frame2Images : CLOUDINARY_FRAME2)} 
-              fallbackImages={CLOUDINARY_FRAME2} 
-            />
-          </div>
-          <div className="w-full min-w-0">
-            <MiniFrameSlider 
-              images={dynFrame3.length > 0 ? dynFrame3 : (aboutData?.frame3Images && aboutData.frame3Images.length > 0 ? aboutData.frame3Images : CLOUDINARY_FRAME3)} 
-              fallbackImages={CLOUDINARY_FRAME3} 
-            />
-          </div>
-        </div>
+
       </section>
 
 
