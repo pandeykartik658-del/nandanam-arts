@@ -121,7 +121,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
         {hasMultipleImages && ` Photo ${photoIdx + 1} of ${images.length}.`}
       </div>
 
-      <div className="relative flex items-center justify-center max-w-6xl mx-auto px-4 md:px-12" ref={containerRef}>
+      <div className="relative min-h-[520px] md:min-h-[580px] flex items-center justify-center max-w-6xl mx-auto px-4 md:px-12" ref={containerRef}>
         
         {/* Left Navigation Button */}
         <button
@@ -140,7 +140,11 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
             if (Math.abs(normalizedDist) > 2) return null; // Only render nearby cards
 
             const isCenter = normalizedDist === 0;
-            if (!isCenter) return null; // Only render the active center card — no side card overlap
+            const xOffset = normalizedDist * 105; // 105% of its own width so they don't overlap
+            const scale = isCenter ? 1 : 0.72;
+            const opacity = isCenter ? 1 : 0.35;
+            const zIndex = 10 - Math.abs(normalizedDist);
+            const delay = isCenter ? 0 : Math.min(Math.abs(normalizedDist), 2) * 0.06;
 
             const isFlipped = flippedIndex === index;
             const itemImages = Array.isArray(item.image) ? item.image : [item.image];
@@ -148,12 +152,15 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
             return (
               <motion.div
                 key={`${index}-${item.title}`}
-                className="relative w-full max-w-md md:max-w-lg mx-auto pointer-events-auto"
-                style={{ perspective: "1000px" }}
-                initial={{ opacity: 0, x: 60 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -60 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className={`absolute inset-0 w-full max-w-md md:max-w-lg mx-auto ${isCenter ? "pointer-events-auto" : "pointer-events-auto cursor-pointer"}`}
+                style={{ zIndex, perspective: "1000px" }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{
+                  x: `${xOffset}%`,
+                  scale,
+                  opacity,
+                }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay }}
                 onClick={() => {
                   if (!isCenter) {
                     setActiveIndex(index);
