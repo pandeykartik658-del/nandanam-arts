@@ -52,7 +52,7 @@ const NavTiltCard = ({ item, i, onNavigate }: { item: typeof navCards[0]; i: num
       }}
     >
       <motion.div
-        className="glass-surface rounded-sm p-5 text-center cursor-pointer group transition-all duration-500 hover:glow-wine"
+        className="glass-surface rounded-xl p-6 py-7 text-center cursor-pointer group transition-all duration-500 hover:glow-wine"
         style={{ boxShadow: '0 0 20px rgba(220, 80, 150, 0.15)' }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -313,7 +313,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {navCards.map((item, i) => (
               <NavTiltCard key={item.label} item={item} i={i} onNavigate={handleTransition} />
             ))}
