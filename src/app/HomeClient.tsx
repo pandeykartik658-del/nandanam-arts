@@ -45,14 +45,14 @@ const NavTiltCard = ({ item, i, onNavigate }: { item: typeof navCards[0]; i: num
   return (
     <Link 
       href={item.link} 
-      className="block"
+      className="block h-full"
       onClick={(e) => {
         e.preventDefault();
         onNavigate(item.link);
       }}
     >
       <motion.div
-        className="glass-surface rounded-xl p-6 py-7 text-center cursor-pointer group transition-all duration-500 hover:glow-wine"
+        className="glass-surface rounded-xl p-6 py-7 h-full text-center cursor-pointer group transition-all duration-500 hover:glow-wine flex items-center justify-center"
         style={{ boxShadow: '0 0 20px rgba(220, 80, 150, 0.15)' }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -61,7 +61,7 @@ const NavTiltCard = ({ item, i, onNavigate }: { item: typeof navCards[0]; i: num
       >
         <span className="font-display text-xs md:text-sm tracking-[3px] uppercase text-muted-foreground group-hover:text-primary transition-colors duration-300 flex items-center justify-center gap-2 group-hover:glow-text">
           {item.label}
-          <ArrowRight className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform shrink-0" />
         </span>
       </motion.div>
     </Link>
@@ -313,7 +313,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-stretch">
             {navCards.map((item, i) => (
               <NavTiltCard key={item.label} item={item} i={i} onNavigate={handleTransition} />
             ))}
