@@ -211,7 +211,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                       {isCenter ? (
                         <motion.div
                           key={`photo-${photoIdx}`}
-                          className="absolute inset-0"
+                          className="absolute inset-0 overflow-hidden"
                           custom={photoDirection}
                           initial={(dir: number) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 1 })}
                           animate={{ x: 0, opacity: 1 }}
@@ -226,13 +226,14 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                               unoptimized
                               loading="lazy"
                               sizes="(max-width: 768px) 100vw, 50vw"
-                              className="object-cover opacity-95"
+                              className="opacity-95"
+                              style={{ objectFit: "contain", objectPosition: "center" }}
                             />
                           )}
                           <div className="absolute inset-0 bg-primary/5" />
                         </motion.div>
                       ) : (
-                        <div className="absolute inset-0">
+                        <div className="absolute inset-0 overflow-hidden">
                           {itemImages[0] && (
                             <Image 
                               src={optimizeCloudinary(itemImages[0])} 
@@ -241,7 +242,8 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                               unoptimized
                               loading="lazy"
                               sizes="(max-width: 768px) 100vw, 50vw"
-                              className="object-cover opacity-70"
+                              className="opacity-70"
+                              style={{ objectFit: "contain", objectPosition: "center" }}
                             />
                           )}
                           <div className="absolute inset-0 bg-primary/5" />
@@ -282,14 +284,15 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                     'grid-cols-3'
                   }`}>
                     {itemImages.filter(Boolean).map((img, i) => (
-                      <div key={i} className="relative w-full aspect-[4/3]">
+                      <div key={i} className="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
                         <Image 
                           src={optimizeCloudinary(img, 400)} 
                           fill
                           unoptimized
                           loading="lazy"
                           sizes="(max-width: 768px) 50vw, 25vw"
-                          className="object-cover bg-black/40 rounded-lg opacity-90 hover:opacity-100 transition-opacity" 
+                          className="bg-black/40 opacity-90 hover:opacity-100 transition-opacity" 
+                          style={{ objectFit: "contain", objectPosition: "center" }}
                           alt={`Collage image ${i+1}`} 
                         />
                       </div>
