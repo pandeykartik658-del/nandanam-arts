@@ -19,6 +19,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nandanamartfoundation.vercel.app"),
   title: "Nandanam Art Foundation",
   description: "Experience the divine geometry of Indian classical dance.",
   verification: {
@@ -36,6 +37,22 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Nandanam Art Foundation",
+              url: "https://nandanamartfoundation.vercel.app",
+              logo: "https://nandanamartfoundation.vercel.app/favicon.ico",
+              sameAs: [
+                "https://www.instagram.com/nandanamarts/",
+                "https://www.youtube.com/@nandanamarts2322"
+              ]
+            })
+          }}
+        />
       </head>
       <body
         className={`${sora.variable} ${cinzel.variable} ${poppins.variable} font-body antialiased overflow-x-hidden`}
