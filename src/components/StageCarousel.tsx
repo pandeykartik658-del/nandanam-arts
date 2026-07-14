@@ -262,7 +262,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                                 position: "absolute",
                                 top: 0, left: 0,
                                 width: "100%", height: "100%",
-                                objectFit: "cover", 
+                                objectFit: "contain", 
                                 objectPosition: "center",
                                 opacity: 0.95,
                               }}
@@ -281,7 +281,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                                 position: "absolute",
                                 top: 0, left: 0,
                                 width: "100%", height: "100%",
-                                objectFit: "cover", 
+                                objectFit: "contain", 
                                 objectPosition: "center",
                                 opacity: 0.7,
                               }}
