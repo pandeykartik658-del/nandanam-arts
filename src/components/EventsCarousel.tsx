@@ -104,11 +104,11 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
               </div>
             </div>
 
-            <h3 className="font-display text-xl md:text-2xl tracking-[2px] text-foreground mb-2">
+            <h3 className="font-display text-2xl md:text-3xl tracking-[2px] text-foreground mb-2">
               {event.title}
             </h3>
             
-            <p className="font-body text-muted-foreground/90 leading-relaxed text-xs md:text-sm mb-6">
+            <p className="font-body text-muted-foreground/90 leading-relaxed text-[15px] md:text-[17px] mb-6">
               {event.description}
             </p>
 

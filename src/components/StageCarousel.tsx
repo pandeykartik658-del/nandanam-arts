@@ -91,12 +91,12 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
   const renderDescription = (text: string) => {
     const words = text.split(/\s+/);
     const isLong = words.length > WORD_LIMIT;
-    if (!isLong) return <p className="font-luxury text-[13px] md:text-sm text-white/80 leading-[1.6] italic">{text}</p>;
+    if (!isLong) return <p className="font-luxury text-[16px] md:text-[17px] text-white/80 leading-[1.6] italic">{text}</p>;
 
     return (
       <div aria-expanded={expanded}>
-        <motion.div animate={{ height: expanded ? "auto" : "3rem" }} className="overflow-hidden">
-          <p className="font-luxury text-[13px] md:text-sm text-white/80 leading-[1.6] italic">
+        <motion.div animate={{ height: expanded ? "auto" : "4.5rem" }} className="overflow-hidden">
+          <p className="font-luxury text-[16px] md:text-[17px] text-white/80 leading-[1.6] italic">
             {expanded ? text : words.slice(0, WORD_LIMIT).join(" ") + "…"}
           </p>
         </motion.div>
@@ -310,7 +310,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                       if (isCenter) setFlippedIndex(isFlipped ? null : index);
                     }}
                   >
-                    <h3 className="font-display text-xl md:text-2xl tracking-[2px] font-medium text-gradient-rose-wine mb-1 shrink-0">
+                    <h3 className="font-display text-2xl md:text-3xl tracking-[2px] font-medium text-gradient-rose-wine mb-1 shrink-0">
                       {item.title}
                     </h3>
                     <div 
