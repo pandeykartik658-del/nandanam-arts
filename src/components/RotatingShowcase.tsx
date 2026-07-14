@@ -87,12 +87,11 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
               transition={{ duration: 10, ease: "linear" }}
             >
               {type === "dance" ? (
-                <Image 
+                <img 
                   src={optimizeCloudinary(images[current].src)} 
                   alt={images[current].caption} 
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover grayscale-[15%] contrast-110 pointer-events-none select-none" 
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-contain object-center grayscale-[15%] contrast-110 pointer-events-none select-none bg-black/40" 
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center relative pointer-events-none select-none" style={{ background: images[current].gradient }}>

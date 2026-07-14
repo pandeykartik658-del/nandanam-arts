@@ -58,13 +58,11 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
           >
           {/* Poster Image */}
           <div className="w-full max-w-[450px] aspect-[16/9] md:aspect-[4/3] rounded-2xl overflow-hidden glow-wine mb-8 border-2 border-primary/40 relative">
-            <Image 
+            <img 
               src={optimizeCloudinary(event.image)} 
               alt={event.title} 
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
               loading="lazy"
-              className="object-cover object-top contrast-110"
+              className="absolute inset-0 w-full h-full object-contain object-center contrast-110 bg-black/40"
             />
           </div>
 

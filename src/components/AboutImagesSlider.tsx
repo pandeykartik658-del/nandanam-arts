@@ -134,13 +134,11 @@ export default function AboutImagesSlider() {
             exit="exit"
             className="absolute inset-0 w-full h-full"
           >
-            <Image
+            <img
               src={SLIDE_IMAGES[activeIndex].src}
               alt={SLIDE_IMAGES[activeIndex].title}
-              fill
-              sizes="(max-width: 768px) 100vw, 800px"
               loading="lazy"
-              className="object-cover object-center contrast-105 saturate-95"
+              className="absolute inset-0 w-full h-full object-contain object-center contrast-105 saturate-95"
             />
             {/* Dark Vignette Overlay for rich contrast */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
