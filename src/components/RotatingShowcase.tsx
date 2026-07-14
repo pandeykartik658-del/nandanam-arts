@@ -86,15 +86,15 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
               animate={{ scale: 1 }}
               transition={{ duration: 10, ease: "linear" }}
             >
-              {type === "dance" ? (
+              {images[current].src ? (
                 <img 
                   src={optimizeImage(images[current].src, 800)} 
                   alt={images[current].caption} 
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-contain object-center grayscale-[15%] contrast-110 pointer-events-none select-none bg-black/40" 
+                  style={{ filter: "drop-shadow(0 0 20px rgba(0,0,0,0.5))" }}
                 />
-              ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center relative pointer-events-none select-none" style={{ background: images[current].gradient }}>
+              ) : (<div className="w-full h-full flex flex-col items-center justify-center relative pointer-events-none select-none" style={{ background: images[current].gradient }}>
                   <div className="absolute inset-8 border border-primary/10 rounded-full opacity-40 mix-blend-overlay" />
                   <motion.span 
                     className="font-display text-8xl text-primary/20 mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]" 

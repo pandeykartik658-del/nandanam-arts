@@ -76,3 +76,11 @@ export async function getAboutContent() {
   }`;
   return client.fetch(query);
 }
+
+export async function getTeachingContent() {
+  const query = `*[_type == "teaching"][0] {
+    danceImages,
+    musicImages
+  }`;
+  return client.fetch(query);
+}
