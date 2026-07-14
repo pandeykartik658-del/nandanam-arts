@@ -255,7 +255,7 @@ export default function TeachingClient({
             {/* Tagline Row */}
             <div className="relative mt-2">
               <div className="relative z-10 group inline-flex items-center gap-3 px-8 py-3 rounded-full border border-primary/20 bg-background/50 backdrop-blur-sm shadow-[0_0_20px_hsl(var(--primary)/0.15)] glow-wine">
-                <span className="relative font-display text-xs md:text-sm tracking-[4px] uppercase text-primary font-medium drop-shadow-[0_0_8px_hsl(var(--primary)/0.5)]">
+                <span className="relative font-display text-[clamp(10px,1.5vw,14px)] tracking-[4px] uppercase text-primary font-medium drop-shadow-[0_0_8px_hsl(var(--primary)/0.5)]">
                   Where tradition is passed on
                 </span>
               </div>
@@ -264,7 +264,7 @@ export default function TeachingClient({
         </motion.div>
 
         <div className="overflow-hidden mb-6">
-          <h1 className="font-display whitespace-nowrap text-[7.5vw] sm:text-5xl md:text-7xl lg:text-[5.5rem] tracking-[5px] leading-[1.1]">
+          <h1 className="font-display whitespace-nowrap text-[clamp(2.5rem,8vw,6.5rem)] tracking-[5px] leading-[1.1]">
             {"THE TEACHING WING".split("").map((letter, i) => (
               <motion.span
                 key={i}
@@ -287,7 +287,7 @@ export default function TeachingClient({
         >
           <KineticSubtitle />
           <motion.p 
-            className="font-body mt-6 max-w-[600px] text-base md:text-lg leading-[2] tracking-wide text-muted-foreground/70"
+            className="font-body mt-6 max-w-[600px] text-[clamp(14px,2vw,18px)] leading-[2] tracking-wide text-muted-foreground/70"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 3.2, duration: 0.8 }}
@@ -326,11 +326,11 @@ export default function TeachingClient({
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-4"
         >
-          <span className="font-display text-[10px] tracking-[6px] uppercase text-primary/70">Discipline I</span>
+          <span className="font-display text-[clamp(10px,1.2vw,12px)] tracking-[6px] uppercase text-primary/70">Discipline I</span>
         </motion.div>
 
         <motion.h2
-          className="font-display text-5xl md:text-6xl lg:text-7xl tracking-[3px] text-white/90 mb-14"
+          className="font-display text-[clamp(2.5rem,6vw,5.5rem)] tracking-[3px] text-white/90 mb-14"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -363,11 +363,11 @@ export default function TeachingClient({
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-4 text-right"
         >
-          <span className="font-display text-[10px] tracking-[6px] uppercase text-primary/70">Discipline II</span>
+          <span className="font-display text-[clamp(10px,1.2vw,12px)] tracking-[6px] uppercase text-primary/70">Discipline II</span>
         </motion.div>
 
         <motion.h2
-          className="font-display text-5xl md:text-6xl lg:text-7xl tracking-[3px] text-white/90 mb-14 text-right"
+          className="font-display text-[clamp(2.5rem,6vw,5.5rem)] tracking-[3px] text-white/90 mb-14 text-right"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -405,7 +405,7 @@ export default function TeachingClient({
         />
 
         <motion.p
-          className="font-body italic text-lg md:text-xl leading-[2] text-white/40 tracking-wide mb-16 mx-auto max-w-[650px]"
+          className="font-body italic text-[clamp(16px,2.5vw,22px)] leading-[2] text-white/40 tracking-wide mb-16 mx-auto max-w-[650px]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
