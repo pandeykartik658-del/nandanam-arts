@@ -343,7 +343,7 @@ export default function TeachingClient({
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}>
             <div className="grid grid-cols-1 gap-6">
               <div><PillarCard icon={<CustomIcons.Grace />} title="About" desc="The dance wing of Nandanam Centre for Art conducts classes for Bharathanatyam, training several aspiring students from all age groups." delay={0} sanskrit="परिचय" translit="Parichay" /></div>
-              <div><PillarCard icon={<CustomIcons.Trisula />} title="Class Timings" desc="Monday: 6:00 – 7:00 PM ◆ Thursday: 6:00 – 7:00 PM" delay={0.15} sanskrit="Class Timings" translit="Mon & Thu · 6:00 – 7:00 PM" /></div>
+              <div><PillarCard icon={<CustomIcons.Eye />} title="Class Timings" desc="Monday: 6:00 – 7:00 PM ◆ Thursday: 6:00 – 7:00 PM" delay={0.15} sanskrit="Class Timings" translit="Mon & Thu · 6:00 – 7:00 PM" /></div>
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}>
