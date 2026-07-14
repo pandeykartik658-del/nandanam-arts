@@ -292,7 +292,7 @@ export default function TeachingClient({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 3.2, duration: 0.8 }}
           >
-            The teaching wing of the foundation Nandanam Centre for Art conducts classes for Carnatic Vocal and Bharathanatya, training several aspiring students from all age groups.
+            The teaching wing of the foundation Nandanam Centre for Art conducts classes for Carnatic Vocal and Bharatanatyam, training several aspiring students from all age groups.
           </motion.p>
         </motion.div>
 
