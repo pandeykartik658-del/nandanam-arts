@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cinzel, Sora, Poppins } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { Analytics } from "@vercel/analytics/react";
 
 const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel", display: "swap" });
 const sora = Sora({ 
@@ -40,6 +41,7 @@ export default function RootLayout({
         className={`${sora.variable} ${cinzel.variable} ${poppins.variable} font-body antialiased overflow-x-hidden`}
       >
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
