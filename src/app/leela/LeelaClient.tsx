@@ -270,8 +270,8 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
             <KineticSubtitle words={["a divine geometry", "rhythm and devotion", "the unseen breath", "movement as prayer"]} />
           </div>
 
-          <p className="font-body text-base md:text-lg text-white/70 max-w-[600px] leading-[2] mb-8">
-            NAF is a non profit organisation founded with an aim of promoting and propagating Indian culture and performing arts. As an organisation in its formative stage NAF has undertaken several initiatives to further our cause.
+          <p className="font-body text-base md:text-lg text-white/70 max-w-[500px] leading-[2] mb-8">
+            An annual congregation where mastery meets divinity. Leela is not merely a performance; it is a communion of souls through the sacred geometry of Bharatanatyam.
           </p>
 
           {/* Social Sidebar removed from hero */}
