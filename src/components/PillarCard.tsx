@@ -28,18 +28,18 @@ const PillarCard = ({ title, desc, icon, delay, sanskrit, translit }: PillarCard
           <span className="text-2xl sm:text-4xl mb-2 sm:mb-5 group-hover:drop-shadow-[0_0_20px_hsl(var(--primary))] transition-all duration-500 group-hover:scale-110">
             {icon}
           </span>
-          <h4 className="font-display text-[clamp(12px,2vw,18px)] tracking-[2px] sm:tracking-[4px] uppercase text-primary mb-2 sm:mb-3">
+          <h4 className="font-display text-[clamp(14px,2.4vw,22px)] tracking-[2px] sm:tracking-[4px] uppercase text-primary mb-2 sm:mb-3">
             {title}
           </h4>
-          <p className="font-body text-[clamp(11px,1.5vw,16px)] text-muted-foreground/80 leading-tight sm:leading-relaxed font-light">
+          <p className="font-body text-[clamp(13px,1.8vw,19px)] text-muted-foreground/80 leading-tight sm:leading-relaxed font-light">
             {desc}
           </p>
         </div>
 
         {/* Back Face */}
         <div className="absolute inset-0 [backface-visibility:hidden] glass-surface rounded-xl p-3 sm:p-6 flex flex-col items-center justify-center border border-primary/30 glow-wine [transform:rotateY(180deg)] bg-gradient-to-br from-primary/10 to-transparent text-center shadow-[inset_0_0_40px_hsl(var(--primary)/0.1)]">
-          <span className="font-display text-[clamp(1.5rem,4vw,2.5rem)] text-white mb-2 sm:mb-3 drop-shadow-[0_0_8px_hsl(var(--primary))]">{sanskrit}</span>
-          <span className="font-body text-[clamp(10px,1.5vw,14px)] tracking-[3px] sm:tracking-[5px] uppercase text-primary/70">{translit}</span>
+          <span className="font-display text-[clamp(1.8rem,4.8vw,3rem)] text-white mb-2 sm:mb-3 drop-shadow-[0_0_8px_hsl(var(--primary))]">{sanskrit}</span>
+          <span className="font-body text-[clamp(12px,1.8vw,17px)] tracking-[3px] sm:tracking-[5px] uppercase text-primary/70">{translit}</span>
         </div>
 
       </div>
