@@ -62,7 +62,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
               src={optimizeImage(event.image, 800)} 
               alt={event.title} 
               loading="lazy"
-              className="absolute inset-0 w-full h-full object-contain object-center contrast-110 bg-black/40"
+              className="absolute inset-0 w-full h-full object-cover object-center contrast-110 bg-black/40"
             />
           </div>
 
