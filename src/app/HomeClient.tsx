@@ -204,7 +204,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
             }}
           />
           <span className="inline-block px-5 py-2 rounded-full font-display text-[10px] tracking-[6px] uppercase text-primary glass-surface glow-wine">
-            Nandanam Arts Foundation
+            Nandanam Art Foundation
           </span>
         </motion.div>
 

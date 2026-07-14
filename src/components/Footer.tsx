@@ -25,7 +25,7 @@ const Footer = () => {
             }}
           />
           <span className="font-display text-[10px] tracking-[6px] uppercase text-primary/90 block mb-3 drop-shadow-[0_0_8px_hsl(var(--primary)/0.3)]">
-            Nandanam Arts Foundation
+            Nandanam Art Foundation
           </span>
           <p className="font-body text-[11px] tracking-wide text-muted-foreground/60 max-w-[350px] mx-auto leading-relaxed">
             Preserving the ancient geometry and devotional storytelling of classical Bharatanatyam.
@@ -34,7 +34,7 @@ const Footer = () => {
 
         {/* Legal/Copyright directly nestled with minimal top clearance */}
         <div className="font-display mt-8 text-[8px] tracking-[4px] text-muted-foreground/30 uppercase">
-          &copy; {new Date().getFullYear()} Nandanam Arts Foundation. All Rights Reserved.
+          &copy; {new Date().getFullYear()} Nandanam Art Foundation. All Rights Reserved.
         </div>
       </div>
     </footer>

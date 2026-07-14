@@ -93,7 +93,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
                     maskPosition: "center",
                   }}
                 />
-                <span className="font-display text-[9px] tracking-[4px] uppercase text-primary text-center">Nandanam Arts<br className="sm:hidden" /> Foundation</span>
+                <span className="font-display text-[9px] tracking-[4px] uppercase text-primary text-center">Nandanam Art<br className="sm:hidden" /> Foundation</span>
               </div>
 
               {/* Category Tag on exact Right */}

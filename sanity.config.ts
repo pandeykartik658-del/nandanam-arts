@@ -6,7 +6,7 @@ export default defineConfig({
   basePath: "/studio",
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "e558x893",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-  title: "Nandanam Arts",
+  title: "Nandanam Art",
 
   plugins: [structureTool()],
 
