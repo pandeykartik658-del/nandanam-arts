@@ -405,7 +405,7 @@ export default function TeachingClient({
         />
 
         <motion.p
-          className="font-body italic text-[clamp(14px,2.2vw,22px)] leading-[2] text-white/40 tracking-wide mb-16 mx-auto max-w-[650px] px-4"
+          className="font-body italic text-[clamp(17px,2.6vw,26px)] leading-[2] text-white/40 tracking-wide mb-16 mx-auto max-w-[800px] px-4 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
