@@ -22,7 +22,7 @@ interface StageCarouselProps {
   Icon?: React.ElementType;
 }
 
-const WORD_LIMIT = 20;
+const WORD_LIMIT = 12;
 
 export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon }: StageCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -94,8 +94,8 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
     if (!isLong) return <p className="font-luxury text-[16px] md:text-[17px] text-white/80 leading-[1.6] italic">{text}</p>;
 
     return (
-      <div aria-expanded={expanded}>
-        <motion.div animate={{ height: expanded ? "auto" : "4.5rem" }} className="overflow-hidden">
+      <div aria-expanded={expanded} className="flex flex-col">
+        <motion.div layout className="overflow-hidden">
           <p className="font-luxury text-[16px] md:text-[17px] text-white/80 leading-[1.6] italic">
             {expanded ? text : words.slice(0, WORD_LIMIT).join(" ") + "…"}
           </p>
@@ -107,7 +107,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
             e.stopPropagation();
             setExpanded(!expanded);
           }}
-          className="mt-1 text-[10px] uppercase tracking-widest text-primary hover:text-white transition-colors"
+          className="mt-3 self-start text-[10px] uppercase tracking-widest text-primary hover:text-primary-foreground hover:bg-primary transition-colors bg-primary/10 border border-primary/30 px-4 py-1.5 rounded-full"
         >
           {expanded ? "Show less ▴" : "Read more ▾"}
         </button>
@@ -235,7 +235,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                     )}
 
                   <div
-                    className="relative w-full h-[68%] md:h-[73%] overflow-hidden bg-black/60 cursor-pointer"
+                    className="relative w-full flex-grow min-h-[35%] overflow-hidden bg-black/60 cursor-pointer"
                     onClick={(e) => {
                       if (isCenter && hasMultipleImages) {
                         e.stopPropagation();
@@ -304,26 +304,25 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                   </div>
 
                   {/* Content Area */}
-                  <div 
-                    className="h-[24%] md:h-[19%] flex-grow px-5 py-3 md:py-4 flex flex-col select-none border-t border-white/5 bg-black/20"
+                  <motion.div 
+                    layout
+                    className="flex-shrink-0 px-5 py-4 md:py-6 flex flex-col select-none border-t border-white/5 bg-black/40 max-h-[65%] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20"
                     onDoubleClick={() => {
                       if (isCenter) setFlippedIndex(isFlipped ? null : index);
                     }}
+                    style={{ touchAction: "pan-y" }}
+                    onTouchStart={(e) => e.stopPropagation()}
+                    onTouchMove={(e) => e.stopPropagation()}
+                    onTouchEnd={(e) => e.stopPropagation()}
+                    onWheel={(e) => e.stopPropagation()}
                   >
-                    <h3 className="font-display text-2xl md:text-3xl tracking-[2px] font-medium text-gradient-rose-wine mb-1 shrink-0">
+                    <h3 className="font-display text-2xl md:text-3xl tracking-[2px] font-medium text-gradient-rose-wine mb-2 shrink-0">
                       {item.title}
                     </h3>
-                    <div 
-                      className="flex-grow overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-primary/20"
-                      style={{ touchAction: "pan-y" }}
-                      onTouchStart={(e) => e.stopPropagation()}
-                      onTouchMove={(e) => e.stopPropagation()}
-                      onTouchEnd={(e) => e.stopPropagation()}
-                      onWheel={(e) => e.stopPropagation()}
-                    >
+                    <div>
                       {renderDescription(item.description)}
                     </div>
-                  </div>
+                  </motion.div>
 
                 </div>
 
