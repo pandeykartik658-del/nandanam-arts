@@ -180,13 +180,11 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
       title: e.title,
       description: e.text,
       image: e.images || [],
-      eyebrow: e.edition ? `EDITION ${e.edition}` : "WORKSHOP",
-      meta: e.year || ""
     }));
   } else {
     workshops = [
-      { title: "Karanas: The Lost Movement", description: "A rigorous, intensive deep dive into the 108 Karanas as detailed in the ancient Natya Shastra. This workshop requires immense physical discipline to reconstruct dynamic movement units from foundational sculptural evidence.", image: dancer4, eyebrow: "WORKSHOP", meta: "2024" },
-      { title: "Tala & Nattuvangam", description: "Understanding the complex mathematics and vocalized rhythmic syllables (Jathis) that form the structural backbone of Bharatanatyam. Participants will learn how to construct their own rhythmic sequences and wield the cymbals with absolute precision.", image: dancer5, eyebrow: "WORKSHOP", meta: "2024" },
+      { title: "Karanas: The Lost Movement", description: "A rigorous, intensive deep dive into the 108 Karanas as detailed in the ancient Natya Shastra. This workshop requires immense physical discipline to reconstruct dynamic movement units from foundational sculptural evidence.", image: dancer4 },
+      { title: "Tala & Nattuvangam", description: "Understanding the complex mathematics and vocalized rhythmic syllables (Jathis) that form the structural backbone of Bharatanatyam. Participants will learn how to construct their own rhythmic sequences and wield the cymbals with absolute precision.", image: dancer5 },
     ];
   }
 
