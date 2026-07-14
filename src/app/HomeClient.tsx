@@ -232,7 +232,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
       </motion.section>
 
       <motion.div
-        className="w-[1px] h-[70px] sm:h-[120px] mx-auto"
+        className="w-[1px] h-[40px] sm:h-[60px] mx-auto"
             style={{ background: "linear-gradient(180deg, transparent, hsl(320 55% 55%), transparent)" }}
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
@@ -240,7 +240,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
             transition={{ duration: 1.2 }}
           />
 
-      <section id="philosophy" className="max-w-[1100px] mx-auto px-6 pt-16 sm:pt-20 pb-20">
+      <section id="philosophy" className="max-w-[1100px] mx-auto px-6 pt-8 sm:pt-10 pb-10">
         <motion.h2
           aria-hidden="true"
           className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] mb-10"
@@ -257,7 +257,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
         </motion.h2>
 
         <div
-          className="max-w-[800px] mb-14"
+          className="max-w-[800px] mb-6"
         >
           <p className="font-body text-lg md:text-xl leading-[1.8] mb-4" style={{ color: 'rgba(255, 255, 255, 0.92)', textShadow: '0 0 20px rgba(255,255,255,0.06)' }}>
             {expanded 
@@ -280,9 +280,9 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
 
 
 
-      <section id="heritage" className="max-w-[800px] mx-auto px-6 py-16 text-center">
+      <section id="heritage" className="max-w-[800px] mx-auto px-6 py-6 text-center">
         <motion.div
-          className="w-[1px] h-[60px] mx-auto mb-12"
+          className="w-[1px] h-[30px] mx-auto mb-6"
           style={{ background: "linear-gradient(180deg, transparent, hsl(320 55% 55%), transparent)" }}
           initial={{ scaleY: 0 }}
           whileInView={{ scaleY: 1 }}
