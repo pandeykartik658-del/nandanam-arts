@@ -101,7 +101,12 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
           </p>
         </motion.div>
         <button
-          onClick={() => setExpanded(!expanded)}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setExpanded(!expanded);
+          }}
           className="mt-1 text-[10px] uppercase tracking-widest text-primary hover:text-white transition-colors"
         >
           {expanded ? "Show less ▴" : "Read more ▾"}
@@ -158,7 +163,12 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
         
         {/* Left Navigation Button */}
         <button
-          onClick={prevSlide}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            prevSlide();
+          }}
           className="absolute left-0 md:left-4 z-50 p-3 rounded-full border border-primary/30 text-primary bg-background/50 backdrop-blur hover:bg-primary/20 transition-colors focus-visible:ring-2 ring-primary"
           aria-label="Previous slide"
         >
@@ -336,7 +346,8 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                     </div>
                     <span className="font-display text-[10px] tracking-[4px] text-white/50 uppercase">{item.title}</span>
                     <button 
-                      onClick={(e) => { e.stopPropagation(); setFlippedIndex(null); }}
+                      type="button"
+                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); setFlippedIndex(null); }}
                       className="w-7 h-7 rounded-full flex items-center justify-center border border-white/10 bg-white/5 text-white/50 hover:text-primary hover:border-primary/40 transition-all duration-300"
                     >
                       <X size={12} />
@@ -448,7 +459,12 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
         </AnimatePresence>
         {/* Right Navigation Button */}
         <button
-          onClick={nextSlide}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            nextSlide();
+          }}
           className="absolute right-0 md:right-4 z-50 p-3 rounded-full border border-primary/30 text-primary bg-background/50 backdrop-blur hover:bg-primary/20 transition-colors focus-visible:ring-2 ring-primary"
           aria-label="Next slide"
         >
@@ -461,8 +477,14 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
         <div className="flex items-center gap-3">
           {items.map((_, i) => (
             <button
+              type="button"
               key={i}
-              onClick={() => { setActiveIndex(i); setPhotoIdx(0); }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setActiveIndex(i); 
+                setPhotoIdx(0); 
+              }}
               className={`h-2 rounded-full transition-all duration-300 ${i === activeIndex ? "bg-primary w-8" : "bg-primary/30 w-2"}`}
               aria-label={`Go to slide ${i + 1}`}
               tabIndex={i === activeIndex ? 0 : -1}
@@ -491,8 +513,13 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
           >
             {/* Close button */}
             <button 
+              type="button"
               className="absolute top-6 right-6 z-10 w-10 h-10 rounded-full flex items-center justify-center border border-white/20 bg-white/5 text-white/70 hover:text-white hover:border-white/40 transition-all"
-              onClick={() => setLightboxImg(null)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setLightboxImg(null);
+              }}
             >
               <X size={20} />
             </button>
