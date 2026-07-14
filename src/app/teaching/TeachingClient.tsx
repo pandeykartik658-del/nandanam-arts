@@ -342,7 +342,7 @@ export default function TeachingClient({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}>
             <div className="grid grid-cols-1 gap-6">
-              <div><PillarCard icon={<CustomIcons.Lotus />} title="Tradition" desc="Guarding centuries of unbroken guru-shishya parampara, we transmit art exactly as our masters received it." delay={0} sanskrit="परम्परा" translit="Parampara" /></div>
+              <div><PillarCard icon={<CustomIcons.Grace />} title="About" desc="The dance wing of Nandanam Centre for Art conducts classes for Bharathanatyam, training several aspiring students from all age groups." delay={0} sanskrit="परिचय" translit="Parichay" /></div>
               <div><PillarCard icon={<CustomIcons.Trisula />} title="Class Timings" desc="Monday: 6:00 – 7:00 PM ◆ Thursday: 6:00 – 7:00 PM" delay={0.15} sanskrit="Class Timings" translit="Mon & Thu · 6:00 – 7:00 PM" /></div>
             </div>
           </motion.div>
@@ -382,7 +382,7 @@ export default function TeachingClient({
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="order-1 lg:order-2">
             <div className="grid grid-cols-1 gap-6">
-              <div><PillarCard icon={<CustomIcons.Lamp />} title="Devotion" desc="Our art is prayer — each mudra, each raga an offering to the divine narrative of Indic tradition." delay={0} sanskrit="भक्ति" translit="Bhakti" /></div>
+              <div><PillarCard icon={<CustomIcons.Resonance />} title="About" desc="The music wing of Nandanam Centre for Art conducts classes for Carnatic vocals, training several aspiring students from all age groups." delay={0} sanskrit="परिचय" translit="Parichay" /></div>
               <div><PillarCard icon={<CustomIcons.Eye />} title="Class Timings" desc="Monday: 7:00 – 7:30 PM ◆ Thursday: 7:00 – 7:30 PM" delay={0.15} sanskrit="Class Timings" translit="Mon & Thu · 7:00 – 7:30 PM" /></div>
             </div>
           </motion.div>
