@@ -7,11 +7,12 @@ interface PillarCardProps {
   desc: string;
   icon: string | React.ReactNode;
   delay: number;
-  sanskrit: string;
-  translit: string;
+  sanskrit?: string;
+  translit?: string;
+  backContent?: React.ReactNode;
 }
 
-const PillarCard = ({ title, desc, icon, delay, sanskrit, translit }: PillarCardProps) => {
+const PillarCard = ({ title, desc, icon, delay, sanskrit, translit, backContent }: PillarCardProps) => {
   return (
     <motion.div
       className="relative h-[180px] sm:h-[240px] w-full rounded-xl cursor-pointer group"
@@ -38,8 +39,14 @@ const PillarCard = ({ title, desc, icon, delay, sanskrit, translit }: PillarCard
 
         {/* Back Face */}
         <div className="absolute inset-0 [backface-visibility:hidden] glass-surface rounded-xl p-3 sm:p-6 flex flex-col items-center justify-center border border-primary/30 glow-wine [transform:rotateY(180deg)] bg-gradient-to-br from-primary/10 to-transparent text-center shadow-[inset_0_0_40px_hsl(var(--primary)/0.1)]">
-          <span className="font-display text-[clamp(2.2rem,5.5vw,3.5rem)] text-white mb-2 sm:mb-3 drop-shadow-[0_0_8px_hsl(var(--primary))]">{sanskrit}</span>
-          <span className="font-body text-[clamp(14px,2.2vw,20px)] tracking-[3px] sm:tracking-[5px] uppercase text-primary/70">{translit}</span>
+          {backContent ? (
+            backContent
+          ) : (
+            <>
+              <span className="font-display text-[clamp(2.2rem,5.5vw,3.5rem)] text-white mb-2 sm:mb-3 drop-shadow-[0_0_8px_hsl(var(--primary))]">{sanskrit}</span>
+              <span className="font-body text-[clamp(14px,2.2vw,20px)] tracking-[3px] sm:tracking-[5px] uppercase text-primary/70">{translit}</span>
+            </>
+          )}
         </div>
 
       </div>

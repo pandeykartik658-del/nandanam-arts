@@ -342,7 +342,7 @@ export default function TeachingClient({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}>
             <div className="grid grid-cols-1 gap-6">
-              <div><PillarCard icon={<CustomIcons.Grace />} title="About" desc="The dance wing of Nandanam Centre for Art conducts classes for Bharathanatyam, training several aspiring students from all age groups." delay={0} sanskrit="परिचय" translit="Parichay" /></div>
+              <div><PillarCard icon={<CustomIcons.Grace />} title="About" desc="The dance wing of Nandanam Centre for Art conducts classes for Bharathanatyam, training several aspiring students from all age groups." delay={0} backContent={<div className="w-[84px] h-[84px] sm:w-[120px] sm:h-[120px] bg-gradient-wine-shift relative opacity-80" style={{ WebkitMaskImage: `url(${logo})`, WebkitMaskSize: "contain", WebkitMaskRepeat: "no-repeat", WebkitMaskPosition: "center", maskImage: `url(${logo})`, maskSize: "contain", maskRepeat: "no-repeat", maskPosition: "center" }} />} /></div>
               <div><PillarCard icon={<CustomIcons.Eye />} title="Class Timings" desc="Monday: 6:00 – 7:00 PM ◆ Thursday: 6:00 – 7:00 PM" delay={0.15} sanskrit="Class Timings" translit="Mon & Thu · 6:00 – 7:00 PM" /></div>
             </div>
           </motion.div>
@@ -382,7 +382,7 @@ export default function TeachingClient({
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="order-1 lg:order-2">
             <div className="grid grid-cols-1 gap-6">
-              <div><PillarCard icon={<CustomIcons.Resonance />} title="About" desc="The music wing of Nandanam Centre for Art conducts classes for Carnatic vocals, training several aspiring students from all age groups." delay={0} sanskrit="परिचय" translit="Parichay" /></div>
+              <div><PillarCard icon={<CustomIcons.Resonance />} title="About" desc="The music wing of Nandanam Centre for Art conducts classes for Carnatic vocals, training several aspiring students from all age groups." delay={0} backContent={<div className="w-[84px] h-[84px] sm:w-[120px] sm:h-[120px] bg-gradient-wine-shift relative opacity-80" style={{ WebkitMaskImage: `url(${logo})`, WebkitMaskSize: "contain", WebkitMaskRepeat: "no-repeat", WebkitMaskPosition: "center", maskImage: `url(${logo})`, maskSize: "contain", maskRepeat: "no-repeat", maskPosition: "center" }} />} /></div>
               <div><PillarCard icon={<CustomIcons.Eye />} title="Class Timings" desc="Monday: 7:00 – 7:30 PM ◆ Thursday: 7:00 – 7:30 PM" delay={0.15} sanskrit="Class Timings" translit="Mon & Thu · 7:00 – 7:30 PM" /></div>
             </div>
           </motion.div>
