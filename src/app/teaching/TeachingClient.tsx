@@ -265,7 +265,7 @@ export default function TeachingClient({
 
         <div className="mb-6 px-2">
           <h1 className="font-display text-center text-[clamp(1.8rem,7vw,6.5rem)] tracking-[3px] sm:tracking-[5px] leading-[1.2]">
-            {"THE TEACHING WING".split("").map((letter, i) => (
+            {"TEACHING WING".split("").map((letter, i) => (
               <motion.span
                 key={i}
                 className="inline-block text-gradient-wine drop-shadow-[0_4px_24px_hsl(var(--primary)/0.2)]"
@@ -330,7 +330,7 @@ export default function TeachingClient({
         </motion.div>
 
         <motion.h2
-          className="font-display text-[clamp(2.5rem,6vw,5.5rem)] tracking-[3px] text-white/90 mb-14"
+          className="font-display text-[clamp(2.2rem,5.4vw,5rem)] tracking-[3px] text-white/90 mb-14"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -367,7 +367,7 @@ export default function TeachingClient({
         </motion.div>
 
         <motion.h2
-          className="font-display text-[clamp(2.5rem,6vw,5.5rem)] tracking-[3px] text-white/90 mb-14 text-right"
+          className="font-display text-[clamp(2.2rem,5.4vw,5rem)] tracking-[3px] text-white/90 mb-14 text-right"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

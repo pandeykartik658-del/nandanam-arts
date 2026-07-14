@@ -14,7 +14,7 @@ interface PillarCardProps {
 const PillarCard = ({ title, desc, icon, delay, sanskrit, translit }: PillarCardProps) => {
   return (
     <motion.div
-      className="relative min-h-[180px] sm:min-h-[240px] w-full rounded-xl cursor-pointer group"
+      className="relative h-[180px] sm:h-[240px] w-full rounded-xl cursor-pointer group"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
