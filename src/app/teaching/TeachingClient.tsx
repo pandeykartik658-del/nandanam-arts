@@ -343,7 +343,7 @@ export default function TeachingClient({
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}>
             <div className="grid grid-cols-1 gap-6">
               <div><PillarCard icon={<CustomIcons.Lotus />} title="Tradition" desc="Guarding centuries of unbroken guru-shishya parampara, we transmit art exactly as our masters received it." delay={0} sanskrit="परम्परा" translit="Parampara" /></div>
-              <div><PillarCard icon={<CustomIcons.Trisula />} title="Discipline" desc="Every adavu, every swara is forged through rigorous daily practice that transcends performance." delay={0.15} sanskrit="साधना" translit="Sadhana" /></div>
+              <div><PillarCard icon={<CustomIcons.Trisula />} title="Class Timings" desc="Monday: 6:00 – 7:00 PM ◆ Thursday: 6:00 – 7:00 PM" delay={0.15} sanskrit="समय" translit="Samay" /></div>
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}>
@@ -383,7 +383,7 @@ export default function TeachingClient({
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="order-1 lg:order-2">
             <div className="grid grid-cols-1 gap-6">
               <div><PillarCard icon={<CustomIcons.Lamp />} title="Devotion" desc="Our art is prayer — each mudra, each raga an offering to the divine narrative of Indic tradition." delay={0} sanskrit="भक्ति" translit="Bhakti" /></div>
-              <div><PillarCard icon={<CustomIcons.Eye />} title="Expression" desc="We awaken the inner emotional core to breathe life into the geometric forms." delay={0.15} sanskrit="भाव" translit="Bhava" /></div>
+              <div><PillarCard icon={<CustomIcons.Eye />} title="Class Timings" desc="Monday: 7:00 – 7:30 PM ◆ Thursday: 7:00 – 7:30 PM" delay={0.15} sanskrit="समय" translit="Samay" /></div>
             </div>
           </motion.div>
         </div>
