@@ -263,8 +263,8 @@ export default function TeachingClient({
           </div>
         </motion.div>
 
-        <div className="overflow-hidden mb-6">
-          <h1 className="font-display whitespace-nowrap text-[clamp(2.5rem,8vw,6.5rem)] tracking-[5px] leading-[1.1]">
+        <div className="mb-6 px-2">
+          <h1 className="font-display text-center text-[clamp(1.8rem,7vw,6.5rem)] tracking-[3px] sm:tracking-[5px] leading-[1.2]">
             {"THE TEACHING WING".split("").map((letter, i) => (
               <motion.span
                 key={i}
@@ -287,7 +287,7 @@ export default function TeachingClient({
         >
           <KineticSubtitle />
           <motion.p 
-            className="font-body mt-6 max-w-[600px] text-[clamp(14px,2vw,18px)] leading-[2] tracking-wide text-muted-foreground/70"
+            className="font-body mt-6 max-w-[600px] px-4 text-[clamp(13px,2vw,18px)] leading-[2] tracking-wide text-muted-foreground/70"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 3.2, duration: 0.8 }}
@@ -405,7 +405,7 @@ export default function TeachingClient({
         />
 
         <motion.p
-          className="font-body italic text-[clamp(16px,2.5vw,22px)] leading-[2] text-white/40 tracking-wide mb-16 mx-auto max-w-[650px]"
+          className="font-body italic text-[clamp(14px,2.2vw,22px)] leading-[2] text-white/40 tracking-wide mb-16 mx-auto max-w-[650px] px-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
