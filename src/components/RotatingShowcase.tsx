@@ -91,7 +91,7 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
                   src={optimizeImage(images[current].src, 800)} 
                   alt={images[current].caption} 
                   loading="lazy"
-                  className="absolute inset-0 w-full h-full object-contain object-center grayscale-[15%] contrast-110 pointer-events-none select-none bg-black/40" 
+                  className="absolute inset-0 w-full h-full object-cover object-center grayscale-[15%] contrast-110 pointer-events-none select-none bg-black/40" 
                   style={{ filter: "drop-shadow(0 0 20px rgba(0,0,0,0.5))" }}
                 />
               ) : (<div className="w-full h-full flex flex-col items-center justify-center relative pointer-events-none select-none" style={{ background: images[current].gradient }}>
