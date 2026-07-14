@@ -187,7 +187,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
               <motion.div
                 key={`${index}-${item.title}`}
                 className={`absolute inset-0 w-full max-w-md md:max-w-lg mx-auto ${isCenter ? "pointer-events-auto" : "pointer-events-auto cursor-pointer"}`}
-                style={{ zIndex, perspective: "1000px", overflow: "hidden" }}
+                style={{ zIndex, perspective: "1000px" }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{
                   x: `${xOffset}%`,
@@ -206,15 +206,15 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
               >
                 <motion.div 
                   className="relative w-full h-full"
-                  style={{ transformStyle: "preserve-3d", overflow: "hidden" }}
+                  style={{ transformStyle: "preserve-3d" }}
                   animate={{ rotateY: isFlipped ? 180 : 0 }}
                   transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
                 >
                   
                   {/* FRONT SIDE */}
                   <div 
-                    className="absolute inset-0 bg-card/40 backdrop-blur-md rounded-2xl border border-primary/30 flex flex-col shadow-[0_0_60px_15px_hsl(320,55%,35%,0.3),_0_0_20px_hsl(45,80%,50%,0.15)]"
-                    style={{ backfaceVisibility: "hidden", overflow: "hidden" }}
+                    className="absolute inset-0 bg-card/40 backdrop-blur-md rounded-2xl border border-primary/30 overflow-hidden flex flex-col shadow-[0_0_60px_15px_hsl(320,55%,35%,0.3),_0_0_20px_hsl(45,80%,50%,0.15)]"
+                    style={{ backfaceVisibility: "hidden" }}
                   >
                     {/* Edition Header Strip */}
                     {item.eyebrow && (
@@ -224,10 +224,8 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                       </div>
                     )}
 
-                  {/* Image Container — triple overflow lock */}
                   <div
-                    className="relative w-full h-[68%] md:h-[73%] bg-black/60 cursor-pointer"
-                    style={{ overflow: "hidden" }}
+                    className="relative w-full h-[68%] md:h-[73%] overflow-hidden bg-black/60 cursor-pointer"
                     onClick={(e) => {
                       if (isCenter && hasMultipleImages) {
                         e.stopPropagation();
