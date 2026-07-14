@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Sparkles, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Sparkles, X, ZoomIn } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import Image from "next/image";
 import { optimizeCloudinary } from "@/utils/image";
@@ -31,6 +31,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
   const [expanded, setExpanded] = useState(false);
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const [photoDirection, setPhotoDirection] = useState(1);
+  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const isReducedMotion = useReducedMotion();
@@ -61,6 +62,10 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
       if (document.activeElement?.tagName === "INPUT") return;
       if (e.key === "ArrowLeft") prevSlide();
       if (e.key === "ArrowRight") nextSlide();
+      if (e.key === "Escape") {
+        setLightboxImg(null);
+        setFlippedIndex(null);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -105,6 +110,34 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
     );
   };
 
+  // Bento grid layout patterns based on image count
+  const getBentoLayout = (count: number) => {
+    if (count <= 1) return [{ col: "1 / -1", row: "1 / 3" }];
+    if (count === 2) return [
+      { col: "1 / 2", row: "1 / 3" },
+      { col: "2 / 3", row: "1 / 3" },
+    ];
+    if (count === 3) return [
+      { col: "1 / 3", row: "1 / 2" },
+      { col: "1 / 2", row: "2 / 3" },
+      { col: "2 / 3", row: "2 / 3" },
+    ];
+    if (count === 4) return [
+      { col: "1 / 2", row: "1 / 3" },
+      { col: "2 / 3", row: "1 / 2" },
+      { col: "2 / 3", row: "2 / 3" },
+      { col: "1 / 2", row: "3 / 4" },
+    ];
+    // 5+ images: featured hero + grid
+    const layouts = [
+      { col: "1 / 3", row: "1 / 3" }, // hero spanning 2 cols, 2 rows
+    ];
+    for (let i = 1; i < count; i++) {
+      layouts.push({ col: "auto", row: "auto" });
+    }
+    return layouts;
+  };
+
   return (
     <section 
       className="relative w-full py-8 md:py-16 overflow-visible focus-visible:outline-none"
@@ -140,7 +173,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
             if (Math.abs(normalizedDist) > 2) return null; // Only render nearby cards
 
             const isCenter = normalizedDist === 0;
-            const xOffset = normalizedDist * 105; // 105% of its own width so they don't overlap
+            const xOffset = normalizedDist * 105;
             const scale = isCenter ? 1 : 0.72;
             const opacity = isCenter ? 1 : 0.35;
             const zIndex = 10 - Math.abs(normalizedDist);
@@ -148,12 +181,13 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
 
             const isFlipped = flippedIndex === index;
             const itemImages = Array.isArray(item.image) ? item.image : [item.image];
+            const bentoLayout = getBentoLayout(itemImages.length);
 
             return (
               <motion.div
                 key={`${index}-${item.title}`}
                 className={`absolute inset-0 w-full max-w-md md:max-w-lg mx-auto ${isCenter ? "pointer-events-auto" : "pointer-events-auto cursor-pointer"}`}
-                style={{ zIndex, perspective: "1000px" }}
+                style={{ zIndex, perspective: "1000px", overflow: "hidden" }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{
                   x: `${xOffset}%`,
@@ -172,15 +206,15 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
               >
                 <motion.div 
                   className="relative w-full h-full"
-                  style={{ transformStyle: "preserve-3d" }}
+                  style={{ transformStyle: "preserve-3d", overflow: "hidden" }}
                   animate={{ rotateY: isFlipped ? 180 : 0 }}
                   transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
                 >
                   
                   {/* FRONT SIDE */}
                   <div 
-                    className="absolute inset-0 bg-card/40 backdrop-blur-md rounded-2xl border border-primary/30 overflow-hidden flex flex-col shadow-[0_0_60px_15px_hsl(320,55%,35%,0.3),_0_0_20px_hsl(45,80%,50%,0.15)]"
-                    style={{ backfaceVisibility: "hidden" }}
+                    className="absolute inset-0 bg-card/40 backdrop-blur-md rounded-2xl border border-primary/30 flex flex-col shadow-[0_0_60px_15px_hsl(320,55%,35%,0.3),_0_0_20px_hsl(45,80%,50%,0.15)]"
+                    style={{ backfaceVisibility: "hidden", overflow: "hidden" }}
                   >
                     {/* Edition Header Strip */}
                     {item.eyebrow && (
@@ -190,9 +224,10 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                       </div>
                     )}
 
-                  {/* Image Container */}
+                  {/* Image Container — triple overflow lock */}
                   <div
-                    className="relative w-full h-[68%] md:h-[73%] overflow-hidden bg-black/60 cursor-pointer"
+                    className="relative w-full h-[68%] md:h-[73%] bg-black/60 cursor-pointer"
+                    style={{ overflow: "hidden" }}
                     onClick={(e) => {
                       if (isCenter && hasMultipleImages) {
                         e.stopPropagation();
@@ -212,7 +247,8 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                       {isCenter ? (
                         <motion.div
                           key={`photo-${photoIdx}`}
-                          className="absolute inset-0 overflow-hidden"
+                          className="absolute inset-0"
+                          style={{ overflow: "hidden" }}
                           custom={photoDirection}
                           initial={(dir: number) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 1 })}
                           animate={{ x: 0, opacity: 1 }}
@@ -220,31 +256,37 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                           transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         >
                           {itemImages[photoIdx] && (
-                            <Image 
+                            <img 
                               src={optimizeCloudinary(itemImages[photoIdx])} 
                               alt={item.title || "Performance"}
-                              fill
-                              unoptimized
                               loading="lazy"
-                              sizes="(max-width: 768px) 100vw, 50vw"
-                              className="opacity-95"
-                              style={{ objectFit: "cover", objectPosition: "center" }}
+                              style={{ 
+                                position: "absolute",
+                                top: 0, left: 0,
+                                width: "100%", height: "100%",
+                                objectFit: "cover", 
+                                objectPosition: "center",
+                                opacity: 0.95,
+                              }}
                             />
                           )}
                           <div className="absolute inset-0 bg-primary/5" />
                         </motion.div>
                       ) : (
-                        <div className="absolute inset-0 overflow-hidden">
+                        <div className="absolute inset-0" style={{ overflow: "hidden" }}>
                           {itemImages[0] && (
-                            <Image 
+                            <img 
                               src={optimizeCloudinary(itemImages[0])} 
                               alt={item.title || "Performance"}
-                              fill
-                              unoptimized
                               loading="lazy"
-                              sizes="(max-width: 768px) 100vw, 50vw"
-                              className="opacity-70"
-                              style={{ objectFit: "cover", objectPosition: "center" }}
+                              style={{ 
+                                position: "absolute",
+                                top: 0, left: 0,
+                                width: "100%", height: "100%",
+                                objectFit: "cover", 
+                                objectPosition: "center",
+                                opacity: 0.7,
+                              }}
                             />
                           )}
                           <div className="absolute inset-0 bg-primary/5" />
@@ -270,80 +312,134 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
 
                 </div>
 
-                {/* BACK SIDE (Creative Collage) */}
+                {/* ═══════════════════════════════════════════ */}
+                {/* BACK SIDE — Immersive Bento Gallery        */}
+                {/* ═══════════════════════════════════════════ */}
                 <div 
-                  className="absolute inset-0 rounded-2xl border border-primary/40 shadow-[0_0_60px_15px_hsl(320,55%,35%,0.3),_0_0_20px_hsl(45,80%,50%,0.15)] flex flex-col overflow-hidden"
-                  style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)", background: "linear-gradient(135deg, hsl(320 30% 8%) 0%, hsl(280 20% 5%) 50%, hsl(320 30% 10%) 100%)" }}
+                  className="absolute inset-0 rounded-2xl flex flex-col"
+                  style={{ 
+                    backfaceVisibility: "hidden", 
+                    transform: "rotateY(180deg)", 
+                    overflow: "hidden",
+                    background: "linear-gradient(160deg, hsl(320 25% 6%) 0%, hsl(260 15% 4%) 40%, hsl(320 20% 8%) 100%)",
+                    border: "1px solid hsl(320 55% 35% / 0.4)",
+                    boxShadow: "0 0 80px 20px hsl(320 55% 30% / 0.25), inset 0 1px 0 hsl(320 55% 50% / 0.15)",
+                  }}
                   onDoubleClick={() => setFlippedIndex(null)}
                 >
-                  {/* Header with close hint */}
-                  <div className="relative w-full text-center py-3 shrink-0 border-b border-primary/20" style={{ background: "linear-gradient(90deg, transparent, hsl(320 55% 35% / 0.15), transparent)" }}>
-                    <span className="font-display text-[10px] tracking-[6px] text-primary/90 uppercase">✦ {item.title} ✦</span>
+                  {/* Decorative top line */}
+                  <div className="h-[2px] w-full shrink-0" style={{ background: "linear-gradient(90deg, transparent, hsl(320 55% 55% / 0.6), hsl(45 80% 55% / 0.3), hsl(320 55% 55% / 0.6), transparent)" }} />
+                  
+                  {/* Header */}
+                  <div className="relative shrink-0 flex items-center justify-between px-4 py-3" style={{ background: "linear-gradient(180deg, hsl(320 20% 10% / 0.8), transparent)" }}>
+                    <div className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-pulse" />
+                      <span className="font-display text-[9px] tracking-[5px] text-primary/80 uppercase">Gallery</span>
+                    </div>
+                    <span className="font-display text-[10px] tracking-[4px] text-white/50 uppercase">{item.title}</span>
                     <button 
                       onClick={(e) => { e.stopPropagation(); setFlippedIndex(null); }}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-primary transition-colors"
+                      className="w-7 h-7 rounded-full flex items-center justify-center border border-white/10 bg-white/5 text-white/50 hover:text-primary hover:border-primary/40 transition-all duration-300"
                     >
-                      <X size={16} />
+                      <X size={12} />
                     </button>
                   </div>
 
-                  {/* Creative Masonry Grid */}
-                  <div className="flex-grow p-3 overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20">
-                    <div className={`grid gap-2 auto-rows-[minmax(80px,1fr)] ${
-                      itemImages.length <= 2 ? 'grid-cols-1' :
-                      itemImages.length <= 4 ? 'grid-cols-2' :
-                      'grid-cols-3'
-                    }`}>
+                  {/* Bento Grid Gallery */}
+                  <div className="flex-grow p-2.5 overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20" style={{ overflow: "hidden auto" }}>
+                    <div 
+                      className="grid gap-1.5 h-full"
+                      style={{ 
+                        gridTemplateColumns: itemImages.length <= 2 ? "1fr" : "repeat(3, 1fr)",
+                        gridAutoRows: "1fr",
+                      }}
+                    >
                       {itemImages.filter(Boolean).map((img, i) => {
-                        // Alternate between tall and wide cells for visual interest
-                        const isFeatured = i === 0;
-                        const isWide = !isFeatured && i % 3 === 1 && itemImages.length > 3;
-                        const spanClass = isFeatured && itemImages.length > 2
-                          ? 'col-span-2 row-span-2' 
-                          : isWide 
-                            ? 'col-span-2' 
-                            : '';
-
+                        const layout = bentoLayout[i] || { col: "auto", row: "auto" };
+                        // Random subtle rotations for scattered feel
+                        const rotation = i === 0 ? 0 : ((i % 2 === 0 ? 1 : -1) * (0.5 + (i % 3) * 0.3));
+                        
                         return (
                           <motion.div 
                             key={i} 
-                            className={`relative overflow-hidden rounded-xl group cursor-pointer ${spanClass}`}
+                            className="relative group cursor-pointer rounded-lg"
                             style={{ 
-                              minHeight: isFeatured ? '180px' : '100px',
-                              boxShadow: '0 0 15px hsl(320 55% 35% / 0.2), inset 0 0 20px hsl(0 0% 0% / 0.3)'
+                              gridColumn: layout.col,
+                              gridRow: layout.row,
+                              overflow: "hidden",
+                              minHeight: "70px",
                             }}
-                            initial={{ opacity: 0, scale: 0.85 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: i * 0.08 }}
-                            whileHover={{ scale: 1.03 }}
+                            initial={{ opacity: 0, scale: 0.8, rotate: rotation * 3 }}
+                            animate={{ opacity: 1, scale: 1, rotate: rotation }}
+                            transition={{ 
+                              duration: 0.6, 
+                              delay: i * 0.07,
+                              type: "spring",
+                              stiffness: 200,
+                              damping: 20,
+                            }}
+                            whileHover={{ 
+                              scale: 1.05, 
+                              rotate: 0, 
+                              zIndex: 20,
+                              transition: { duration: 0.3 }
+                            }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setLightboxImg(optimizeCloudinary(img, 1200));
+                            }}
                           >
-                            <Image 
+                            {/* Image */}
+                            <img 
                               src={optimizeCloudinary(img, 500)} 
-                              fill
-                              unoptimized
                               loading="lazy"
-                              sizes="(max-width: 768px) 50vw, 33vw"
-                              className="transition-all duration-700 group-hover:scale-110 group-hover:brightness-110" 
-                              style={{ objectFit: "cover", objectPosition: "center" }}
-                              alt={`Gallery ${i+1}`} 
+                              alt={`${item.title} - Photo ${i+1}`}
+                              style={{ 
+                                position: "absolute",
+                                top: 0, left: 0,
+                                width: "100%", height: "100%",
+                                objectFit: "cover", 
+                                objectPosition: "center",
+                                transition: "transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease",
+                              }}
+                              className="group-hover:scale-[1.15] group-hover:brightness-110"
                             />
-                            {/* Gradient overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            {/* Image number badge */}
-                            <div className="absolute bottom-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <span className="font-mono text-[10px] text-white/80 bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded-full">{String(i+1).padStart(2, '0')}</span>
+
+                            {/* Shimmer border on hover */}
+                            <div 
+                              className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                              style={{ 
+                                boxShadow: "inset 0 0 0 1.5px hsl(320 55% 55% / 0.5), 0 0 20px hsl(320 55% 45% / 0.3)",
+                              }}
+                            />
+
+                            {/* Bottom gradient with number */}
+                            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-400 flex items-end justify-between px-2.5 pb-2">
+                              <span className="font-mono text-[10px] text-white/90 tracking-wider">{String(i+1).padStart(2, '0')}</span>
+                              <ZoomIn size={12} className="text-white/70" />
                             </div>
-                            {/* Corner glow accent */}
-                            <div className="absolute -top-1 -right-1 w-8 h-8 rounded-full bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                            {/* Top-right glow dot */}
+                            <div className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "hsl(320 55% 55%)", boxShadow: "0 0 8px hsl(320 55% 55% / 0.8)" }} />
                           </motion.div>
                         );
                       })}
                     </div>
                   </div>
 
-                  {/* Footer hint */}
-                  <div className="shrink-0 text-center py-2 border-t border-white/5">
-                    <span className="text-[9px] tracking-[4px] uppercase text-white/25 font-display">Double-tap to close</span>
+                  {/* Footer */}
+                  <div className="shrink-0 flex items-center justify-center gap-3 py-2 px-4 border-t border-white/5" style={{ background: "linear-gradient(0deg, hsl(320 20% 8% / 0.6), transparent)" }}>
+                    <div className="flex gap-1">
+                      {itemImages.filter(Boolean).map((_, i) => (
+                        <div key={i} className="w-1 h-1 rounded-full bg-primary/40" />
+                      ))}
+                    </div>
+                    <span className="text-[8px] tracking-[3px] uppercase text-white/20 font-display">{itemImages.filter(Boolean).length} photos</span>
+                    <div className="flex gap-1">
+                      {itemImages.filter(Boolean).map((_, i) => (
+                        <div key={i} className="w-1 h-1 rounded-full bg-primary/40" />
+                      ))}
+                    </div>
                   </div>
                 </div>
 
@@ -383,6 +479,60 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
            </MagneticButton>
         )}
       </div>
+
+      {/* Lightbox Overlay */}
+      <AnimatePresence>
+        {lightboxImg && (
+          <motion.div 
+            className="fixed inset-0 z-[9999] flex items-center justify-center"
+            style={{ background: "hsl(0 0% 0% / 0.92)", backdropFilter: "blur(20px)" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightboxImg(null)}
+          >
+            {/* Close button */}
+            <button 
+              className="absolute top-6 right-6 z-10 w-10 h-10 rounded-full flex items-center justify-center border border-white/20 bg-white/5 text-white/70 hover:text-white hover:border-white/40 transition-all"
+              onClick={() => setLightboxImg(null)}
+            >
+              <X size={20} />
+            </button>
+
+            {/* Image */}
+            <motion.div
+              className="relative max-w-[90vw] max-h-[85vh]"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img 
+                src={lightboxImg}
+                alt="Full size view"
+                style={{ 
+                  maxWidth: "90vw", 
+                  maxHeight: "85vh", 
+                  objectFit: "contain",
+                  borderRadius: "12px",
+                  boxShadow: "0 0 100px hsl(320 55% 35% / 0.3), 0 25px 50px hsl(0 0% 0% / 0.5)",
+                }}
+              />
+              {/* Glow frame */}
+              <div 
+                className="absolute inset-0 rounded-xl pointer-events-none"
+                style={{ boxShadow: "inset 0 0 0 1px hsl(320 55% 55% / 0.2)" }}
+              />
+            </motion.div>
+
+            {/* Hint text */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
+              <span className="text-[10px] tracking-[4px] uppercase text-white/30 font-display">Click anywhere or press ESC to close</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
