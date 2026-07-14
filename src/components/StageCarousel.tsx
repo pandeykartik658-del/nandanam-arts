@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { ChevronLeft, ChevronRight, Sparkles, X } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import Image from "next/image";
 import { optimizeCloudinary } from "@/utils/image";
@@ -228,7 +228,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                               loading="lazy"
                               sizes="(max-width: 768px) 100vw, 50vw"
                               className="opacity-95"
-                              style={{ objectFit: "contain", objectPosition: "center" }}
+                              style={{ objectFit: "cover", objectPosition: "center" }}
                             />
                           )}
                           <div className="absolute inset-0 bg-primary/5" />
@@ -244,7 +244,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                               loading="lazy"
                               sizes="(max-width: 768px) 100vw, 50vw"
                               className="opacity-70"
-                              style={{ objectFit: "contain", objectPosition: "center" }}
+                              style={{ objectFit: "cover", objectPosition: "center" }}
                             />
                           )}
                           <div className="absolute inset-0 bg-primary/5" />
@@ -270,34 +270,80 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
 
                 </div>
 
-                {/* BACK SIDE (Collage) */}
+                {/* BACK SIDE (Creative Collage) */}
                 <div 
-                  className="absolute inset-0 bg-black/90 backdrop-blur-md rounded-2xl border border-primary/40 shadow-[0_0_60px_15px_hsl(320,55%,35%,0.3),_0_0_20px_hsl(45,80%,50%,0.15)] p-2 flex flex-col overflow-hidden"
-                  style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                  className="absolute inset-0 rounded-2xl border border-primary/40 shadow-[0_0_60px_15px_hsl(320,55%,35%,0.3),_0_0_20px_hsl(45,80%,50%,0.15)] flex flex-col overflow-hidden"
+                  style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)", background: "linear-gradient(135deg, hsl(320 30% 8%) 0%, hsl(280 20% 5%) 50%, hsl(320 30% 10%) 100%)" }}
                   onDoubleClick={() => setFlippedIndex(null)}
                 >
-                  <div className="w-full text-center py-4 mb-2 border-b border-white/10 shrink-0">
-                    <span className="font-display text-xs tracking-[5px] text-primary/85 uppercase">Collage: {item.title}</span>
+                  {/* Header with close hint */}
+                  <div className="relative w-full text-center py-3 shrink-0 border-b border-primary/20" style={{ background: "linear-gradient(90deg, transparent, hsl(320 55% 35% / 0.15), transparent)" }}>
+                    <span className="font-display text-[10px] tracking-[6px] text-primary/90 uppercase">✦ {item.title} ✦</span>
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setFlippedIndex(null); }}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-primary transition-colors"
+                    >
+                      <X size={16} />
+                    </button>
                   </div>
-                  <div className={`flex-grow grid gap-2 pb-2 px-1 overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 ${
-                    itemImages.length <= 1 ? 'grid-cols-1' :
-                    itemImages.length <= 4 ? 'grid-cols-2' :
-                    'grid-cols-3'
-                  }`}>
-                    {itemImages.filter(Boolean).map((img, i) => (
-                      <div key={i} className="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
-                        <Image 
-                          src={optimizeCloudinary(img, 400)} 
-                          fill
-                          unoptimized
-                          loading="lazy"
-                          sizes="(max-width: 768px) 50vw, 25vw"
-                          className="bg-black/40 opacity-90 hover:opacity-100 transition-opacity" 
-                          style={{ objectFit: "contain", objectPosition: "center" }}
-                          alt={`Collage image ${i+1}`} 
-                        />
-                      </div>
-                    ))}
+
+                  {/* Creative Masonry Grid */}
+                  <div className="flex-grow p-3 overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20">
+                    <div className={`grid gap-2 auto-rows-[minmax(80px,1fr)] ${
+                      itemImages.length <= 2 ? 'grid-cols-1' :
+                      itemImages.length <= 4 ? 'grid-cols-2' :
+                      'grid-cols-3'
+                    }`}>
+                      {itemImages.filter(Boolean).map((img, i) => {
+                        // Alternate between tall and wide cells for visual interest
+                        const isFeatured = i === 0;
+                        const isWide = !isFeatured && i % 3 === 1 && itemImages.length > 3;
+                        const spanClass = isFeatured && itemImages.length > 2
+                          ? 'col-span-2 row-span-2' 
+                          : isWide 
+                            ? 'col-span-2' 
+                            : '';
+
+                        return (
+                          <motion.div 
+                            key={i} 
+                            className={`relative overflow-hidden rounded-xl group cursor-pointer ${spanClass}`}
+                            style={{ 
+                              minHeight: isFeatured ? '180px' : '100px',
+                              boxShadow: '0 0 15px hsl(320 55% 35% / 0.2), inset 0 0 20px hsl(0 0% 0% / 0.3)'
+                            }}
+                            initial={{ opacity: 0, scale: 0.85 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5, delay: i * 0.08 }}
+                            whileHover={{ scale: 1.03 }}
+                          >
+                            <Image 
+                              src={optimizeCloudinary(img, 500)} 
+                              fill
+                              unoptimized
+                              loading="lazy"
+                              sizes="(max-width: 768px) 50vw, 33vw"
+                              className="transition-all duration-700 group-hover:scale-110 group-hover:brightness-110" 
+                              style={{ objectFit: "cover", objectPosition: "center" }}
+                              alt={`Gallery ${i+1}`} 
+                            />
+                            {/* Gradient overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            {/* Image number badge */}
+                            <div className="absolute bottom-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <span className="font-mono text-[10px] text-white/80 bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded-full">{String(i+1).padStart(2, '0')}</span>
+                            </div>
+                            {/* Corner glow accent */}
+                            <div className="absolute -top-1 -right-1 w-8 h-8 rounded-full bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Footer hint */}
+                  <div className="shrink-0 text-center py-2 border-t border-white/5">
+                    <span className="text-[9px] tracking-[4px] uppercase text-white/25 font-display">Double-tap to close</span>
                   </div>
                 </div>
 
