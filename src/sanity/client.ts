@@ -1,5 +1,5 @@
 import { createClient } from "next-sanity";
-import imageUrlBuilder from "@sanity/image-url";
+import createImageUrlBuilder from "@sanity/image-url";
 
 export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "e558x893";
 export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
@@ -12,10 +12,15 @@ export const client = createClient({
   useCdn: false, // Set to false if statically generating pages, using ISR or tag-based revalidation
 });
 
-const builder = imageUrlBuilder(client);
+const builder = createImageUrlBuilder(client);
 
-export function urlFor(source: any) {
-  return builder.image(source);
+export function urlFor(source: any, width?: number) {
+  if (!source) return "";
+  let imgBuilder = builder.image(source).auto("format").quality(85).fit("max");
+  if (width) {
+    imgBuilder = imgBuilder.width(width);
+  }
+  return imgBuilder.url();
 }
 
 export async function getEditions() {
@@ -25,7 +30,7 @@ export async function getEditions() {
     title,
     year,
     text,
-    "images": images[].asset->url
+    images
   }`;
   return client.fetch(query);
 }
@@ -37,7 +42,7 @@ export async function getEvents() {
     date,
     location,
     description,
-    "image": image.asset->url,
+    image,
     link,
     category
   }`;
@@ -49,7 +54,7 @@ export async function getChambers() {
     _id,
     title,
     text,
-    "images": images[].asset->url
+    images
   }`;
   return client.fetch(query);
 }
@@ -59,7 +64,7 @@ export async function getWorkshops() {
     _id,
     title,
     text,
-    "images": images[].asset->url
+    images
   }`;
   return client.fetch(query);
 }

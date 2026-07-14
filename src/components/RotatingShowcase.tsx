@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useRe
 import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { optimizeCloudinary } from "@/utils/image";
+import { optimizeImage } from "@/utils/image";
 
 const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "music" }) => {
   const [current, setCurrent] = useState(0);
@@ -88,7 +88,7 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
             >
               {type === "dance" ? (
                 <img 
-                  src={optimizeCloudinary(images[current].src)} 
+                  src={optimizeImage(images[current].src, 800)} 
                   alt={images[current].caption} 
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-contain object-center grayscale-[15%] contrast-110 pointer-events-none select-none bg-black/40" 

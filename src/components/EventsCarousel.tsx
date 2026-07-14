@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { optimizeCloudinary } from "@/utils/image";
+import { optimizeImage } from "@/utils/image";
 
 const dancer1 = "/assets/dancer1.jpg";
 const dancer2 = "/assets/dancer2.jpg";
@@ -59,7 +59,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
           {/* Poster Image */}
           <div className="w-full max-w-[450px] aspect-[16/9] md:aspect-[4/3] rounded-2xl overflow-hidden glow-wine mb-8 border-2 border-primary/40 relative">
             <img 
-              src={optimizeCloudinary(event.image)} 
+              src={optimizeImage(event.image, 800)} 
               alt={event.title} 
               loading="lazy"
               className="absolute inset-0 w-full h-full object-contain object-center contrast-110 bg-black/40"

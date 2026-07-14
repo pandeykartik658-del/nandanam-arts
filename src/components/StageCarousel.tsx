@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Sparkles, X, ZoomIn } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import Image from "next/image";
-import { optimizeCloudinary } from "@/utils/image";
+import { optimizeImage } from "@/utils/image";
 
 export interface StageItem {
   title: string;
@@ -255,7 +255,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                         >
                           {itemImages[photoIdx] && (
                             <img 
-                              src={optimizeCloudinary(itemImages[photoIdx])} 
+                              src={optimizeImage(itemImages[photoIdx], 1600)} 
                               alt={item.title || "Performance"}
                               loading="lazy"
                               style={{ 
@@ -274,7 +274,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                         <div className="absolute inset-0" style={{ overflow: "hidden" }}>
                           {itemImages[0] && (
                             <img 
-                              src={optimizeCloudinary(itemImages[0])} 
+                              src={optimizeImage(itemImages[0], 1600)} 
                               alt={item.title || "Performance"}
                               loading="lazy"
                               style={{ 
@@ -384,12 +384,12 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                             }}
                             onClick={(e) => {
                               e.stopPropagation();
-                              setLightboxImg(optimizeCloudinary(img, 1200));
+                              setLightboxImg(optimizeImage(img, 2000));
                             }}
                           >
                             {/* Image */}
                             <img 
-                              src={optimizeCloudinary(img, 500)} 
+                              src={optimizeImage(img, 800)} 
                               loading="lazy"
                               alt={`${item.title} - Photo ${i+1}`}
                               style={{ 
