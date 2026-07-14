@@ -57,12 +57,12 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
             className="w-full flex flex-col items-center"
           >
           {/* Poster Image */}
-          <div className="w-full max-w-[450px] aspect-[16/9] md:aspect-[4/3] rounded-2xl overflow-hidden glow-wine mb-8 border-2 border-primary/40 relative">
+          <div className="w-full max-w-[450px] rounded-2xl overflow-hidden glow-wine mb-8 border-2 border-primary/40 flex justify-center bg-black/40">
             <img 
               src={optimizeImage(event.image, 800)} 
               alt={event.title} 
               loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover object-center contrast-110 bg-black/40"
+              className="w-full h-auto max-h-[60vh] object-contain object-center contrast-110"
             />
           </div>
 
