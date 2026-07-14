@@ -166,11 +166,13 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
       title: e.title,
       description: e.text,
       image: e.images || [],
+      eyebrow: e.edition ? `EDITION ${e.edition}` : "CHAMBER",
+      meta: e.year || ""
     }));
   } else {
     chambers = [
-      { title: "The Poetry of Jayadeva", description: "Experience the Ashtapadis of the Gita Govinda in an unplugged, candle-lit setting. Without the physical distance of a proscenium stage, the audience becomes intimately involved in the profound emotional exchange between the artists.", image: dancer1 },
-      { title: "Padams of Kshetrayya", description: "A masterful exploration of slow, languorous, and deeply evocative Telugu Padams. This chamber concert relies entirely on the seated Abhinaya tradition, relying solely on subtle facial expressions to convey layers of meaning.", image: dancer4 },
+      { title: "The Poetry of Jayadeva", description: "Experience the Ashtapadis of the Gita Govinda in an unplugged, candle-lit setting. Without the physical distance of a proscenium stage, the audience becomes intimately involved in the profound emotional exchange between the artists.", image: dancer1, eyebrow: "CHAMBER", meta: "2024" },
+      { title: "Padams of Kshetrayya", description: "A masterful exploration of slow, languorous, and deeply evocative Telugu Padams. This chamber concert relies entirely on the seated Abhinaya tradition, relying solely on subtle facial expressions to convey layers of meaning.", image: dancer4, eyebrow: "CHAMBER", meta: "2024" },
     ];
   }
 
@@ -180,11 +182,13 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
       title: e.title,
       description: e.text,
       image: e.images || [],
+      eyebrow: e.edition ? `EDITION ${e.edition}` : "WORKSHOP",
+      meta: e.year || ""
     }));
   } else {
     workshops = [
-      { title: "Karanas: The Lost Movement", description: "A rigorous, intensive deep dive into the 108 Karanas as detailed in the ancient Natya Shastra. This workshop requires immense physical discipline to reconstruct dynamic movement units from foundational sculptural evidence.", image: dancer4 },
-      { title: "Tala & Nattuvangam", description: "Understanding the complex mathematics and vocalized rhythmic syllables (Jathis) that form the structural backbone of Bharatanatyam. Participants will learn how to construct their own rhythmic sequences and wield the cymbals with absolute precision.", image: dancer5 },
+      { title: "Karanas: The Lost Movement", description: "A rigorous, intensive deep dive into the 108 Karanas as detailed in the ancient Natya Shastra. This workshop requires immense physical discipline to reconstruct dynamic movement units from foundational sculptural evidence.", image: dancer4, eyebrow: "WORKSHOP", meta: "2024" },
+      { title: "Tala & Nattuvangam", description: "Understanding the complex mathematics and vocalized rhythmic syllables (Jathis) that form the structural backbone of Bharatanatyam. Participants will learn how to construct their own rhythmic sequences and wield the cymbals with absolute precision.", image: dancer5, eyebrow: "WORKSHOP", meta: "2024" },
     ];
   }
 
@@ -351,7 +355,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
               This effort is aimed at creating a space for upcoming artists and rasikas to engage in a much more intimate setting, creating a space for active dialogue and artistic discussion, thus bringing the art closer to the audience.
             </p>
           </div>
-          <DynamicStageCarousel items={chambers} intervalMs={7000} />
+          <StageCarousel items={chambers} intervalMs={7000} Icon={Mic} />
         </section>
 
         {/* Divider */}
@@ -382,7 +386,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
               The Youth edition of the Leela stages prominent youngsters from the performing arts arena.
             </p>
           </div>
-          <DynamicStageCarousel items={workshops} intervalMs={7000} />
+          <StageCarousel items={workshops} intervalMs={7000} Icon={GraduationCap} />
         </section>
 
         {/* Marquee After Workshop */}
