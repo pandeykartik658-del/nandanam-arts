@@ -313,7 +313,14 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                     <h3 className="font-display text-xl md:text-2xl tracking-[2px] font-medium text-gradient-rose-wine mb-1 shrink-0">
                       {item.title}
                     </h3>
-                    <div className="flex-grow overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-primary/20">
+                    <div 
+                      className="flex-grow overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-primary/20"
+                      style={{ touchAction: "pan-y" }}
+                      onTouchStart={(e) => e.stopPropagation()}
+                      onTouchMove={(e) => e.stopPropagation()}
+                      onTouchEnd={(e) => e.stopPropagation()}
+                      onWheel={(e) => e.stopPropagation()}
+                    >
                       {renderDescription(item.description)}
                     </div>
                   </div>
