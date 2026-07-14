@@ -264,7 +264,7 @@ export default function TeachingClient({
         </motion.div>
 
         <div className="overflow-hidden mb-6">
-          <h1 className="font-display whitespace-nowrap text-[6.5vw] sm:text-4xl md:text-6xl lg:text-[4.5rem] tracking-[5px] leading-[1.1]">
+          <h1 className="font-display whitespace-nowrap text-[7.5vw] sm:text-5xl md:text-7xl lg:text-[5.5rem] tracking-[5px] leading-[1.1]">
             {"THE TEACHING WING".split("").map((letter, i) => (
               <motion.span
                 key={i}
@@ -287,7 +287,7 @@ export default function TeachingClient({
         >
           <KineticSubtitle />
           <motion.p 
-            className="font-body mt-6 max-w-[600px] text-sm md:text-base leading-[2] tracking-wide text-muted-foreground/70"
+            className="font-body mt-6 max-w-[600px] text-base md:text-lg leading-[2] tracking-wide text-muted-foreground/70"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 3.2, duration: 0.8 }}
@@ -330,7 +330,7 @@ export default function TeachingClient({
         </motion.div>
 
         <motion.h2
-          className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] text-white/90 mb-14"
+          className="font-display text-5xl md:text-6xl lg:text-7xl tracking-[3px] text-white/90 mb-14"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -339,7 +339,7 @@ export default function TeachingClient({
           Bharatanatyam
         </motion.h2>
 
-        <div className="grid grid-cols-2 gap-4 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}>
             <div className="grid grid-cols-1 gap-6">
               <div><PillarCard icon={<CustomIcons.Lotus />} title="Tradition" desc="Guarding centuries of unbroken guru-shishya parampara, we transmit art exactly as our masters received it." delay={0} sanskrit="परम्परा" translit="Parampara" /></div>
@@ -367,7 +367,7 @@ export default function TeachingClient({
         </motion.div>
 
         <motion.h2
-          className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] text-white/90 mb-14 text-right"
+          className="font-display text-5xl md:text-6xl lg:text-7xl tracking-[3px] text-white/90 mb-14 text-right"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -376,7 +376,7 @@ export default function TeachingClient({
           Carnatic Music
         </motion.h2>
 
-        <div className="grid grid-cols-2 gap-4 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 }} className="order-2 lg:order-1 relative">
             <DynamicRotatingShowcase images={finalMusicImages} type="music" />
           </motion.div>
@@ -405,7 +405,7 @@ export default function TeachingClient({
         />
 
         <motion.p
-          className="font-body italic text-base md:text-lg leading-[2] text-white/40 tracking-wide mb-16 mx-auto max-w-[650px]"
+          className="font-body italic text-lg md:text-xl leading-[2] text-white/40 tracking-wide mb-16 mx-auto max-w-[650px]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
