@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useInView, useScroll, useMotionValue, useSprin
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowLeft } from "lucide-react";
 import MovingBackground from "@/components/MovingBackground";
 import KineticSubtitle from "@/components/KineticSubtitle";
 import DisciplineNavigator from "@/components/DisciplineNavigator";
@@ -218,8 +218,8 @@ export default function TeachingClient({
             <motion.div 
               className="absolute inset-[-5px] bg-primary/0 group-hover:bg-primary/20 rounded-full blur-[10px] pointer-events-none transition-colors duration-500"
             />
-            <span className="relative z-10 group-hover:-translate-x-1 transition-transform duration-300">←</span>
-            <span className="font-display text-[9px] md:text-[10px] uppercase tracking-[4px]">RETURN TO SANCTUM</span>
+            <ArrowLeft size={14} className="relative z-10 group-hover:-translate-x-1 transition-transform duration-300" />
+            <span className="font-display text-[9px] md:text-[10px] uppercase tracking-[4px] mt-[1px]">RETURN TO SANCTUM</span>
           </Link>
         </motion.div>
 
