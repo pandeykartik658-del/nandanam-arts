@@ -24,10 +24,10 @@ const Footer = () => {
               maskPosition: "center",
             }}
           />
-          <span className="font-display text-[10px] tracking-[6px] uppercase text-primary/90 block mb-3 drop-shadow-[0_0_8px_hsl(var(--primary)/0.3)]">
+          <span className="font-display text-[13px] tracking-[6px] uppercase text-primary/90 block mb-3 drop-shadow-[0_0_8px_hsl(var(--primary)/0.3)]">
             Nandanam Art Foundation
           </span>
-          <p className="font-body text-[11px] tracking-wide text-muted-foreground/60 max-w-[350px] mx-auto leading-relaxed">
+          <p className="font-body text-[14px] tracking-wide text-white/90 max-w-[400px] mx-auto leading-relaxed">
             Preserving the ancient geometry and devotional storytelling of classical Bharatanatyam.
           </p>
         </div>
