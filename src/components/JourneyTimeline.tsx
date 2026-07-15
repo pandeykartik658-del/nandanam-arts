@@ -57,7 +57,7 @@ const JourneyTimeline = () => {
                 <div className={`w-full md:w-1/2 pl-14 md:pl-0 text-left ${isEven ? "md:pl-16" : "md:text-right md:pr-16"}`}>
                   <span className="font-display text-[10px] tracking-[4px] uppercase text-primary/60 mb-2 block">{ms.year}</span>
                   <h4 className="font-display text-xl text-foreground/90 tracking-wide mb-2">{ms.title}</h4>
-                  <p className="font-body text-xs md:text-sm text-muted-foreground/60 leading-relaxed font-light">{ms.desc}</p>
+                  <p className="font-body text-xs md:text-sm text-white/90 leading-relaxed font-light">{ms.desc}</p>
                 </div>
 
                 <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-6 h-6 flex items-center justify-center">

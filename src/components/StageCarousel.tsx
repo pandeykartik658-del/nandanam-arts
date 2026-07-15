@@ -91,12 +91,12 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
   const renderDescription = (text: string) => {
     const words = text.split(/\s+/);
     const isLong = words.length > WORD_LIMIT;
-    if (!isLong) return <p className="font-luxury text-[16px] md:text-[17px] text-white/80 leading-[1.6] italic">{text}</p>;
+    if (!isLong) return <p className="font-luxury text-[16px] md:text-[17px] text-white/90 leading-[1.6] italic">{text}</p>;
 
     return (
       <div aria-expanded={expanded} className="flex flex-col">
         <motion.div layout className="overflow-hidden">
-          <p className="font-luxury text-[16px] md:text-[17px] text-white/80 leading-[1.6] italic">
+          <p className="font-luxury text-[16px] md:text-[17px] text-white/90 leading-[1.6] italic">
             {expanded ? text : words.slice(0, WORD_LIMIT).join(" ") + "…"}
           </p>
         </motion.div>

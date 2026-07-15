@@ -32,7 +32,7 @@ const PillarCard = ({ title, desc, icon, delay, sanskrit, translit, backContent 
           <h4 className="font-display text-[clamp(17px,3vw,26px)] tracking-[2px] sm:tracking-[4px] uppercase text-primary mb-2 sm:mb-3">
             {title}
           </h4>
-          <p className="font-body text-[clamp(15px,2.2vw,22px)] text-muted-foreground/80 leading-snug sm:leading-relaxed font-light">
+          <p className="font-body text-[clamp(15px,2.2vw,22px)] text-white/90 leading-snug sm:leading-relaxed font-light">
             {desc}
           </p>
         </div>

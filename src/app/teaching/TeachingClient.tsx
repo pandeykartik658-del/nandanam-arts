@@ -287,7 +287,7 @@ export default function TeachingClient({
         >
           <KineticSubtitle />
           <motion.p 
-            className="font-body mt-6 max-w-[700px] px-4 text-[clamp(16px,2.4vw,22px)] leading-[2] tracking-wide text-muted-foreground/80"
+            className="font-body mt-6 max-w-[700px] px-4 text-[clamp(16px,2.4vw,22px)] leading-[2] tracking-wide text-white/90"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 3.2, duration: 0.8 }}

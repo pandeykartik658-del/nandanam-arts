@@ -270,7 +270,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
             <KineticSubtitle words={["a divine geometry", "rhythm and devotion", "the unseen breath", "movement as prayer"]} />
           </div>
 
-          <p className="font-body text-base md:text-lg text-white/70 max-w-[500px] leading-[2] mb-8">
+          <p className="font-body text-base md:text-lg text-white/90 max-w-[500px] leading-[2] mb-8">
             An annual congregation where mastery meets divinity. Leela is not merely a performance; it is a communion of souls through the sacred geometry of Bharatanatyam.
           </p>
 
@@ -314,7 +314,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
                 <h2 className="font-display text-4xl md:text-5xl tracking-[4px] text-gradient-wine">The Performance Series</h2>
               </div>
             </div>
-            <p className="font-luxury text-lg text-white/60 italic max-w-2xl mx-auto">
+            <p className="font-luxury text-lg text-white/90 italic max-w-2xl mx-auto">
               The grand stage where technique dissolves into pure expression.<br className="hidden md:block" /> Experience the monumental scale of ancient mythologies brought to life.
             </p>
           </div>
@@ -345,7 +345,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
                 <h2 className="font-display text-4xl md:text-5xl tracking-[4px] text-gradient-wine">The Chamber Concert</h2>
               </div>
             </div>
-            <p className="font-luxury text-lg text-white/60 italic max-w-2xl mx-auto">
+            <p className="font-luxury text-lg text-white/90 italic max-w-2xl mx-auto">
               NAF hosts the LEELA Chamber Concert series.
               <br />
               This effort is aimed at creating a space for upcoming artists and rasikas to engage in a much more intimate setting, creating a space for active dialogue and artistic discussion, thus bringing the art closer to the audience.
@@ -378,7 +378,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
                 <h2 className="font-display text-4xl md:text-5xl tracking-[4px] text-gradient-wine">The Workshop Series</h2>
               </div>
             </div>
-            <p className="font-luxury text-lg text-white/60 italic max-w-2xl mx-auto">
+            <p className="font-luxury text-lg text-white/90 italic max-w-2xl mx-auto">
               The Youth edition of the Leela stages prominent youngsters from the performing arts arena.
             </p>
           </div>
