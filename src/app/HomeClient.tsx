@@ -53,7 +53,6 @@ const NavTiltCard = ({ item, i, onNavigate }: { item: typeof navCards[0]; i: num
     >
       <motion.div
         className="glass-surface rounded-xl p-6 py-7 h-full text-center cursor-pointer group transition-all duration-500 hover:glow-wine flex items-center justify-center"
-        style={{ boxShadow: '0 0 20px rgba(220, 80, 150, 0.15)' }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
