@@ -264,7 +264,7 @@ export default function TeachingClient({
         </motion.div>
 
         <div className="mb-6 px-2">
-          <h1 className="font-display text-center text-[clamp(1.8rem,7vw,6.5rem)] tracking-[3px] sm:tracking-[5px] leading-[1.2]">
+          <h1 className="font-display text-center text-[clamp(1.98rem,7.7vw,7.15rem)] tracking-[3px] sm:tracking-[5px] leading-[1.2]">
             {"TEACHING WING".split("").map((letter, i) => (
               <motion.span
                 key={i}
