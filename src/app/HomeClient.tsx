@@ -231,7 +231,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
       </motion.section>
 
       <motion.div
-        className="w-[1px] h-[40px] sm:h-[60px] mx-auto"
+        className="w-[1px] h-[30px] sm:h-[40px] mx-auto -mt-6 sm:-mt-10 relative z-10"
             style={{ background: "linear-gradient(180deg, transparent, hsl(320 55% 55%), transparent)" }}
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
@@ -239,7 +239,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
             transition={{ duration: 1.2 }}
           />
 
-      <section id="philosophy" className="max-w-[1100px] mx-auto px-6 pt-8 sm:pt-10 pb-10">
+      <section id="philosophy" className="max-w-[1100px] mx-auto px-6 pt-4 sm:pt-6 pb-10">
         <motion.h2
           aria-hidden="true"
           className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] mb-10"
