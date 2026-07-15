@@ -53,6 +53,7 @@ const NavTiltCard = ({ item, i, onNavigate }: { item: typeof navCards[0]; i: num
     >
       <motion.div
         className="glass-surface rounded-xl p-6 py-7 h-full text-center cursor-pointer group transition-all duration-500 hover:glow-wine flex items-center justify-center"
+        style={{ boxShadow: '0 0 20px rgba(220, 80, 150, 0.15)' }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -258,7 +259,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
         <div
           className="max-w-[800px] mb-6"
         >
-          <p className="font-body text-lg md:text-xl leading-[1.8] mb-4" style={{ color: 'rgba(255, 255, 255, 0.92)' }}>
+          <p className="font-body text-lg md:text-xl leading-[1.8] mb-4" style={{ color: 'rgba(255, 255, 255, 0.92)', textShadow: '0 0 20px rgba(255,255,255,0.06)' }}>
             {expanded 
               ? (aboutData?.text || philosophyFull) 
               : ((aboutData?.text || philosophyFull).split(/\s+/).slice(0, 30).join(" ") + ((aboutData?.text || philosophyFull).split(/\s+/).length > 30 ? "…" : ""))
@@ -301,7 +302,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
 
         <p
           className="font-body text-lg md:text-xl leading-[1.8] mb-16"
-          style={{ color: 'rgba(255, 255, 255, 0.92)' }}
+          style={{ color: 'rgba(255, 255, 255, 0.92)', textShadow: '0 0 20px rgba(255,255,255,0.06)' }}
         >
           "Every mudra is a prayer. Every adavu is a meditation. We do not merely dance — we channel the divine through disciplined movement, transforming the human body into a vessel of ancient stories and timeless devotion."
         </p>
