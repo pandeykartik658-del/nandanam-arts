@@ -27,13 +27,13 @@ const Footer = () => {
           <span className="font-display text-[13px] tracking-[6px] uppercase text-primary/90 block mb-3 drop-shadow-[0_0_8px_hsl(var(--primary)/0.3)]">
             Nandanam Art Foundation
           </span>
-          <p className="font-body text-[14px] tracking-wide text-white/90 max-w-[400px] mx-auto leading-relaxed">
+          <p className="font-body text-[14px] tracking-wide text-white/70 max-w-[400px] mx-auto leading-relaxed">
             Preserving the ancient geometry and devotional storytelling of classical Bharatanatyam.
           </p>
         </div>
 
         {/* Legal/Copyright directly nestled with minimal top clearance */}
-        <div className="font-display mt-8 text-[8px] tracking-[4px] text-muted-foreground/30 uppercase">
+        <div className="font-display mt-8 text-[8px] tracking-[4px] text-white/80 uppercase">
           &copy; {new Date().getFullYear()} Nandanam Art Foundation. All Rights Reserved.
         </div>
       </div>
