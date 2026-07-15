@@ -95,7 +95,7 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
                   sizes="(max-width: 640px) 100vw, 640px"
                   placeholder="blur"
                   blurDataURL={getBlurDataURL(images[current].src)}
-                  className="object-cover object-center grayscale-[15%] contrast-110 pointer-events-none select-none bg-black/40" 
+                  className={`object-center grayscale-[15%] contrast-110 pointer-events-none select-none bg-black/40 ${type === 'music' ? 'object-contain' : 'object-cover'}`}
                   style={{ filter: "drop-shadow(0 0 20px rgba(0,0,0,0.5))" }}
                 />
               ) : (<div className="w-full h-full flex flex-col items-center justify-center relative pointer-events-none select-none" style={{ background: images[current].gradient }}>
