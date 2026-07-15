@@ -30,7 +30,13 @@ export async function getEditions() {
     title,
     year,
     text,
-    images
+    images[] {
+      ...,
+      asset->{
+        ...,
+        metadata
+      }
+    }
   }`;
   return client.fetch(query);
 }
@@ -42,7 +48,13 @@ export async function getEvents() {
     date,
     location,
     description,
-    image,
+    image {
+      ...,
+      asset->{
+        ...,
+        metadata
+      }
+    },
     link,
     category
   }`;
@@ -54,7 +66,13 @@ export async function getChambers() {
     _id,
     title,
     text,
-    images
+    images[] {
+      ...,
+      asset->{
+        ...,
+        metadata
+      }
+    }
   }`;
   return client.fetch(query);
 }
@@ -64,7 +82,13 @@ export async function getWorkshops() {
     _id,
     title,
     text,
-    images
+    images[] {
+      ...,
+      asset->{
+        ...,
+        metadata
+      }
+    }
   }`;
   return client.fetch(query);
 }
@@ -79,8 +103,20 @@ export async function getAboutContent() {
 
 export async function getTeachingContent() {
   const query = `*[_type == "teaching"][0] {
-    danceImages,
-    musicImages
+    danceImages[] {
+      ...,
+      asset->{
+        ...,
+        metadata
+      }
+    },
+    musicImages[] {
+      ...,
+      asset->{
+        ...,
+        metadata
+      }
+    }
   }`;
   return client.fetch(query);
 }

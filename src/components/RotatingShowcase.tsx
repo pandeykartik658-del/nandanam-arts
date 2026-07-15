@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useRe
 import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { optimizeImage } from "@/utils/image";
+import { optimizeImage, getBlurDataURL } from "@/utils/image";
 
 const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "music" }) => {
   const [current, setCurrent] = useState(0);
@@ -73,6 +73,7 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
             exit="exit"
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="absolute inset-0"
+            style={{ willChange: "transform, opacity" }}
             drag={prefersReducedMotion ? false : "x"}
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.8}
@@ -87,11 +88,14 @@ const RotatingShowcase = ({ images, type }: { images: any[]; type: "dance" | "mu
               transition={{ duration: 10, ease: "linear" }}
             >
               {images[current].src ? (
-                <img 
+                <Image 
                   src={optimizeImage(images[current].src, 800)} 
                   alt={images[current].caption} 
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover object-center grayscale-[15%] contrast-110 pointer-events-none select-none bg-black/40" 
+                  fill
+                  sizes="(max-width: 640px) 100vw, 640px"
+                  placeholder="blur"
+                  blurDataURL={getBlurDataURL(images[current].src)}
+                  className="object-cover object-center grayscale-[15%] contrast-110 pointer-events-none select-none bg-black/40" 
                   style={{ filter: "drop-shadow(0 0 20px rgba(0,0,0,0.5))" }}
                 />
               ) : (<div className="w-full h-full flex flex-col items-center justify-center relative pointer-events-none select-none" style={{ background: images[current].gradient }}>

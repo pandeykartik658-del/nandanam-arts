@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Sparkles, X, ZoomIn } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import Image from "next/image";
-import { optimizeImage } from "@/utils/image";
+import { optimizeImage, getBlurDataURL } from "@/utils/image";
 
 export interface StageItem {
   title: string;
@@ -197,7 +197,7 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
               <motion.div
                 key={`${index}-${item.title}`}
                 className={`absolute inset-0 w-full max-w-md md:max-w-lg mx-auto ${isCenter ? "pointer-events-auto" : "pointer-events-auto cursor-pointer"}`}
-                style={{ zIndex, perspective: "1000px" }}
+                style={{ zIndex, perspective: "1000px", willChange: "transform, opacity" }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{
                   x: `${xOffset}%`,
@@ -264,14 +264,14 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                           transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         >
                           {itemImages[photoIdx] && (
-                            <img 
+                            <Image 
                               src={optimizeImage(itemImages[photoIdx], 1600)} 
                               alt={item.title || "Performance"}
-                              loading="lazy"
+                              fill
+                              sizes="(max-width: 768px) 100vw, 800px"
+                              placeholder="blur"
+                              blurDataURL={getBlurDataURL(itemImages[photoIdx])}
                               style={{ 
-                                position: "absolute",
-                                top: 0, left: 0,
-                                width: "100%", height: "100%",
                                 objectFit: "contain", 
                                 objectPosition: "center",
                                 opacity: 0.95,
@@ -283,14 +283,14 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                       ) : (
                         <div className="absolute inset-0" style={{ overflow: "hidden" }}>
                           {itemImages[0] && (
-                            <img 
+                            <Image 
                               src={optimizeImage(itemImages[0], 1600)} 
                               alt={item.title || "Performance"}
-                              loading="lazy"
+                              fill
+                              sizes="(max-width: 768px) 100vw, 800px"
+                              placeholder="blur"
+                              blurDataURL={getBlurDataURL(itemImages[0])}
                               style={{ 
-                                position: "absolute",
-                                top: 0, left: 0,
-                                width: "100%", height: "100%",
                                 objectFit: "contain", 
                                 objectPosition: "center",
                                 opacity: 0.7,
@@ -405,14 +405,14 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
                             }}
                           >
                             {/* Image */}
-                            <img 
+                            <Image 
                               src={optimizeImage(img, 800)} 
-                              loading="lazy"
                               alt={`${item.title} - Photo ${i+1}`}
+                              fill
+                              sizes="(max-width: 768px) 50vw, 30vw"
+                              placeholder="blur"
+                              blurDataURL={getBlurDataURL(img)}
                               style={{ 
-                                position: "absolute",
-                                top: 0, left: 0,
-                                width: "100%", height: "100%",
                                 objectFit: "cover", 
                                 objectPosition: "center",
                                 transition: "transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease",
@@ -532,19 +532,19 @@ export default function StageCarousel({ items, intervalMs = 9000, ctaLabel, Icon
 
             {/* Image */}
             <motion.div
-              className="relative max-w-[90vw] max-h-[85vh]"
+              className="relative flex items-center justify-center w-[90vw] h-[85vh]"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <img 
+              <Image 
                 src={lightboxImg}
                 alt="Full size view"
+                fill
+                sizes="100vw"
                 style={{ 
-                  maxWidth: "90vw", 
-                  maxHeight: "85vh", 
                   objectFit: "contain",
                   borderRadius: "12px",
                   boxShadow: "0 0 100px hsl(320 55% 35% / 0.3), 0 25px 50px hsl(0 0% 0% / 0.5)",

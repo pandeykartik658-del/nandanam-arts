@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { optimizeImage } from "@/utils/image";
+import { optimizeImage, getBlurDataURL } from "@/utils/image";
 
 const dancer1 = "/assets/dancer1.jpg";
 const dancer2 = "/assets/dancer2.jpg";
@@ -55,14 +55,18 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="w-full flex flex-col items-center"
+            style={{ willChange: "transform, opacity" }}
           >
           {/* Poster Image */}
-          <div className="w-full max-w-[450px] rounded-2xl overflow-hidden glow-wine mb-8 border-2 border-primary/40 flex justify-center bg-black/40">
-            <img 
+          <div className="relative w-full max-w-[450px] aspect-[3/4] sm:aspect-auto sm:h-[450px] rounded-2xl overflow-hidden glow-wine mb-8 border-2 border-primary/40 flex justify-center bg-black/40">
+            <Image 
               src={optimizeImage(event.image, 800)} 
               alt={event.title} 
-              loading="lazy"
-              className="w-full h-auto max-h-[60vh] object-contain object-center contrast-110"
+              fill
+              sizes="(max-width: 768px) 100vw, 450px"
+              placeholder="blur"
+              blurDataURL={getBlurDataURL(event.image)}
+              className="object-contain object-center contrast-110"
             />
           </div>
 
