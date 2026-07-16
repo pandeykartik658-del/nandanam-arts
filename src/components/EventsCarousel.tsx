@@ -129,20 +129,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
       <div className="flex items-center justify-center gap-6 mt-8">
 
 
-        <div className="flex items-center gap-3">
-          {events.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentIndex(idx)}
-              aria-label={`Go to event ${idx + 1}`}
-              className={`transition-all duration-500 rounded-full ${
-                idx === currentIndex
-                  ? "w-8 h-1.5 bg-primary shadow-[0_0_10px_hsl(320_55%_55%/0.5)]"
-                  : "w-2 h-1.5 bg-border hover:bg-primary/50"
-              }`}
-            />
-          ))}
-        </div>
+
 
 
       </div>

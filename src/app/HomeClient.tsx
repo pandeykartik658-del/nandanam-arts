@@ -135,7 +135,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
       <motion.section
         ref={heroRef}
         style={{ y: heroY }}
-        className="min-h-[50vh] sm:min-h-screen flex flex-col items-center justify-start sm:justify-center text-center px-6 relative pt-10 sm:pt-0"
+        className="min-h-[50vh] sm:min-h-[60vh] flex flex-col items-center justify-start sm:justify-center text-center px-6 relative pt-10 sm:pt-0"
       >
         {/* Pulsing rings behind hero content */}
         {[...Array(3)].map((_, i) => (
@@ -202,9 +202,19 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
               maskPosition: "center",
             }}
           />
-          <span className="inline-block px-6 py-3 rounded-full font-display text-[17px] tracking-[6px] uppercase text-gradient-wine glass-surface glow-wine">
-            Nandanam Center for Arts
-          </span>
+          <h1 className="inline-flex px-6 py-3 rounded-full font-display text-[17px] tracking-[6px] uppercase glass-surface glow-wine">
+            {"Nandanam Center for Arts".split("").map((letter, i) => (
+              <motion.span
+                key={i}
+                className="inline-block text-gradient-wine"
+                initial={{ y: 20, rotateX: -90, opacity: 0 }}
+                animate={{ y: 0, rotateX: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5 + i * 0.03, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {letter === " " ? "\u00A0" : letter}
+              </motion.span>
+            ))}
+          </h1>
         </motion.div>
 
 
@@ -267,7 +277,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
 
 
       {/* Events Section below Our Philosophy */}
-      <section id="events" className="w-full py-24 relative z-10">
+      <section id="events" className="w-full pt-24 pb-12 relative z-10">
         <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] text-center text-gradient-wine mb-16">
           Upcoming Events
         </h2>
