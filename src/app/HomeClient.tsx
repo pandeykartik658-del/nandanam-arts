@@ -190,7 +190,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
           {/* Remove the tiny width=1 logo that causes re-renders, use unoptimized and real size to ensure the mask gets the same preloaded raw file */}
           <Image src={logo} alt="" width={128} height={128} unoptimized priority className="hidden" aria-hidden="true" />
           <div
-            className="w-10 h-10 bg-gradient-wine-shift shrink-0"
+            className="w-12 h-12 bg-gradient-wine-shift shrink-0"
             style={{
               WebkitMaskImage: `url(${logo})`,
               WebkitMaskSize: "contain",
@@ -202,7 +202,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
               maskPosition: "center",
             }}
           />
-          <span className="inline-block px-5 py-2 rounded-full font-display text-[10px] tracking-[6px] uppercase text-primary glass-surface glow-wine">
+          <span className="inline-block px-5 py-2.5 rounded-full font-display text-[12px] tracking-[6px] uppercase text-primary glass-surface glow-wine">
             Nandanam Art Foundation
           </span>
         </motion.div>
