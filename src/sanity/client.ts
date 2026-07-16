@@ -120,3 +120,10 @@ export async function getTeachingContent() {
   }`;
   return client.fetch(query);
 }
+
+export async function getLeelaAnnouncement() {
+  const query = *[_type == "leelaAnnouncement"][0] {
+    announcementText
+  };
+  return client.fetch(query);
+}

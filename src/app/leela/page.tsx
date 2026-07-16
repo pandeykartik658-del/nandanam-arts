@@ -1,14 +1,15 @@
 import LeelaClient from "./LeelaClient";
-import { getEditions, getChambers, getWorkshops } from "@/sanity/client";
+import { getEditions, getChambers, getWorkshops, getLeelaAnnouncement } from "@/sanity/client";
 
 // This is the server component that fetches from Sanity
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function LeelaPage() {
-  const [sanityEditions, sanityChambers, sanityWorkshops] = await Promise.all([
+  const [sanityEditions, sanityChambers, sanityWorkshops, sanityAnnouncement] = await Promise.all([
     getEditions(),
     getChambers(),
     getWorkshops(),
+    getLeelaAnnouncement(),
   ]);
   
   return (
@@ -16,6 +17,7 @@ export default async function LeelaPage() {
       sanityEditions={sanityEditions} 
       sanityChambers={sanityChambers}
       sanityWorkshops={sanityWorkshops}
+      sanityAnnouncement={sanityAnnouncement}
     />
   );
 }

@@ -80,9 +80,10 @@ interface LeelaClientProps {
   sanityEditions: any[];
   sanityChambers?: any[];
   sanityWorkshops?: any[];
+  sanityAnnouncement?: any;
 }
 
-export default function LeelaClient({ sanityEditions, sanityChambers, sanityWorkshops }: LeelaClientProps) {
+export default function LeelaClient({ sanityEditions, sanityChambers, sanityWorkshops, sanityAnnouncement }: LeelaClientProps) {
   const heroRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState("hero");
   const [isDeferred, setIsDeferred] = useState(false);
@@ -320,6 +321,15 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
           </div>
           <StageCarousel items={performances} intervalMs={9000} Icon={Sparkles} />
         </section>
+
+        {/* Dynamic CMS Announcement Pill */}
+        <div className="flex items-center justify-center py-4 relative z-10">
+          <div className="glass-surface glow-wine rounded-full px-8 py-3 border border-primary/30 backdrop-blur-md shadow-[0_0_20px_hsl(var(--primary)/0.15)] text-center max-w-[90%] mx-auto">
+            <span className="text-[12px] md:text-[14px] tracking-[1px] md:tracking-[2px] font-display text-primary/90 font-medium drop-shadow-[0_0_8px_hsl(var(--primary)/0.5)]">
+              {sanityAnnouncement?.announcementText || "NEXT LEELA ARTS FESTIVAL IS ON 20TH SEPTEMBER. STAY TUNED FOR MORE UPDATES."}
+            </span>
+          </div>
+        </div>
 
         {/* Divider */}
         <div className="flex items-center justify-center gap-4 py-8 relative z-10">
