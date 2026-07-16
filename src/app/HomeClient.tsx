@@ -203,7 +203,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
             }}
           />
           <h1 className="inline-flex px-6 py-3 rounded-full font-display text-[17px] tracking-[6px] uppercase glass-surface glow-wine">
-            {"Nandanam Center for Arts".split("").map((letter, i) => (
+            {"Nandanam Art Foundation".split("").map((letter, i) => (
               <motion.span
                 key={i}
                 className="inline-block text-gradient-wine"
@@ -277,7 +277,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
 
 
       {/* Events Section below Our Philosophy */}
-      <section id="events" className="w-full pt-24 pb-12 relative z-10">
+      <section id="events" className="w-full pt-24 pb-4 relative z-10">
         <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] text-center text-gradient-wine mb-16">
           Upcoming Events
         </h2>
