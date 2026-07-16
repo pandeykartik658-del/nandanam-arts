@@ -401,10 +401,10 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
         </div>
 
         {/* Closing Section */}
-        <section id="closing" className="pt-0 pb-8 -mt-4 md:-mt-8 relative z-10 text-center px-4">
+        <section id="closing" className="pt-0 pb-0 -mt-4 md:-mt-8 relative z-10 text-center px-4">
           <div className="max-w-3xl mx-auto">
             <span className="text-3xl text-primary block mb-6">◈</span>
-            <h2 className="font-luxury text-3xl md:text-4xl text-white/80 leading-relaxed mb-6 italic">
+            <h2 className="font-luxury text-3xl md:text-4xl text-white/80 leading-relaxed mb-4 italic">
               "When the dancer vanishes and only the dance remains, we enter the realm of Leela."
             </h2>
             <Link href="/#heritage" className="inline-block px-8 py-3 border border-primary/30 rounded-full font-display uppercase tracking-[3px] text-sm text-primary hover:bg-primary/10 transition-colors">
