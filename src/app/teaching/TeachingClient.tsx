@@ -208,20 +208,7 @@ export default function TeachingClient({
 
       {/* HERO SECTION */}
       <section id="hero" className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 relative pt-20 pb-10 z-10">
-        <motion.div 
-          className="absolute top-8 left-6 md:left-12 z-50"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 2.2 }}
-        >
-          <Link href="/#heritage" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-surface border border-primary/20 text-white hover:text-primary transition-all duration-300 group shadow-md backdrop-blur-md relative">
-            <motion.div 
-              className="absolute inset-[-5px] bg-primary/0 group-hover:bg-primary/20 rounded-full blur-[10px] pointer-events-none transition-colors duration-500"
-            />
-            <ArrowLeft size={14} className="relative z-10 group-hover:-translate-x-1 transition-transform duration-300" />
-            <span className="font-display text-[9px] md:text-[10px] uppercase tracking-[4px] mt-[1px]">RETURN TO SANCTUM</span>
-          </Link>
-        </motion.div>
+
 
         <motion.div
           className="flex flex-col items-center gap-6 mb-12 relative"
@@ -295,7 +282,7 @@ export default function TeachingClient({
       <DisciplineNavigator activeSection={activeSection} />
 
       {/* DANCE WING */}
-      <section id="dance-wing" ref={danceRef} className="max-w-[1100px] mx-auto px-6 py-24 relative z-10">
+      <section id="dance-wing" ref={danceRef} className="max-w-[1100px] mx-auto px-6 pt-24 pb-12 relative z-10">
 
 
         <motion.h2
@@ -324,7 +311,7 @@ export default function TeachingClient({
 
 
       {/* MUSIC WING */}
-      <section id="music-wing" ref={musicRef} className="max-w-[1100px] mx-auto px-6 py-24 relative z-10">
+      <section id="music-wing" ref={musicRef} className="max-w-[1100px] mx-auto px-6 pt-12 pb-12 relative z-10">
 
 
         <motion.h2
@@ -353,7 +340,7 @@ export default function TeachingClient({
 
         
       {/* CLOSING SECTION */}
-      <section className="max-w-[800px] mx-auto px-6 pt-12 pb-32 text-center relative z-10">
+      <section className="max-w-[800px] mx-auto px-6 pt-12 pb-8 text-center relative z-10">
         <div className="flex flex-col items-center gap-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
