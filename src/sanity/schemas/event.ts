@@ -24,12 +24,7 @@ export const event = defineType({
       type: "string",
       description: "e.g., 'Main Auditorium' or 'Online'",
     }),
-    defineField({
-      name: "description",
-      title: "Description",
-      type: "text",
-      validation: (Rule) => Rule.required(),
-    }),
+
     defineField({
       name: "image",
       title: "Poster / Image",
