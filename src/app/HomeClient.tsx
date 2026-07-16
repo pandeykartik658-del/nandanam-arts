@@ -182,7 +182,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
 
         {/* Logo + Badge */}
         <motion.div
-          className="flex items-center gap-4 mb-10 relative z-10"
+          className="flex flex-col items-center justify-center gap-4 mb-10 relative z-10"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
