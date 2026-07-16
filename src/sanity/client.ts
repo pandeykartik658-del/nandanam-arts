@@ -122,8 +122,8 @@ export async function getTeachingContent() {
 }
 
 export async function getLeelaAnnouncement() {
-  const query = *[_type == "leelaAnnouncement"][0] {
+  const query = `*[_type == "leelaAnnouncement"][0] {
     announcementText
-  };
+  }`;
   return client.fetch(query);
 }
