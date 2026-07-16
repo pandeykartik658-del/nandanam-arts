@@ -127,13 +127,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
 
       {/* Navigation Indicators & Controls */}
       <div className="flex items-center justify-center gap-6 mt-8">
-        <button 
-          onClick={() => setCurrentIndex((prev) => (prev - 1 + events.length) % events.length)}
-          className="p-2 rounded-full border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 glow-wine"
-          aria-label="Previous event"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
+
 
         <div className="flex items-center gap-3">
           {events.map((_, idx) => (
@@ -150,13 +144,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
           ))}
         </div>
 
-        <button 
-          onClick={() => setCurrentIndex((prev) => (prev + 1) % events.length)}
-          className="p-2 rounded-full border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 glow-wine"
-          aria-label="Next event"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </button>
+
       </div>
     </div>
   );

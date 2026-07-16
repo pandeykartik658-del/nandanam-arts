@@ -284,9 +284,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
       {isDeferred && (
         <>
           {/* Marquee */}
-        <div className="relative z-10">
-          <MarqueeStrip />
-        </div>
+
 
         {/* Performance Series */}
         <section id="performance" className="py-16 md:py-24 relative z-10">
@@ -386,9 +384,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
         </section>
 
         {/* Marquee After Workshop */}
-        <div className="relative z-10 py-0">
-          <MarqueeStrip />
-        </div>
+
 
         {/* Closing Section */}
         <section id="closing" className="pt-0 pb-0 -mt-4 md:-mt-8 relative z-10 text-center px-4">

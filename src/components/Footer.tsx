@@ -4,7 +4,7 @@ import { Instagram, Youtube, Facebook, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="relative w-full overflow-hidden border-t border-primary/20 bg-background/50 backdrop-blur-md pt-16 pb-8 mt-12 z-20">
+    <footer className="relative w-full overflow-hidden border-t border-primary/20 bg-background/50 backdrop-blur-md pt-8 pb-4 mt-6 z-20">
       {/* Top ambient glow line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-[1px] bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-60" />
       

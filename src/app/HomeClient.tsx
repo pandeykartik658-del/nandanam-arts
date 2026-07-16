@@ -190,7 +190,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
           {/* Remove the tiny width=1 logo that causes re-renders, use unoptimized and real size to ensure the mask gets the same preloaded raw file */}
           <Image src={logo} alt="" width={128} height={128} unoptimized priority className="hidden" aria-hidden="true" />
           <div
-            className="w-12 h-12 bg-gradient-wine-shift shrink-0"
+            className="w-16 h-16 md:w-[72px] md:h-[72px] bg-gradient-wine-shift shrink-0"
             style={{
               WebkitMaskImage: `url(${logo})`,
               WebkitMaskSize: "contain",
@@ -202,7 +202,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
               maskPosition: "center",
             }}
           />
-          <span className="inline-block px-5 py-2.5 rounded-full font-display text-[12px] tracking-[6px] uppercase text-primary glass-surface glow-wine">
+          <span className="inline-block px-6 py-3 rounded-full font-display text-[17px] tracking-[6px] uppercase text-primary glass-surface glow-wine">
             Nandanam Art Foundation
           </span>
         </motion.div>
@@ -210,16 +210,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
 
       </motion.section>
 
-      <motion.div
-        className="w-[1px] h-[50px] sm:h-[80px] mx-auto mt-6 sm:mt-12 relative z-10"
-            style={{ background: "linear-gradient(180deg, transparent, hsl(320 55% 55%), transparent)" }}
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
-          />
-
-      <section id="philosophy" className="max-w-[1100px] mx-auto px-6 pt-10 sm:pt-16 pb-10">
+      <section id="philosophy" className="max-w-[1100px] mx-auto px-6 pt-0 pb-10">
         <motion.h2
           aria-hidden="true"
           className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] mb-10"
@@ -239,19 +230,8 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
           className="max-w-[800px] mb-6"
         >
           <p className="font-body text-lg md:text-xl leading-[1.8] mb-4" style={{ color: 'rgba(255, 255, 255, 0.92)', textShadow: '0 0 20px rgba(255,255,255,0.06)' }}>
-            {expanded 
-              ? (aboutData?.text || philosophyFull) 
-              : ((aboutData?.text || philosophyFull).split(/\s+/).slice(0, 30).join(" ") + ((aboutData?.text || philosophyFull).split(/\s+/).length > 30 ? "…" : ""))
-            }
+            {aboutData?.text || philosophyFull}
           </p>
-          <motion.button
-            onClick={() => setExpanded(!expanded)}
-            className="font-display text-xs tracking-[3px] uppercase text-primary hover:text-primary-foreground transition-colors"
-            whileHover={{ x: 4 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {expanded ? "Show Less" : "Read More →"}
-          </motion.button>
         </div>
 
 

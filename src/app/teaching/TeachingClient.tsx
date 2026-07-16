@@ -321,7 +321,7 @@ export default function TeachingClient({
         </div>
       </section>
 
-      <MarqueeStrip />
+
 
       {/* MUSIC WING */}
       <section id="music-wing" ref={musicRef} className="max-w-[1100px] mx-auto px-6 py-24 relative z-10">
