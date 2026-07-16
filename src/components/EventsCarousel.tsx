@@ -16,7 +16,6 @@ export interface CarouselEvent {
   day: string;
   month: string;
   year: string;
-  title: string;
   description: string;
   location: string;
   category: Category;
@@ -82,23 +81,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
                 </div>
               </div>
               
-              {/* Top Center Logo & Title */}
-              <div className="flex flex-col items-center justify-center">
-                <div
-                  className="w-10 h-10 bg-gradient-wine-shift mb-2 shrink-0"
-                  style={{
-                    WebkitMaskImage: `url(/assets/logo.png)`,
-                    WebkitMaskSize: "contain",
-                    WebkitMaskRepeat: "no-repeat",
-                    WebkitMaskPosition: "center",
-                    maskImage: `url(/assets/logo.png)`,
-                    maskSize: "contain",
-                    maskRepeat: "no-repeat",
-                    maskPosition: "center",
-                  }}
-                />
-                <span className="font-display text-[9px] tracking-[4px] uppercase text-primary text-center">Nandanam Center<br className="sm:hidden" /> for Arts</span>
-              </div>
+
 
               {/* Category Tag on exact Right */}
               <div className="absolute right-0 top-0 hidden sm:block">
@@ -108,9 +91,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
               </div>
             </div>
 
-            <h3 className="font-display text-2xl md:text-3xl tracking-[2px] text-foreground mb-2">
-              {event.title}
-            </h3>
+
             
             <p className="font-body text-muted-foreground/90 leading-relaxed text-[15px] md:text-[17px] mb-6">
               {event.description}

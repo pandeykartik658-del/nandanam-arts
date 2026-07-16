@@ -44,7 +44,6 @@ export async function getEditions() {
 export async function getEvents() {
   const query = `*[_type == "event"] | order(date asc) {
     _id,
-    title,
     date,
     location,
     description,

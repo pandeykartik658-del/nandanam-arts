@@ -135,7 +135,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
       <motion.section
         ref={heroRef}
         style={{ y: heroY }}
-        className="min-h-[50vh] sm:min-h-[60vh] flex flex-col items-center justify-start sm:justify-center text-center px-6 relative pt-10 sm:pt-0"
+        className="min-h-[25vh] sm:min-h-[35vh] flex flex-col items-center justify-start sm:justify-center text-center px-6 relative pt-10 sm:pt-0"
       >
         {/* Pulsing rings behind hero content */}
         {[...Array(3)].map((_, i) => (
