@@ -362,7 +362,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
         </div>
 
         {/* Workshop Series */}
-        <section id="workshop" className="py-16 md:py-24 relative z-10">
+        <section id="workshop" className="pt-16 pb-4 md:pt-24 md:pb-6 relative z-10">
           <div className="max-w-7xl mx-auto px-6 mb-10 md:mb-16 text-center flex flex-col items-center relative z-10">
             <div className="relative inline-block mb-4 w-full">
               <span className="absolute inset-0 flex items-center justify-center font-display text-[10rem] sm:text-[15rem] md:text-[20rem] text-white/5 pointer-events-none -translate-y-12 select-none">III</span>
@@ -386,14 +386,14 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
         </section>
 
         {/* Marquee After Workshop */}
-        <div className="relative z-10 py-6">
+        <div className="relative z-10 py-0">
           <MarqueeStrip />
         </div>
 
         {/* Closing Section */}
-        <section id="closing" className="pt-12 pb-32 relative z-10 text-center px-4">
+        <section id="closing" className="pt-4 pb-32 relative z-10 text-center px-4">
           <div className="max-w-3xl mx-auto">
-            <span className="text-3xl text-primary block mb-8">◈</span>
+            <span className="text-3xl text-primary block mb-6">◈</span>
             <h2 className="font-luxury text-3xl md:text-4xl text-white/80 leading-relaxed mb-12 italic">
               "When the dancer vanishes and only the dance remains, we enter the realm of Leela."
             </h2>
