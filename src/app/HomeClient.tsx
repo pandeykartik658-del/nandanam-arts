@@ -207,27 +207,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
           </span>
         </motion.div>
 
-        {/* Title */}
-        <div className="overflow-hidden mb-6 relative z-10 w-full px-4">
-          <motion.h1
-            className="font-display flex flex-wrap justify-center gap-x-4 sm:gap-x-6 text-[11vw] sm:text-5xl md:text-7xl lg:text-[5.5rem] tracking-[4px] sm:tracking-[6px] leading-[1.1] text-gradient-wine"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          >
-            DIVINE TRADITIONS
-          </motion.h1>
-        </div>
 
-        <motion.p
-          className="font-body text-lg md:text-xl text-muted-foreground max-w-[600px] leading-[1.8] relative z-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
-        >
-          A legacy of rhythm, expression, and absolute devotion to the ancient art of Bharatanatyam.
-        </motion.p>
       </motion.section>
 
       <motion.div
@@ -289,22 +269,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
           transition={{ duration: 1 }}
         />
 
-        <motion.h3
-          className="font-display text-lg md:text-xl tracking-[4px] md:tracking-[5px] uppercase mb-8 text-gradient-wine glow-text"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          Our Philosophy
-        </motion.h3>
 
-        <p
-          className="font-body text-lg md:text-xl leading-[1.8] mb-16"
-          style={{ color: 'rgba(255, 255, 255, 0.92)', textShadow: '0 0 20px rgba(255,255,255,0.06)' }}
-        >
-          "Every mudra is a prayer. Every adavu is a meditation. We do not merely dance — we channel the divine through disciplined movement, transforming the human body into a vessel of ancient stories and timeless devotion."
-        </p>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}

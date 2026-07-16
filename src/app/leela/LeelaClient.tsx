@@ -278,17 +278,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
           {/* Social Sidebar removed from hero */}
           
           {/* Scroll Indicator */}
-          <motion.div 
-            className="flex flex-col items-center text-primary/70 cursor-pointer"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 1 }}
-          >
-            <span className="font-display text-[11px] md:text-xs font-bold uppercase tracking-[4px] mb-3">SCROLL TO BEGIN</span>
-            <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-              <ChevronDown className="w-6 h-6 drop-shadow-[0_0_8px_hsl(var(--primary))]" />
-            </motion.div>
-          </motion.div>
+
         </motion.section>
 
       {isDeferred && (
@@ -403,10 +393,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
         {/* Closing Section */}
         <section id="closing" className="pt-0 pb-0 -mt-4 md:-mt-8 relative z-10 text-center px-4">
           <div className="max-w-3xl mx-auto">
-            <span className="text-3xl text-primary block mb-6">◈</span>
-            <h2 className="font-luxury text-3xl md:text-4xl text-white/80 leading-relaxed mb-4 italic">
-              "When the dancer vanishes and only the dance remains, we enter the realm of Leela."
-            </h2>
+
             <Link href="/#heritage" className="inline-block px-8 py-3 border border-primary/30 rounded-full font-display uppercase tracking-[3px] text-sm text-primary hover:bg-primary/10 transition-colors">
               Return to Sanctum
             </Link>

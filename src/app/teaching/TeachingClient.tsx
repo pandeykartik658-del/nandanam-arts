@@ -252,14 +252,7 @@ export default function TeachingClient({
               <span className="relative z-10 text-xl text-primary/60 font-display drop-shadow-[0_0_8px_hsl(var(--primary))]">◈</span>
             </div>
 
-            {/* Tagline Row */}
-            <div className="relative mt-2">
-              <div className="relative z-10 group inline-flex items-center gap-3 px-8 py-3 rounded-full border border-primary/20 bg-background/50 backdrop-blur-sm shadow-[0_0_20px_hsl(var(--primary)/0.15)] glow-wine">
-                <span className="relative font-display text-[clamp(12px,1.8vw,17px)] tracking-[4px] uppercase text-primary font-medium drop-shadow-[0_0_8px_hsl(var(--primary)/0.5)]">
-                  Where tradition is passed on
-                </span>
-              </div>
-            </div>
+
           </div>
         </motion.div>
 
@@ -296,38 +289,14 @@ export default function TeachingClient({
           </motion.p>
         </motion.div>
 
-        <motion.div
-          className="absolute bottom-10 flex flex-col items-center text-primary/70 cursor-pointer"
-          onClick={() => document.getElementById("dance-wing")?.scrollIntoView({ behavior: 'smooth' })}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 3.5, duration: 1 }}
-        >
-          <span className="font-display text-[11px] md:text-xs font-bold uppercase tracking-[4px] mb-3">SCROLL TO BEGIN</span>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown className="w-6 h-6 drop-shadow-[0_0_8px_hsl(var(--primary))]" />
-          </motion.div>
-        </motion.div>
-      </section>
 
-      <GradientDivider />
+      </section>
 
       <DisciplineNavigator activeSection={activeSection} />
 
       {/* DANCE WING */}
       <section id="dance-wing" ref={danceRef} className="max-w-[1100px] mx-auto px-6 py-24 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-4"
-        >
-          <span className="font-display text-[clamp(10px,1.2vw,12px)] tracking-[6px] uppercase text-primary/70">Discipline I</span>
-        </motion.div>
+
 
         <motion.h2
           className="font-display text-[clamp(2.2rem,5.4vw,5rem)] tracking-[3px] text-white/90 mb-14"
@@ -356,15 +325,7 @@ export default function TeachingClient({
 
       {/* MUSIC WING */}
       <section id="music-wing" ref={musicRef} className="max-w-[1100px] mx-auto px-6 py-24 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-4 text-right"
-        >
-          <span className="font-display text-[clamp(10px,1.2vw,12px)] tracking-[6px] uppercase text-primary/70">Discipline II</span>
-        </motion.div>
+
 
         <motion.h2
           className="font-display text-[clamp(2.2rem,5.4vw,5rem)] tracking-[3px] text-white/90 mb-14 text-right"
@@ -389,31 +350,10 @@ export default function TeachingClient({
         </div>
       </section>
 
-      <GradientDivider />
 
-      <DynamicJourneyTimeline />
-
+        
       {/* CLOSING SECTION */}
       <section className="max-w-[800px] mx-auto px-6 pt-12 pb-32 text-center relative z-10">
-        <motion.div
-          className="w-[1px] h-[60px] mx-auto mb-12"
-          style={{ background: "linear-gradient(180deg, transparent, hsl(var(--primary)), transparent)" }}
-          initial={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-        />
-
-        <motion.p
-          className="font-body italic text-[clamp(17px,2.6vw,26px)] leading-[2] text-white/90 tracking-wide mb-16 mx-auto max-w-[800px] px-4 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          To create a sanctuary where the ancient arts of dance and music converge — where every student becomes a custodian of tradition, carrying forward the sacred geometry of rhythm and melody into a world that yearns for beauty, discipline, and devotion.
-        </motion.p>
-        
         <div className="flex flex-col items-center gap-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
