@@ -386,12 +386,12 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
         </section>
 
         {/* Marquee After Workshop */}
-        <div className="relative z-10 py-12">
+        <div className="relative z-10 py-6">
           <MarqueeStrip />
         </div>
 
         {/* Closing Section */}
-        <section id="closing" className="py-32 relative z-10 text-center px-4">
+        <section id="closing" className="pt-12 pb-32 relative z-10 text-center px-4">
           <div className="max-w-3xl mx-auto">
             <span className="text-3xl text-primary block mb-8">◈</span>
             <h2 className="font-luxury text-3xl md:text-4xl text-white/80 leading-relaxed mb-12 italic">
