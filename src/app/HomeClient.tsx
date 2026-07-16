@@ -36,7 +36,7 @@ const words = philosophyFull.split(" ");
 const truncated = words.slice(0, WORD_LIMIT).join(" ") + "…";
 
 const navCards = [
-  { label: "Nandanam Center of Arts", link: "/teaching" },
+  { label: "Nandanam Center for Arts", link: "/teaching" },
   { label: "Leela: A Festival of Arts", link: "/leela" },
   { label: "Other Events", link: "/events" },
 ];
@@ -202,8 +202,8 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
               maskPosition: "center",
             }}
           />
-          <span className="inline-block px-6 py-3 rounded-full font-display text-[17px] tracking-[6px] uppercase text-primary glass-surface glow-wine">
-            Nandanam Art Foundation
+          <span className="inline-block px-6 py-3 rounded-full font-display text-[17px] tracking-[6px] uppercase text-gradient-wine glass-surface glow-wine">
+            Nandanam Center for Arts
           </span>
         </motion.div>
 

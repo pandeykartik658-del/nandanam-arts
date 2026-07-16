@@ -21,7 +21,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nandanamartfoundation.vercel.app"),
-  title: "Nandanam Art Foundation",
+  title: "Nandanam Center for Arts",
   description: "Experience the divine geometry of Indian classical dance.",
   verification: {
     google: "CHqMeqOFjlJ-gITvguA1OQ42tgpx2U9j7D8xTQqacgE",
@@ -44,7 +44,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Nandanam Art Foundation",
+              name: "Nandanam Center for Arts",
               url: "https://nandanamartfoundation.vercel.app",
               logo: "https://nandanamartfoundation.vercel.app/favicon.ico",
               sameAs: [

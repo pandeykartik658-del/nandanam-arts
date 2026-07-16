@@ -25,13 +25,13 @@ const Footer = () => {
             }}
           />
           <span className="font-display text-[15.5px] tracking-[6px] uppercase text-primary/90 block mb-3 drop-shadow-[0_0_8px_hsl(var(--primary)/0.3)]">
-            Nandanam Art Foundation
+            Nandanam Center for Arts
           </span>
         </div>
 
         {/* Legal/Copyright directly nestled with minimal top clearance */}
         <div className="font-display mt-8 text-[8px] tracking-[4px] text-white/80 uppercase">
-          &copy; {new Date().getFullYear()} Nandanam Art Foundation. All Rights Reserved.
+          &copy; {new Date().getFullYear()} Nandanam Center for Arts. All Rights Reserved.
         </div>
       </div>
     </footer>

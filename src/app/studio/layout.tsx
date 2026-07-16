@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Sanity Studio",
-  description: "Admin dashboard for Nandanam Art",
+  description: "Admin dashboard for Nandanam Center for Arts",
 };
 
 export default function StudioLayout({

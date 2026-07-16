@@ -63,7 +63,7 @@ const SplashScreen = () => {
           animate={{ opacity: [0.8, 1, 0.8] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         >
-          Nandanam Centre of Art
+          Nandanam Center for Arts
         </motion.h1>
 
         <div
