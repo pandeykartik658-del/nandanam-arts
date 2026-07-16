@@ -207,7 +207,7 @@ export default function TeachingClient({
       </div>
 
       {/* HERO SECTION */}
-      <section id="hero" className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 relative pt-20 pb-10 z-10">
+      <section id="hero" className="min-h-[40vh] flex flex-col items-center justify-center text-center px-6 relative pt-0 pb-0 z-10">
 
 
         <motion.div
@@ -282,7 +282,7 @@ export default function TeachingClient({
       <DisciplineNavigator activeSection={activeSection} />
 
       {/* DANCE WING */}
-      <section id="dance-wing" ref={danceRef} className="max-w-[1100px] mx-auto px-6 pt-24 pb-12 relative z-10">
+      <section id="dance-wing" ref={danceRef} className="max-w-[1100px] mx-auto px-6 pt-4 pb-12 relative z-10">
 
 
         <motion.h2

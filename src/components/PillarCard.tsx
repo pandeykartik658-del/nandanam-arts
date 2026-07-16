@@ -15,18 +15,17 @@ interface PillarCardProps {
 const PillarCard = ({ title, desc, icon, delay, sanskrit, translit, backContent }: PillarCardProps) => {
   return (
     <motion.div
-      className="relative h-[180px] sm:h-[240px] w-full rounded-xl cursor-pointer group"
+      className="relative h-[180px] sm:h-[240px] w-full rounded-xl group"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-      style={{ perspective: 1200 }}
     >
-      <div className="w-full h-full relative transition-transform duration-700 [transform-style:preserve-3d]">
+      <div className="w-full h-full relative">
         
         {/* Front Face */}
-        <div className="absolute inset-0 [backface-visibility:hidden] glass-surface rounded-xl p-3 sm:p-6 flex flex-col items-center text-center justify-center border border-primary/10 shadow-lg">
-          <span className="text-2xl sm:text-4xl mb-2 sm:mb-5 group-hover:drop-shadow-[0_0_20px_hsl(var(--primary))] transition-all duration-500 group-hover:scale-110">
+        <div className="absolute inset-0 glass-surface rounded-xl p-3 sm:p-6 flex flex-col items-center text-center justify-center border border-primary/10 shadow-lg">
+          <span className="text-2xl sm:text-4xl mb-2 sm:mb-5 text-primary/80">
             {icon}
           </span>
           <h4 className="font-display text-[clamp(17px,3vw,26px)] tracking-[2px] sm:tracking-[4px] uppercase text-primary mb-2 sm:mb-3">
