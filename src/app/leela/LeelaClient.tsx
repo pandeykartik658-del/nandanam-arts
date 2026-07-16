@@ -248,8 +248,8 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
             </div>
           </div>
 
-          <div className="glass-surface glow-wine rounded-full px-6 py-2 mb-8">
-            <span className="text-[10px] tracking-[6px] uppercase font-display text-primary">THE FESTIVAL OF ARTS</span>
+          <div className="glass-surface glow-wine rounded-full px-6 py-2.5 mb-8">
+            <span className="text-[12px] tracking-[6px] uppercase font-display text-primary">THE FESTIVAL OF ARTS</span>
           </div>
 
           <h1 className="font-display whitespace-nowrap text-[15vw] sm:text-6xl lg:text-[5rem] tracking-[5px] mb-2 flex gap-2">

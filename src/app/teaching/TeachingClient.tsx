@@ -255,7 +255,7 @@ export default function TeachingClient({
             {/* Tagline Row */}
             <div className="relative mt-2">
               <div className="relative z-10 group inline-flex items-center gap-3 px-8 py-3 rounded-full border border-primary/20 bg-background/50 backdrop-blur-sm shadow-[0_0_20px_hsl(var(--primary)/0.15)] glow-wine">
-                <span className="relative font-display text-[clamp(10px,1.5vw,14px)] tracking-[4px] uppercase text-primary font-medium drop-shadow-[0_0_8px_hsl(var(--primary)/0.5)]">
+                <span className="relative font-display text-[clamp(12px,1.8vw,17px)] tracking-[4px] uppercase text-primary font-medium drop-shadow-[0_0_8px_hsl(var(--primary)/0.5)]">
                   Where tradition is passed on
                 </span>
               </div>
