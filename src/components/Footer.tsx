@@ -7,8 +7,7 @@ const Footer = () => {
     <footer className="relative w-full overflow-hidden border-t border-primary/20 bg-background/50 backdrop-blur-md pt-2 pb-1 mt-0 z-20">
       {/* Top ambient glow line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-[1px] bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-60" />
-      
-
+      <div className="max-w-[1200px] mx-auto px-6 flex flex-col items-center text-center">
         <div className="mb-2 flex flex-col items-center">
           <div
             className="w-10 h-10 bg-gradient-wine-shift mb-1"
