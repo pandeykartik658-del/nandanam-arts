@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 const DisciplineNavigator = ({ activeSection }: { activeSection: "dance" | "music" | null }) => {
   return (
-    <div className="relative z-20 w-full flex justify-center pointer-events-none mt-4 mb-4">
-      <div className="glass-surface border border-primary/20 shadow-[0_4px_30px_hsl(var(--primary)/0.1)] rounded-full px-6 py-2 flex gap-4 pointer-events-auto backdrop-blur-md bg-background/60">
+    <div className="sticky top-24 z-50 w-full flex justify-center pointer-events-none mt-4 mb-4">
+      <div className="glass-surface border border-primary/20 shadow-[0_4px_30px_hsl(var(--primary)/0.15)] rounded-full px-6 py-2 flex gap-4 pointer-events-auto backdrop-blur-md bg-background/80">
         <button
           onClick={() => document.getElementById("dance-wing")?.scrollIntoView({ behavior: "smooth" })}
           className="relative text-xs md:text-sm tracking-[4px] uppercase font-display group focus:outline-none px-4 py-2 rounded-full transition-colors hover:bg-primary/5"

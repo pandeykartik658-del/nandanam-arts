@@ -208,7 +208,7 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
         />
 
         {/* Hero Section */}
-        <motion.section id="hero" ref={heroRef} style={{ y: heroY, opacity: heroOpacity }} className="min-h-[90vh] overflow-hidden flex flex-col items-center justify-center text-center relative z-10 px-4 pt-20">
+        <motion.section id="hero" ref={heroRef} style={{ y: heroY, opacity: heroOpacity }} className="min-h-[70vh] overflow-hidden flex flex-col items-center justify-center text-center relative z-10 px-4 pt-12">
           <div className="relative mb-12 flex items-center justify-center gap-6 md:gap-10">
             {/* Left Glyph */}
             <div className="relative flex items-center justify-center">
@@ -293,13 +293,6 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
               <span className="absolute inset-0 flex items-center justify-center font-display text-[10rem] sm:text-[15rem] md:text-[20rem] text-white/5 pointer-events-none -translate-y-12 select-none">I</span>
               
               <div className="relative z-10 flex flex-col items-center">
-                {/* Small Pill (Eyebrow Label) */}
-                <div className="inline-flex items-center gap-3 px-6 py-1.5 rounded-full border border-primary/20 bg-black/20 backdrop-blur-sm mb-6">
-                  <Music className="w-3 h-3 text-primary/70" />
-                  <span className="font-display text-[10px] tracking-[5px] uppercase text-primary/70">SERIES ONE</span>
-                  <Music className="w-3 h-3 text-primary/70" />
-                </div>
-
                 <h2 className="font-display text-4xl md:text-5xl tracking-[4px] text-gradient-wine">The Performance Series</h2>
               </div>
             </div>
@@ -327,19 +320,12 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
         </div>
 
         {/* Chamber Concert */}
-        <section id="chamber" className="py-16 md:py-24 relative z-10 bg-black/10">
+        <section id="chamber" className="py-8 md:py-12 relative z-10 bg-black/10">
           <div className="max-w-7xl mx-auto px-6 mb-10 md:mb-16 text-center flex flex-col items-center relative z-10">
             <div className="relative inline-block mb-4 w-full">
               <span className="absolute inset-0 flex items-center justify-center font-display text-[10rem] sm:text-[15rem] md:text-[20rem] text-white/5 pointer-events-none -translate-y-12 select-none">II</span>
               
               <div className="relative z-10 flex flex-col items-center">
-                {/* Small Pill (Eyebrow Label) */}
-                <div className="inline-flex items-center gap-3 px-6 py-1.5 rounded-full border border-primary/20 bg-black/20 backdrop-blur-sm mb-6">
-                  <Mic className="w-3 h-3 text-primary/70" />
-                  <span className="font-display text-[10px] tracking-[5px] uppercase text-primary/70">SERIES TWO</span>
-                  <Mic className="w-3 h-3 text-primary/70" />
-                </div>
-
                 <h2 className="font-display text-4xl md:text-5xl tracking-[4px] text-gradient-wine">The Chamber Concert</h2>
               </div>
             </div>
@@ -360,19 +346,12 @@ export default function LeelaClient({ sanityEditions, sanityChambers, sanityWork
         </div>
 
         {/* Workshop Series */}
-        <section id="workshop" className="pt-16 pb-0 md:pt-24 md:pb-0 relative z-10">
+        <section id="workshop" className="pt-8 pb-0 md:pt-12 md:pb-0 relative z-10">
           <div className="max-w-7xl mx-auto px-6 mb-10 md:mb-16 text-center flex flex-col items-center relative z-10">
             <div className="relative inline-block mb-4 w-full">
               <span className="absolute inset-0 flex items-center justify-center font-display text-[10rem] sm:text-[15rem] md:text-[20rem] text-white/5 pointer-events-none -translate-y-12 select-none">III</span>
               
               <div className="relative z-10 flex flex-col items-center">
-                {/* Small Pill (Eyebrow Label) */}
-                <div className="inline-flex items-center gap-3 px-6 py-1.5 rounded-full border border-primary/20 bg-black/20 backdrop-blur-sm mb-6">
-                  <GraduationCap className="w-3 h-3 text-primary/70" />
-                  <span className="font-display text-[10px] tracking-[5px] uppercase text-primary/70">SERIES THREE</span>
-                  <GraduationCap className="w-3 h-3 text-primary/70" />
-                </div>
-
                 <h2 className="font-display text-4xl md:text-5xl tracking-[4px] text-gradient-wine">The Workshop Series</h2>
               </div>
             </div>
