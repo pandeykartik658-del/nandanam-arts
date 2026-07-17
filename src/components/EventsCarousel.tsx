@@ -71,7 +71,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
           </div>
 
           {/* Event Architecture Details */}
-          <div className="glass-surface border border-primary/20 rounded-xl px-5 md:px-6 pb-5 md:pb-6 pt-3 md:pt-4 w-full max-w-[600px] backdrop-blur-xl relative">
+          <div className="glass-surface border border-primary/20 rounded-xl px-5 md:px-6 pb-5 md:pb-6 pt-3 md:pt-4 w-full max-w-[500px] backdrop-blur-xl relative">
             <div className="flex flex-col items-start justify-start">
               <div className="absolute right-0 top-0 hidden sm:block -mt-3 -mr-3">
                 <span className="inline-block px-3 py-1 rounded-full border border-primary/30 bg-primary/10 font-display text-[9px] tracking-widest uppercase text-primary font-semibold">
@@ -81,7 +81,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
             </div>
 
 
-            <p className="font-body text-muted-foreground/90 leading-relaxed text-[15px] md:text-[17px] mb-6">
+            <p className="font-body text-muted-foreground/90 leading-relaxed text-[13px] md:text-[14px] mb-5">
               {event.description}
             </p>
 
@@ -89,7 +89,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
               {/* Column 1 (Left): Venue */}
               <div className="flex flex-col gap-1 items-start pr-2">
                 <span className="font-display text-xl tracking-wide font-medium text-gradient-wine">VENUE</span>
-                <span className="text-lg text-white/90 whitespace-normal leading-relaxed">
+                <span className="text-lg text-white/90 whitespace-normal leading-relaxed line-clamp-5 max-w-full">
                   {event.location}
                 </span>
               </div>
