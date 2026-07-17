@@ -48,7 +48,7 @@ export default async function HomePage() {
         year: d.getFullYear().toString(),
         time: e.time || "TBA",
         description: e.description,
-        location: e.location || "TBA",
+        location: e.location ? e.location.replace(/^Venue\s*:\s*/i, "") : "TBA",
         category: e.category || "All",
         image: e.image || "/assets/dancer1.jpg",
       };

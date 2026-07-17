@@ -45,7 +45,7 @@ export default async function EventsPage() {
         year: d.getFullYear().toString(),
         title: e.title,
         description: e.description,
-        location: e.location || "TBA",
+        location: e.location ? e.location.replace(/^Venue\s*:\s*/i, "") : "TBA",
         category: e.category || "All",
         image: e.image || "/assets/dancer1.jpg",
         dateObj: d // Keep full date for filtering
