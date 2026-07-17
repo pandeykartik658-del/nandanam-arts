@@ -58,7 +58,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
             style={{ willChange: "transform, opacity" }}
           >
           {/* Poster Image */}
-          <div className="relative w-full max-w-[450px] aspect-[3/4] sm:aspect-auto sm:h-[450px] rounded-2xl overflow-hidden glow-wine mb-8 border-2 border-primary/40 flex justify-center bg-black/40">
+          <div className="relative w-full max-w-[450px] aspect-[3/4] sm:aspect-auto sm:h-[450px] rounded-2xl overflow-hidden glow-wine mb-3 border-2 border-primary/40 flex justify-center bg-black/40">
             <Image 
               src={optimizeImage(event.image, 800)} 
               alt="Event Poster" 
