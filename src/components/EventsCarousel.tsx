@@ -86,30 +86,30 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
             </p>
 
             <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-6 border-t border-border/40 text-muted-foreground/80 font-body text-sm tracking-wide">
-              {/* Column 1: Venue */}
-              <div className="flex flex-col gap-1 items-start pr-2">
-                <span className="font-display text-lg text-foreground tracking-wide font-medium">VENUE</span>
-                <span className="text-xs text-muted-foreground whitespace-normal leading-relaxed">
-                  {event.location}
-                </span>
-              </div>
-
-              {/* Column 2: Date and Time */}
-              <div className="flex flex-col gap-4 pl-4 sm:pl-6 border-l border-border/40">
+              {/* Column 1 (Left): Date and Time */}
+              <div className="flex flex-col gap-4 items-start pr-2">
                 {/* Part 1: Date */}
                 <div className="flex flex-col gap-1 items-start">
-                  <span className="font-display text-lg text-foreground tracking-wide font-medium">DATE</span>
-                  <span className="text-xs text-muted-foreground whitespace-normal leading-relaxed">
+                  <span className="font-display text-xl text-foreground tracking-wide font-medium">DATE</span>
+                  <span className="text-sm text-muted-foreground whitespace-normal leading-relaxed hover:text-primary transition-colors duration-300 cursor-default">
                     {event.day} {event.month} {event.year}
                   </span>
                 </div>
                 {/* Part 2: Time */}
                 <div className="flex flex-col gap-1 items-start">
-                  <span className="font-display text-lg text-foreground tracking-wide font-medium">TIME</span>
-                  <span className="text-xs text-muted-foreground whitespace-normal leading-relaxed">
+                  <span className="font-display text-xl text-foreground tracking-wide font-medium">TIME</span>
+                  <span className="text-sm text-muted-foreground whitespace-normal leading-relaxed hover:text-primary transition-colors duration-300 cursor-default">
                     {event.time}
                   </span>
                 </div>
+              </div>
+
+              {/* Column 2 (Right): Venue */}
+              <div className="flex flex-col gap-1 items-start pl-4 sm:pl-6 border-l border-border/40">
+                <span className="font-display text-xl text-foreground tracking-wide font-medium">VENUE</span>
+                <span className="text-sm text-muted-foreground whitespace-normal leading-relaxed hover:text-primary transition-colors duration-300 cursor-default">
+                  {event.location}
+                </span>
               </div>
             </div>
           </div>
