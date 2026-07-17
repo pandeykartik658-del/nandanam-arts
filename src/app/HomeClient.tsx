@@ -29,7 +29,7 @@ const logo = "/assets/logo.png";
 const titleLetters = "DIVINE TRADITIONS".split("");
 
 const philosophyFull =
-  "NAF is a non profit organisation founded with an aim of promoting and propagating Indian culture and arts. As an organisation in its formative stage NAF has undertaken several initiatives to further our cause. NAF actively conducts other artistic and cultural events, on the community level, providing a platform for the students of NCA and other ameture artists.";
+  "NAF is a non profit organisation founded with an aim of promoting and propagating Indian culture and arts. As an organisation in its formative stage NAF has undertaken several initiatives to further our cause. NAF actively conducts other artistic and cultural events, on the community level, providing a platform for the students of NCA and other amateur artists.";
 
 const WORD_LIMIT = 30;
 const words = philosophyFull.split(" ");

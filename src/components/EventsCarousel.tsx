@@ -72,8 +72,8 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
 
           {/* Event Architecture Details */}
           <div className="glass-surface border border-primary/20 rounded-xl p-5 md:p-6 w-full max-w-[600px] backdrop-blur-xl relative">
-            <div className="flex flex-col items-start justify-start mb-4">
-              <div className="absolute right-0 top-0 hidden sm:block">
+            <div className="flex flex-col items-start justify-start">
+              <div className="absolute right-0 top-0 hidden sm:block -mt-3 -mr-3">
                 <span className="inline-block px-3 py-1 rounded-full border border-primary/30 bg-primary/10 font-display text-[9px] tracking-widest uppercase text-primary font-semibold">
                   {event.category}
                 </span>
@@ -88,8 +88,8 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
             <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-6 border-t border-border/40 text-muted-foreground/80 font-body text-sm tracking-wide">
               {/* Column 1 (Left): Venue */}
               <div className="flex flex-col gap-1 items-start pr-2">
-                <span className="font-display text-xl text-foreground tracking-wide font-medium">VENUE</span>
-                <span className="text-sm whitespace-normal leading-relaxed text-gradient-wine">
+                <span className="font-display text-xl tracking-wide font-medium text-gradient-wine">VENUE</span>
+                <span className="text-base text-muted-foreground/90 whitespace-normal leading-relaxed">
                   {event.location}
                 </span>
               </div>
@@ -98,15 +98,15 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
               <div className="flex flex-col gap-4 items-end text-right pl-4 sm:pl-6 border-l border-border/40">
                 {/* Part 1: Date */}
                 <div className="flex flex-col gap-1 items-end text-right">
-                  <span className="font-display text-xl text-foreground tracking-wide font-medium">DATE</span>
-                  <span className="text-sm whitespace-normal leading-relaxed text-gradient-wine">
+                  <span className="font-display text-xl tracking-wide font-medium text-gradient-wine">DATE</span>
+                  <span className="text-base text-muted-foreground/90 whitespace-normal leading-relaxed">
                     {event.day} {event.month} {event.year}
                   </span>
                 </div>
                 {/* Part 2: Time */}
                 <div className="flex flex-col gap-1 items-end text-right">
-                  <span className="font-display text-xl text-foreground tracking-wide font-medium">TIME</span>
-                  <span className="text-sm whitespace-normal leading-relaxed text-gradient-wine">
+                  <span className="font-display text-xl tracking-wide font-medium text-gradient-wine">TIME</span>
+                  <span className="text-base text-muted-foreground/90 whitespace-normal leading-relaxed">
                     {event.time}
                   </span>
                 </div>
