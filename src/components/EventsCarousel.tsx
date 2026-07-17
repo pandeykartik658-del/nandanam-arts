@@ -89,7 +89,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
               {/* Column 1 (Left): Venue */}
               <div className="flex flex-col gap-1 items-start pr-2">
                 <span className="font-display text-xl tracking-wide font-medium text-gradient-wine">VENUE</span>
-                <span className="text-lg text-white/90 whitespace-normal leading-relaxed line-clamp-5 max-w-full">
+                <span className="text-sm text-white/90 whitespace-normal leading-relaxed line-clamp-5 max-w-full">
                   {event.location}
                 </span>
               </div>
@@ -99,14 +99,14 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
                 {/* Part 1: Date */}
                 <div className="flex flex-col gap-1 items-end text-right">
                   <span className="font-display text-xl tracking-wide font-medium text-gradient-wine">DATE</span>
-                  <span className="text-lg text-white/90 whitespace-normal leading-relaxed">
+                  <span className="text-sm text-white/90 whitespace-normal leading-relaxed">
                     {event.day} {event.month} {event.year}
                   </span>
                 </div>
                 {/* Part 2: Time */}
                 <div className="flex flex-col gap-1 items-end text-right">
                   <span className="font-display text-xl tracking-wide font-medium text-gradient-wine">TIME</span>
-                  <span className="text-lg text-white/90 whitespace-normal leading-relaxed">
+                  <span className="text-sm text-white/90 whitespace-normal leading-relaxed">
                     {event.time}
                   </span>
                 </div>
