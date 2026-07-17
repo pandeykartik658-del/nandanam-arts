@@ -85,14 +85,6 @@ const MovingBackground = ({ speed = 1 }: { speed?: number }) => {
           backgroundSize: "80px 80px",
         }}
       />
-
-      {/* Vignette */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "radial-gradient(ellipse 65% 55% at 50% 50%, transparent 25%, hsl(300 25% 4% / 0.7) 100%)",
-        }}
-      />
     </div>
   );
 };
