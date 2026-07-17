@@ -8,17 +8,7 @@ const Footer = () => {
       {/* Top ambient glow line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-[1px] bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-60" />
       
-      <div className="max-w-[1200px] mx-auto px-6 flex flex-col items-center text-center">
-        {/* Socials */}
-        <div className="flex items-center justify-center gap-6 mb-3">
-          <a href="https://www.instagram.com/nandanamarts/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-primary transition-colors duration-300">
-            <Instagram size={16} />
-          </a>
-          <a href="https://www.youtube.com/@nandanamarts2322" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-primary transition-colors duration-300">
-            <Youtube size={16} />
-          </a>
-        </div>
-        {/* Foundation Branding */}
+
         <div className="mb-2 flex flex-col items-center">
           <div
             className="w-10 h-10 bg-gradient-wine-shift mb-1"

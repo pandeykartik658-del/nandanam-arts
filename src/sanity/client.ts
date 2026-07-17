@@ -45,6 +45,7 @@ export async function getEvents() {
   const query = `*[_type == "event"] | order(date asc) {
     _id,
     date,
+    time,
     location,
     description,
     image {

@@ -16,6 +16,7 @@ export interface CarouselEvent {
   day: string;
   month: string;
   year: string;
+  time: string;
   description: string;
   location: string;
   category: Category;
@@ -60,7 +61,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
           <div className="relative w-full max-w-[450px] aspect-[3/4] sm:aspect-auto sm:h-[450px] rounded-2xl overflow-hidden glow-wine mb-8 border-2 border-primary/40 flex justify-center bg-black/40">
             <Image 
               src={optimizeImage(event.image, 800)} 
-              alt={event.title} 
+              alt="Event Poster" 
               fill
               sizes="(max-width: 768px) 100vw, 450px"
               placeholder="blur"
@@ -70,20 +71,8 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
           </div>
 
           {/* Event Architecture Details */}
-          <div className="glass-surface border border-primary/20 rounded-xl p-5 md:p-6 w-full max-w-[600px] backdrop-blur-xl">
-            <div className="relative flex flex-col items-center justify-start min-h-[90px] mb-4">
-              {/* Date Badge */}
-              <div className="relative sm:absolute sm:left-0 sm:top-0 flex justify-center mb-4 sm:mb-0">
-                <div className="flex flex-col items-center justify-center bg-background/90 border border-primary/40 rounded-lg p-2 min-w-[60px] shadow-[0_0_10px_hsl(320_55%_55%/0.15)]">
-                  <span className="font-display text-primary text-[10px] tracking-widest uppercase mb-0.5">{event.month}</span>
-                  <span className="font-display text-xl text-foreground font-semibold">{event.day}</span>
-                  <span className="font-display text-muted-foreground text-[8px] tracking-widest mt-0.5">{event.year}</span>
-                </div>
-              </div>
-              
-
-
-              {/* Category Tag on exact Right */}
+          <div className="glass-surface border border-primary/20 rounded-xl p-5 md:p-6 w-full max-w-[600px] backdrop-blur-xl relative">
+            <div className="flex flex-col items-start justify-start mb-4">
               <div className="absolute right-0 top-0 hidden sm:block">
                 <span className="inline-block px-3 py-1 rounded-full border border-primary/30 bg-primary/10 font-display text-[9px] tracking-widest uppercase text-primary font-semibold">
                   {event.category}
@@ -97,9 +86,16 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
               {event.description}
             </p>
 
-            <div className="flex items-center gap-2 pt-4 border-t border-border/40 text-muted-foreground/80 font-body text-xs tracking-wide">
-              <MapPin className="w-4 h-4 text-primary/70 shrink-0" />
-              <span className="truncate">{event.location}</span>
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border/40 text-muted-foreground/80 font-body text-xs tracking-wide">
+              {/* Column 1: Venue */}
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-primary/70 shrink-0" />
+                <span className="truncate">{event.location}</span>
+              </div>
+              {/* Column 2: Date and Time */}
+              <div className="flex items-center justify-end gap-2 text-right">
+                <span className="truncate">{event.day} {event.month} {event.year} • {event.time}</span>
+              </div>
             </div>
           </div>
           </motion.div>
