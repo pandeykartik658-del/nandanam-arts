@@ -233,7 +233,6 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
           className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[3px] mb-10"
           style={{
             color: '#FDF2E3',
-            animation: 'aboutUsGlow 3s ease-in-out infinite',
           }}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -246,7 +245,7 @@ export default function HomeClient({ upcomingEvents, aboutData }: HomeClientProp
         <div
           className="max-w-[800px] mb-6"
         >
-          <p className="font-body text-lg md:text-xl leading-[1.8] mb-4" style={{ color: 'rgba(255, 255, 255, 0.92)', textShadow: '0 0 20px rgba(255,255,255,0.06)' }}>
+          <p className="font-body text-lg md:text-xl leading-[1.8] mb-4" style={{ color: 'rgba(255, 255, 255, 0.92)' }}>
             {aboutData?.text || philosophyFull}
           </p>
         </div>
