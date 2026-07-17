@@ -63,6 +63,18 @@ const SocialSidebar = ({ neverSettle = false }: { neverSettle?: boolean }) => {
         )}
       </AnimatePresence>
 
+      {!neverSettle && (
+        <div className="w-full h-24 relative z-[100] flex items-center justify-center mt-8">
+          <div className="absolute inset-0 flex flex-row items-center justify-center gap-8 w-full">
+            <div className="w-12 h-[1px] bg-gradient-to-r from-primary/60 to-transparent mb-0 mr-2" />
+            <div className="flex flex-row gap-8 items-center justify-center">
+              <SocialLinks />
+            </div>
+            <div className="w-12 h-[1px] bg-gradient-to-l from-primary/60 to-transparent mt-0 ml-2" />
+          </div>
+        </div>
+      )}
+
 
     </>
   );
