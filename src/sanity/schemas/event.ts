@@ -14,6 +14,12 @@ export const event = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "time",
+      title: "Time",
+      type: "string",
+      description: "e.g., '6:30 PM'",
+    }),
+    defineField({
       name: "location",
       title: "Location",
       type: "string",

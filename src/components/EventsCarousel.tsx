@@ -85,9 +85,9 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
               {event.description}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-border/40 text-muted-foreground/80 font-body text-sm tracking-wide">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-6 border-t border-border/40 text-muted-foreground/80 font-body text-sm tracking-wide">
               {/* Column 1: Venue */}
-              <div className="flex flex-col gap-1 items-start">
+              <div className="flex flex-col gap-1 items-start pr-2">
                 <span className="font-display text-lg text-foreground tracking-wide font-medium">VENUE</span>
                 <span className="text-xs text-muted-foreground whitespace-normal leading-relaxed">
                   {event.location}
@@ -95,7 +95,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
               </div>
 
               {/* Column 2: Date and Time */}
-              <div className="flex flex-col gap-4 sm:pl-6 sm:border-l border-border/40">
+              <div className="flex flex-col gap-4 pl-4 sm:pl-6 border-l border-border/40">
                 {/* Part 1: Date */}
                 <div className="flex flex-col gap-1 items-start">
                   <span className="font-display text-lg text-foreground tracking-wide font-medium">DATE</span>
