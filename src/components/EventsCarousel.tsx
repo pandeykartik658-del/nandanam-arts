@@ -16,6 +16,7 @@ export interface CarouselEvent {
   day: string;
   month: string;
   year: string;
+  title?: string;
   time: string;
   description: string;
   location: string;
@@ -80,6 +81,14 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
               </div>
             </div>
 
+
+            <div className="flex flex-col items-center justify-center text-center mt-2 mb-4 sm:mt-0">
+              {event.title && (
+                <h3 className="font-display text-2xl md:text-3xl text-gradient-wine tracking-[2px] leading-tight mb-2">
+                  {event.title}
+                </h3>
+              )}
+            </div>
 
             <p className="font-body text-muted-foreground/90 leading-relaxed text-[13px] md:text-[14px] mb-5">
               {event.description}
