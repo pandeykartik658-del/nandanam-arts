@@ -1,5 +1,5 @@
 import HomeClient from "./HomeClient";
-import { getEvents, getAboutContent } from "@/sanity/client";
+import { getEvents, getAboutContent, urlFor } from "@/sanity/client";
 import { CarouselEvent } from "@/components/EventsCarousel";
 
 // Server Component — fetches events from Sanity at request time
@@ -26,7 +26,7 @@ export default async function HomePage() {
         description: e.description,
         location: e.location ? e.location.replace(/^Venue\s*:\s*/i, "") : "TBA",
         category: e.category || "All",
-        image: e.image || "/assets/dancer1.jpg",
+        image: e.image ? urlFor(e.image).toString() : "/assets/dancer1.jpg",
       };
     });
   }

@@ -1,7 +1,7 @@
 import EventsCarousel, { CarouselEvent } from "@/components/EventsCarousel";
 import SocialSidebar from "@/components/SocialSidebar";
 import Footer from "@/components/Footer";
-import { getEvents } from "@/sanity/client";
+import { getEvents, urlFor } from "@/sanity/client";
 
 export const revalidate = 60;
 
@@ -24,7 +24,7 @@ export default async function EventsPage() {
         description: e.description,
         location: e.location ? e.location.replace(/^Venue\s*:\s*/i, "") : "TBA",
         category: e.category || "All",
-        image: e.image || "/assets/dancer1.jpg",
+        image: e.image ? urlFor(e.image).toString() : "/assets/dancer1.jpg",
         dateObj: d // Keep full date for filtering
       };
     });
