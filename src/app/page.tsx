@@ -5,33 +5,6 @@ import { CarouselEvent } from "@/components/EventsCarousel";
 // Server Component — fetches events from Sanity at request time
 export const revalidate = 60; // Revalidate every 60 seconds
 
-const fallbackEvents: CarouselEvent[] = [
-  {
-    id: 1,
-    day: "15",
-    month: "DEC",
-    year: "2026",
-    title: "Margazhi Utsavam",
-    time: "6:00 PM",
-    description: "Annual winter dance festival featuring senior disciples executing complex rhythmic patterns.",
-    location: "Chennai, India",
-    category: "Festival",
-    image: "/assets/dancer1.jpg"
-  },
-  {
-    id: 2,
-    day: "10",
-    month: "FEB",
-    year: "2027",
-    title: "Natyanjali Festival",
-    time: "7:00 PM",
-    description: "Celebrating Maha Shivaratri with all-night classical devotion performances.",
-    location: "Chidambaram, India",
-    category: "Festival",
-    image: "/assets/dancer4.jpg"
-  }
-];
-
 export default async function HomePage() {
   const [sanityEvents, aboutData] = await Promise.all([
     getEvents(),
@@ -56,8 +29,6 @@ export default async function HomePage() {
         image: e.image || "/assets/dancer1.jpg",
       };
     });
-  } else {
-    formattedEvents = fallbackEvents;
   }
 
   // Filter upcoming events (date in the future)
@@ -67,8 +38,8 @@ export default async function HomePage() {
     return eventDate >= now;
   });
 
-  // Show fallback if no upcoming events
-  const eventsToShow = upcomingEvents.length > 0 ? upcomingEvents : fallbackEvents;
+  // Pass upcoming events directly
+  const eventsToShow = upcomingEvents;
 
   return (
     <HomeClient upcomingEvents={eventsToShow} aboutData={aboutData} />

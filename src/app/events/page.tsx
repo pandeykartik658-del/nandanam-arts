@@ -5,32 +5,6 @@ import { getEvents } from "@/sanity/client";
 
 export const revalidate = 60;
 
-const fallbackEvents: CarouselEvent[] = [
-  {
-    id: 1,
-    day: "15",
-    month: "DEC",
-    year: "2026",
-    title: "Margazhi Utsavam",
-    time: "6:00 PM",
-    description: "Annual winter dance festival featuring senior disciples executing complex rhythmic patterns.",
-    location: "Chennai, India",
-    category: "Festival",
-    image: "/assets/dancer1.jpg"
-  },
-  {
-    id: 2,
-    day: "10",
-    month: "FEB",
-    year: "2027",
-    title: "Natyanjali Festival",
-    time: "7:00 PM",
-    description: "Celebrating Maha Shivaratri with all-night classical devotion performances.",
-    location: "Chidambaram, India",
-    category: "Festival",
-    image: "/assets/dancer2.jpg"
-  }
-];
 
 export default async function EventsPage() {
   const sanityEvents = await getEvents();
@@ -54,12 +28,6 @@ export default async function EventsPage() {
         dateObj: d // Keep full date for filtering
       };
     });
-  } else {
-    // Fake dateObj for fallback
-    formattedEvents = fallbackEvents.map(e => ({
-      ...e,
-      dateObj: new Date(`${e.month} ${e.day}, ${e.year}`)
-    }));
   }
 
   const now = new Date();
