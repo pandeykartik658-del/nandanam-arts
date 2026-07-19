@@ -44,39 +44,15 @@ const SocialSidebar = ({ neverSettle = false }: { neverSettle?: boolean }) => {
         </defs>
       </svg>
 
-      <AnimatePresence>
-        {(!isAtBottom || neverSettle) && (
-          <motion.div
-            key="sidebar-side"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="fixed right-6 xl:right-10 top-[46%] -translate-y-1/2 z-[100] hidden md:flex flex-col items-center justify-center gap-6"
-          >
-            <div className="w-[1px] h-12 bg-gradient-to-t from-primary/60 to-transparent mb-2" />
-            <div className="flex flex-col gap-6 items-center justify-center">
-              <SocialLinks />
-            </div>
-            <div className="w-[1px] h-12 bg-gradient-to-b from-primary/60 to-transparent mt-2" />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {!neverSettle && (
-        <div className="w-full h-24 relative z-[100] flex items-center justify-center mt-8 mb-8">
-          <div className="absolute inset-0 flex flex-row items-center justify-center gap-8 w-full">
-            <div className="w-12 h-[1px] bg-gradient-to-r from-primary/60 to-transparent mb-0 mr-2" />
-            <div className="flex flex-row gap-8 items-center justify-center">
-              <SocialLinks />
-            </div>
-            <div className="w-12 h-[1px] bg-gradient-to-l from-primary/60 to-transparent mt-0 ml-2" />
+      <div className="w-full h-24 relative z-[100] flex items-center justify-center mt-8 mb-8">
+        <div className="absolute inset-0 flex flex-row items-center justify-center gap-8 w-full">
+          <div className="w-12 h-[1px] bg-gradient-to-r from-primary/60 to-transparent mb-0 mr-2" />
+          <div className="flex flex-row gap-8 items-center justify-center">
+            <SocialLinks />
           </div>
+          <div className="w-12 h-[1px] bg-gradient-to-l from-primary/60 to-transparent mt-0 ml-2" />
         </div>
-      )}
-
-
-
+      </div>
     </>
   );
 };

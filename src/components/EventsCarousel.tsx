@@ -86,31 +86,15 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
               {event.description}
             </p>
 
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-6 border-t border-border/40 text-muted-foreground/80 font-body text-sm tracking-wide">
-              {/* Column 1 (Left): Venue */}
-              <div className="flex flex-col gap-1 items-start pr-2">
-                <span className="font-display text-xl tracking-wide font-medium text-gradient-wine">VENUE</span>
-                <span className="text-sm text-white/90 whitespace-normal leading-relaxed line-clamp-5 max-w-full">
-                  {event.location}
-                </span>
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border/40 text-muted-foreground/80 font-body text-xs tracking-wide">
+              {/* Column 1: Venue */}
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-primary/70 shrink-0" />
+                <span className="truncate">{event.location}</span>
               </div>
-
-              {/* Column 2 (Right): Date and Time */}
-              <div className="flex flex-col gap-4 items-end text-right pl-4 sm:pl-6 border-l border-border/40">
-                {/* Part 1: Date */}
-                <div className="flex flex-col gap-1 items-end text-right">
-                  <span className="font-display text-xl tracking-wide font-medium text-gradient-wine">DATE</span>
-                  <span className="text-sm text-white/90 whitespace-normal leading-relaxed">
-                    {event.day} {event.month} {event.year}
-                  </span>
-                </div>
-                {/* Part 2: Time */}
-                <div className="flex flex-col gap-1 items-end text-right">
-                  <span className="font-display text-xl tracking-wide font-medium text-gradient-wine">TIME</span>
-                  <span className="text-sm text-white/90 whitespace-normal leading-relaxed">
-                    {event.time}
-                  </span>
-                </div>
+              {/* Column 2: Date and Time */}
+              <div className="flex items-center justify-end gap-2 text-right">
+                <span className="truncate">{event.day} {event.month} {event.year} • {event.time}</span>
               </div>
             </div>
           </div>
